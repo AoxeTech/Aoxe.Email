@@ -1,8 +1,14 @@
-# Zaabee.EmailUtility
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Xunit;
+using Zaabee.EmailUtility;
 
-The wrappers for SmtpClient.
-
-```csharp
+namespace UnitTest
+{
+    public class UnitTest1
+    {
+        [Fact]
         public void Test()
         {
             var emailHelper = new EmailHelper();
@@ -12,10 +18,13 @@ The wrappers for SmtpClient.
                 .UserName("The userName for NetworkCredential")
                 .Password("The password for NetworkCredential")
                 .From("From address")
+                
                 .To(new List<string> {"123@live.com", "456@gmail.com"})
                 .To("789@yahoo.com")
+                
                 .Cc("987@hotmail.com")
                 .Bcc("654@msn.com")
+                
                 .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
                 .Attachment(fileStream, "test_attachment")
@@ -30,4 +39,5 @@ The wrappers for SmtpClient.
             fileStream.Close();
             return new MemoryStream(bytes);
         }
-```
+    }
+}
