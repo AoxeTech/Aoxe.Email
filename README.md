@@ -1,6 +1,6 @@
 # Zaabee.EmailUtility
 
-The wrappers for SmtpClient.
+The fluent style wrappers for SmtpClient.
 
 ```csharp
 public void Test()
