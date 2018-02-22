@@ -2,11 +2,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>1.1.2</PackageVersion>
     <Authors>Mutuduxf</Authors>
     <Company>Mutuduxf</Company>
     <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.EmailUtility</PackageProjectUrl>
     <Description>The fluent style wrappers for SmtpClient.</Description>
-    <PackageReleaseNotes>Zaabee SMTP Email</PackageReleaseNotes>
+    <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.EmailUtility/master/LICENSE</PackagelicenseUrl>
+    <PackageTags>Zaabee SMTP Email</PackageTags>
   </PropertyGroup>
 </Project>
