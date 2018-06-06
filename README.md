@@ -1,8 +1,9 @@
-# Zaabee.EmailUtility
+# Zaabee.Email
 
 The fluent style wrappers for SmtpClient.
 
 ```csharp
+[Fact]
 public void Test()
 {
         var emailHelper = new EmailHelper();

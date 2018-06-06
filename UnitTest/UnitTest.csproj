@@ -10,6 +10,6 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zaabee.EmailUtility\Zaabee.EmailUtility.csproj" />
+    <ProjectReference Include="..\Zaabee.Email\Zaabee.Email.csproj" />
   </ItemGroup>
 </Project>

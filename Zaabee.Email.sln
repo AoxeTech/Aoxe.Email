@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.EmailUtility", "Zaabee.EmailUtility\Zaabee.EmailUtility.csproj", "{587A5D2E-C25D-4098-A0F2-343E5A202FA0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{1F34F9AD-F066-4AE8-839A-F708A8006F7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Email", "Zaabee.Email\Zaabee.Email.csproj", "{C07B4D68-DD06-45C4-883A-B65B2DA6678F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{587A5D2E-C25D-4098-A0F2-343E5A202FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{587A5D2E-C25D-4098-A0F2-343E5A202FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{587A5D2E-C25D-4098-A0F2-343E5A202FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{587A5D2E-C25D-4098-A0F2-343E5A202FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F34F9AD-F066-4AE8-839A-F708A8006F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F34F9AD-F066-4AE8-839A-F708A8006F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F34F9AD-F066-4AE8-839A-F708A8006F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F34F9AD-F066-4AE8-839A-F708A8006F7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C07B4D68-DD06-45C4-883A-B65B2DA6678F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C07B4D68-DD06-45C4-883A-B65B2DA6678F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C07B4D68-DD06-45C4-883A-B65B2DA6678F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C07B4D68-DD06-45C4-883A-B65B2DA6678F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
