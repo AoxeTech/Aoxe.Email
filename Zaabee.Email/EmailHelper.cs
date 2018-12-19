@@ -11,32 +11,25 @@ namespace Zaabee.Email
     public class EmailHelper
     {
         private bool _isBodyHtml = true;
-
         private Encoding _bodyEncoding = Encoding.UTF8;
-
         private MailPriority _mailPriority = MailPriority.Normal;
-
         private string _from;
-
         private string _host;
-
         private int _port;
-
         private string _userName;
-
         private string _password;
-
         private List<string> _toList;
-
         private List<string> _ccList;
-
         private List<string> _bccList;
-
         private List<Attachment> _attachments;
-
         private string _subject;
-
         private string _body;
+        private bool _enableSsl;
+        private SmtpDeliveryMethod _deliveryMethod = SmtpDeliveryMethod.Network;
+        private SmtpDeliveryFormat _smtpDeliveryFormat = SmtpDeliveryFormat.SevenBit;
+        private string _pickupDirectoryLocation;
+        private string _targetName = "SMTPSVC/";
+        private TimeSpan? _timeout;
 
         /// <summary>
         /// From address
@@ -269,11 +262,55 @@ namespace Zaabee.Email
             return this;
         }
 
+        public EmailHelper Ssl(bool enableSsl)
+        {
+            _enableSsl = enableSsl;
+            return this;
+        }
+
+        public EmailHelper DeliveryMethod(SmtpDeliveryMethod smtpDeliveryMethod)
+        {
+            _deliveryMethod = smtpDeliveryMethod;
+            return this;
+        }
+
+        public EmailHelper DeliveryFormat(SmtpDeliveryFormat smtpDeliveryMethod)
+        {
+            _smtpDeliveryFormat = smtpDeliveryMethod;
+            return this;
+        }
+
+        public EmailHelper PickupDirectoryLocation(string pickupDirectoryLocation)
+        {
+            _pickupDirectoryLocation = pickupDirectoryLocation;
+            return this;
+        }
+
+        public EmailHelper TargetName(string targetName)
+        {
+            _targetName = targetName;
+            return this;
+        }
+
+        public EmailHelper Timeout(TimeSpan timeout)
+        {
+            _timeout = timeout;
+            return this;
+        }
+
         public void Send()
         {
-            using (var client = new SmtpClient(_host, _port)
+            using (var client = new SmtpClient
             {
-                Credentials = new NetworkCredential(_userName, _password)
+                Host = _host,
+                Port = _port,
+                Credentials = new NetworkCredential(_userName, _password),
+                EnableSsl = _enableSsl,
+                DeliveryMethod = _deliveryMethod,
+                DeliveryFormat = _smtpDeliveryFormat,
+                PickupDirectoryLocation = _pickupDirectoryLocation,
+                TargetName = _targetName,
+                Timeout = _timeout?.Milliseconds ?? 100000
             })
             {
                 client.Send(SetMail());
