@@ -10,7 +10,7 @@ public void Test()
         var emailMessage = new SendMessage();
         var fileStream = FileToStream(@"D:\test_attachment.txt");
         emailHelper.Host("Your SMTP server's IP.")
-                .Port(578)
+                .Port(587)
                 .UserName("The userName for NetworkCredential")
                 .Password("The password for NetworkCredential")
                 .Ssl(true)
