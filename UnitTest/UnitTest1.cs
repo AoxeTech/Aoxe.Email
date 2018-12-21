@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
+using System.Text;
 using Xunit;
 using Zaabee.Email;
 
@@ -12,20 +14,26 @@ namespace UnitTest
         public void Test()
         {
             var emailHelper = new EmailHelper();
-            var fileStream = FileToStream(@"D:\test.txt");
+            var sendMessage = new SendMessage();
+            var fileStream = FileToStream(@"D:\test_attachment.txt");
             emailHelper.Host("Your SMTP server's IP.")
-                .Port(25)
+                .Port(578)
                 .UserName("The userName for NetworkCredential")
                 .Password("The password for NetworkCredential")
-                .From("From address")
-                .To(new List<string> {"123@live.com", "456@gmail.com"})
-                .To("789@yahoo.com")
-                .Cc("987@hotmail.com")
-                .Bcc("654@msn.com")
-                .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-                .Body(@"Across the Great Wall we can reach every corner in the world.")
-                .Attachment(fileStream, "test_attachment")
-                .Send();
+                .Ssl(true)
+                .DeliveryMethod(SmtpDeliveryMethod.Network)
+                .DeliveryFormat(SmtpDeliveryFormat.SevenBit)
+                .Timeout(TimeSpan.FromSeconds(100))
+                .Send(sendMessage.From("From address")
+                    .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
+                    .IsBodyHtml(true)
+                    .BodyEncoding(Encoding.UTF8)
+                    .Body(@"Across the Great Wall we can reach every corner in the world.")
+                    .Priority(MailPriority.High)
+                    .To(new List<string> {"123@live.com", "456@gmail.com"})
+                    .Cc("987@hotmail.com")
+                    .Bcc("654@msn.com")
+                    .Attachment(fileStream, "test_attachment.txt"));
         }
 
         private static Stream FileToStream(string fileName)
