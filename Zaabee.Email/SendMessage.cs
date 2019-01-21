@@ -184,7 +184,7 @@ namespace Zaabee.Email
             return this;
         }
 
-        internal MailMessage SetMail()
+        internal MailMessage CreateMail()
         {
             var mail = new MailMessage
             {

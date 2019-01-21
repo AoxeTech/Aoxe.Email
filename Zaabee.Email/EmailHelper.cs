@@ -112,8 +112,9 @@ namespace Zaabee.Email
                 TargetName = _targetName,
                 Timeout = _timeout?.Milliseconds ?? 100000
             })
+            using (var mailMessage = sendMessage.CreateMail())
             {
-                client.Send(sendMessage.SetMail());
+                client.Send(mailMessage);
             }
         }
     }
