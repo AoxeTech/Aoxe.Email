@@ -6,7 +6,7 @@
         <Version>1.0.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/Zaabee.SmtpClient</PackageProjectUrl>
         <Description>The fluent style wrappers for System.Net.Mail.SmtpClient.</Description>
         <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Email/master/LICENSE</PackagelicenseUrl>
         <PackageTags>Zaabee System.Net.Mail.Smtp Email</PackageTags>
