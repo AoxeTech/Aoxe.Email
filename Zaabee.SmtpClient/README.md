@@ -1,6 +1,6 @@
-# Zaabee.Email
+# Zaabee.SmtpClient
 
-The fluent style wrappers for SmtpClient.
+The fluent style wrappers for System.Net.Mail.SmtpClient.
 
 ```csharp
 [Fact]
