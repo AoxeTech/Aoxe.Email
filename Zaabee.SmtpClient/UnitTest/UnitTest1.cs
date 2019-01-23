@@ -4,7 +4,7 @@ using System.IO;
 using System.Net.Mail;
 using System.Text;
 using Xunit;
-using Zaabee.Email;
+using Zaabee.SmtpClient;
 
 namespace UnitTest
 {
