@@ -1,31 +1,25 @@
 # Zaabee.SmtpClient
 
-The fluent style wrappers for System.Net.Mail.SmtpClient.
+The fluent style wrappers for MailKit.
 
 ```csharp
 [Fact]
 public void Test()
 {
-        var stmpClientHelper = new StmpClientHelper();
+        var mailKitHelper = new MailKitHelper();
         var sendMessage = new SendMessage();
         var fileStream = FileToStream(@"D:\test_attachment.txt");
-        stmpClientHelper.Host("Your SMTP server's IP.")
+        mailKitHelper.Host("Your SMTP server's IP.")
         .Port(587)
-        .UserName("The userName for NetworkCredential")
+        .UserName("The user name for NetworkCredential")
         .Password("The password for NetworkCredential")
         .Ssl(true)
-        .DeliveryMethod(SmtpDeliveryMethod.Network)
-        .DeliveryFormat(SmtpDeliveryFormat.SevenBit)
-        .Timeout(TimeSpan.FromSeconds(100))
-        .Send(sendMessage.From("From address")
+        .Send(sendMessage.From("From email")
                 .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-                .IsBodyHtml(true)
-                .BodyEncoding(Encoding.UTF8)
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
-                .Priority(MailPriority.High)
                 .To(new List<string> {"123@live.com", "456@gmail.com"})
-                .Cc("987@hotmail.com")
-                .Bcc("654@msn.com")
+                .Cc("789@hotmail.com")
+                .Bcc("123@163.com")
                 .Attachment(fileStream, "test_attachment.txt"));
 }
 

@@ -15,24 +15,24 @@ namespace UnitTest
         {
             var stmpClientHelper = new StmpClientHelper();
             var sendMessage = new SendMessage();
-            var fileStream = FileToStream(@"C:\Users\aeond\Desktop\test_attachment.txt");
-            stmpClientHelper.Host("smtp.exmail.qq.com")
+            var fileStream = FileToStream(@"D:\test_attachment.txt");
+            stmpClientHelper.Host("Your SMTP server's IP.")
                 .Port(587)
-                .UserName("your user name")
-                .Password("your password")
+                .UserName("The userName for NetworkCredential")
+                .Password("The password for NetworkCredential")
                 .Ssl(true)
                 .DeliveryMethod(SmtpDeliveryMethod.Network)
                 .DeliveryFormat(SmtpDeliveryFormat.SevenBit)
                 .Timeout(TimeSpan.FromSeconds(100))
-                .Send(sendMessage.From("from email")
+                .Send(sendMessage.From("From address")
                     .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
                     .IsBodyHtml(true)
                     .BodyEncoding(Encoding.UTF8)
                     .Body(@"Across the Great Wall we can reach every corner in the world.")
                     .Priority(MailPriority.High)
                     .To(new List<string> {"123@live.com", "456@gmail.com"})
-                    .Cc("789@hotmail.com")
-                    .Bcc("123@163.com")
+                    .Cc("987@hotmail.com")
+                    .Bcc("654@msn.com")
                     .Attachment(fileStream, "test_attachment.txt"));
         }
 

@@ -11,15 +11,15 @@ namespace TestProject
         [Fact]
         public void Test1()
         {
-            var stmpClientHelper = new MailKitHelper();
+            var mailKitHelper = new MailKitHelper();
             var sendMessage = new SendMessage();
-            var fileStream = FileToStream(@"C:\Users\aeond\Desktop\test_attachment.txt");
-            stmpClientHelper.Host("smtp.exmail.qq.com")
+            var fileStream = FileToStream(@"D:\test_attachment.txt");
+            mailKitHelper.Host("Your SMTP server's IP.")
                 .Port(587)
-                .UserName("your user name")
-                .Password("your password")
+                .UserName("The user name for NetworkCredential")
+                .Password("The password for NetworkCredential")
                 .Ssl(true)
-                .Send(sendMessage.From("from email")
+                .Send(sendMessage.From("From email")
                     .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
                     .Body(@"Across the Great Wall we can reach every corner in the world.")
                     .To(new List<string> {"123@live.com", "456@gmail.com"})
