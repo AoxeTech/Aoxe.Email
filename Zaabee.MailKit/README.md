@@ -1,6 +1,6 @@
 # Zaabee.SmtpClient
 
-The fluent style wrappers for MailKit.
+The fluent style wrappers for [MailKit](https://github.com/jstedfast/MailKit).
 
 ```csharp
 [Fact]
