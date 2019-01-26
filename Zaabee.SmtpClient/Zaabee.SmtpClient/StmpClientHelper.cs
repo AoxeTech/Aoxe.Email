@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace Zaabee.SmtpClient
 {
-    public class EmailHelper
+    public class StmpClientHelper
     {
         private string _host;
         private int _port;
@@ -22,7 +22,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="smtpIp"></param>
         /// <returns></returns>
-        public EmailHelper Host(string smtpIp)
+        public StmpClientHelper Host(string smtpIp)
         {
             _host = smtpIp;
             return this;
@@ -33,7 +33,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="smtpPort"></param>
         /// <returns></returns>
-        public EmailHelper Port(int smtpPort)
+        public StmpClientHelper Port(int smtpPort)
         {
             _port = smtpPort;
             return this;
@@ -44,7 +44,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public EmailHelper UserName(string userName)
+        public StmpClientHelper UserName(string userName)
         {
             _userName = userName;
             return this;
@@ -55,43 +55,43 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public EmailHelper Password(string password)
+        public StmpClientHelper Password(string password)
         {
             _password = password;
             return this;
         }
 
-        public EmailHelper Ssl(bool enableSsl)
+        public StmpClientHelper Ssl(bool enableSsl)
         {
             _enableSsl = enableSsl;
             return this;
         }
 
-        public EmailHelper DeliveryMethod(SmtpDeliveryMethod smtpDeliveryMethod)
+        public StmpClientHelper DeliveryMethod(SmtpDeliveryMethod smtpDeliveryMethod)
         {
             _deliveryMethod = smtpDeliveryMethod;
             return this;
         }
 
-        public EmailHelper DeliveryFormat(SmtpDeliveryFormat smtpDeliveryMethod)
+        public StmpClientHelper DeliveryFormat(SmtpDeliveryFormat smtpDeliveryMethod)
         {
             _smtpDeliveryFormat = smtpDeliveryMethod;
             return this;
         }
 
-        public EmailHelper PickupDirectoryLocation(string pickupDirectoryLocation)
+        public StmpClientHelper PickupDirectoryLocation(string pickupDirectoryLocation)
         {
             _pickupDirectoryLocation = pickupDirectoryLocation;
             return this;
         }
 
-        public EmailHelper TargetName(string targetName)
+        public StmpClientHelper TargetName(string targetName)
         {
             _targetName = targetName;
             return this;
         }
 
-        public EmailHelper Timeout(TimeSpan timeout)
+        public StmpClientHelper Timeout(TimeSpan timeout)
         {
             _timeout = timeout;
             return this;
