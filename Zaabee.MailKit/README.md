@@ -1,4 +1,4 @@
-# Zaabee.SmtpClient
+# Zaabee.MailKit
 
 The fluent style wrappers for [MailKit](https://github.com/jstedfast/MailKit).
 
