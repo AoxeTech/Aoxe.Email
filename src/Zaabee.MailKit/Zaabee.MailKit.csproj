@@ -8,7 +8,7 @@
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/Zaabee.MailKit</PackageProjectUrl>
         <Description>The fluent style wrappers for MailKit.</Description>
-        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Email/master/LICENSE</PackagelicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>Zaabee MailKit Smtp Email</PackageTags>
     </PropertyGroup>
     <ItemGroup>

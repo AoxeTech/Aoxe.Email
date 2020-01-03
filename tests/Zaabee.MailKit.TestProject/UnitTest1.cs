@@ -1,38 +1,29 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net.Mail;
-using System.Text;
 using Xunit;
-using Zaabee.SmtpClient;
 
-namespace UnitTest
+namespace Zaabee.MailKit.TestProject
 {
     public class UnitTest1
     {
         [Fact]
-        public void Test()
+        public void Test1()
         {
-            var stmpClientHelper = new StmpClientHelper();
+            var mailKitHelper = new MailKitHelper();
             var sendMessage = new SendMessage();
             var fileStream = FileToStream(@"D:\test_attachment.txt");
-            stmpClientHelper.Host("Your SMTP server's IP.")
+            mailKitHelper.Host("Your SMTP server's IP.")
                 .Port(587)
-                .UserName("The userName for NetworkCredential")
+                .UserName("The user name for NetworkCredential")
                 .Password("The password for NetworkCredential")
                 .Ssl(true)
-                .DeliveryMethod(SmtpDeliveryMethod.Network)
-                .DeliveryFormat(SmtpDeliveryFormat.SevenBit)
-                .Timeout(TimeSpan.FromSeconds(100))
-                .Send(sendMessage.From("From address")
+                .Send(sendMessage.From("From email")
                     .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-                    .IsBodyHtml(true)
-                    .BodyEncoding(Encoding.UTF8)
                     .Body(@"Across the Great Wall we can reach every corner in the world.")
-                    .Priority(MailPriority.High)
                     .To(new List<string> {"123@live.com", "456@gmail.com"})
-                    .Cc("987@hotmail.com")
-                    .Bcc("654@msn.com")
+                    .Cc("789@hotmail.com")
+                    .Bcc("123@163.com")
                     .Attachment(fileStream, "test_attachment.txt"));
         }
 

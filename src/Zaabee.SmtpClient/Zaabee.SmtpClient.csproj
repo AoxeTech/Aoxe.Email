@@ -8,7 +8,7 @@
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/Zaabee.SmtpClient</PackageProjectUrl>
         <Description>The fluent style wrappers for System.Net.Mail.SmtpClient.</Description>
-        <PackagelicenseUrl>https://raw.githubusercontent.com/Mutuduxf/Zaabee.Email/master/LICENSE</PackagelicenseUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>Zaabee System.Net.Mail.Smtp Email</PackageTags>
     </PropertyGroup>
 </Project>
