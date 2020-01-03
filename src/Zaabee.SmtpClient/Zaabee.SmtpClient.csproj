@@ -2,11 +2,11 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.2</PackageVersion>
-        <Version>1.0.2</Version>
+        <PackageVersion>1.0.3</PackageVersion>
+        <Version>1.0.3</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/Zaabee.SmtpClient</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.SmtpClient</PackageProjectUrl>
         <Description>The fluent style wrappers for System.Net.Mail.SmtpClient.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>Zaabee System.Net.Mail.Smtp Email</PackageTags>

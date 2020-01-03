@@ -2,11 +2,11 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.2</PackageVersion>
-        <Version>1.0.2</Version>
+        <PackageVersion>1.0.3</PackageVersion>
+        <Version>1.0.3</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/Zaabee.MailKit</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
         <Description>The fluent style wrappers for MailKit.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>Zaabee MailKit Smtp Email</PackageTags>
