@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>1.0.3</PackageVersion>
-        <Version>1.0.3</Version>
+        <PackageVersion>1.0.4</PackageVersion>
+        <Version>1.0.4</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
@@ -12,6 +12,6 @@
         <PackageTags>Zaabee MailKit Smtp Email</PackageTags>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="MailKit" Version="2.5.1" />
+      <PackageReference Include="MailKit" Version="2.5.2" />
     </ItemGroup>
 </Project>
