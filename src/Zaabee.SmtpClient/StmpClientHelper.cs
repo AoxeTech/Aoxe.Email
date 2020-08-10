@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace Zaabee.SmtpClient
 {
@@ -115,6 +116,27 @@ namespace Zaabee.SmtpClient
             using (var mailMessage = sendMessage.CreateMail())
             {
                 client.Send(mailMessage);
+            }
+        }
+
+        public async Task SendAsync(SendMessage sendMessage)
+        {
+            if (sendMessage == null) return;
+            using (var client = new System.Net.Mail.SmtpClient
+            {
+                Host = _host,
+                Port = _port,
+                Credentials = new NetworkCredential(_userName, _password),
+                EnableSsl = _enableSsl,
+                DeliveryMethod = _deliveryMethod,
+                DeliveryFormat = _smtpDeliveryFormat,
+                PickupDirectoryLocation = _pickupDirectoryLocation,
+                TargetName = _targetName,
+                Timeout = _timeout?.Milliseconds ?? 100000
+            })
+            using (var mailMessage = sendMessage.CreateMail())
+            {
+                await client.SendMailAsync(mailMessage);
             }
         }
     }

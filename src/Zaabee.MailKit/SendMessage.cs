@@ -34,7 +34,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage To(IEnumerable<string> recipients)
         {
-            _recipients = _recipients ?? new List<string>();
+            _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
         }
@@ -46,7 +46,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage To(params string[] recipients)
         {
-            _recipients = _recipients ?? new List<string>();
+            _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
         }
@@ -58,7 +58,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage Cc(IEnumerable<string> carbonCopies)
         {
-            _carbonCopies = _carbonCopies ?? new List<string>();
+            _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
         }
@@ -70,7 +70,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage Cc(params string[] carbonCopies)
         {
-            _carbonCopies = _carbonCopies ?? new List<string>();
+            _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
         }
@@ -82,7 +82,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage Bcc(IEnumerable<string> blindCarbonCopies)
         {
-            _blindCarbonCopies = _blindCarbonCopies ?? new List<string>();
+            _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
@@ -94,14 +94,14 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public SendMessage Bcc(params string[] blindCarbonCopies)
         {
-            _blindCarbonCopies = _blindCarbonCopies ?? new List<string>();
+            _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
         public SendMessage Attachment(Stream stream, string fileName)
         {
-            _attachments = _attachments ?? new List<MimePart>();
+            _attachments ??= new List<MimePart>();
             var attachment = new MimePart
             {
                 Content = new MimeContent(stream),

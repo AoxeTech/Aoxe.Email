@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 
@@ -43,16 +44,27 @@ namespace Zaabee.MailKit
 
         public void Send(SendMessage sendMessage)
         {
-            if (sendMessage == null) return;
+            if (sendMessage is null) return;
             using (var client = new SmtpClient())
             {
-                if (_ssl)
-                    client.Connect(_host, _port, SecureSocketOptions.StartTls);
-                else
-                    client.Connect(_host, _port, _ssl);
+                if (_ssl) client.Connect(_host, _port, SecureSocketOptions.StartTls);
+                else client.Connect(_host, _port, _ssl);
                 client.Authenticate(_userName, _password);
                 client.Send(sendMessage.CreateMail());
                 client.Disconnect(true);
+            }
+        }
+
+        public async Task SendAsync(SendMessage sendMessage)
+        {
+            if (sendMessage is null) return;
+            using (var client = new SmtpClient())
+            {
+                if (_ssl) await client.ConnectAsync(_host, _port, SecureSocketOptions.StartTls);
+                else await client.ConnectAsync(_host, _port, _ssl);
+                await client.AuthenticateAsync(_userName, _password);
+                await client.SendAsync(sendMessage.CreateMail());
+                await client.DisconnectAsync(true);
             }
         }
     }

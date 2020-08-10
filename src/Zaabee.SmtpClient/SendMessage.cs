@@ -38,7 +38,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage To(IEnumerable<string> recipients)
         {
-            _recipients = _recipients ?? new List<string>();
+            _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
         }
@@ -50,7 +50,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage To(params string[] recipients)
         {
-            _recipients = _recipients ?? new List<string>();
+            _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
         }
@@ -62,7 +62,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage Cc(IEnumerable<string> carbonCopies)
         {
-            _carbonCopies = _carbonCopies ?? new List<string>();
+            _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
         }
@@ -74,7 +74,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage Cc(params string[] carbonCopies)
         {
-            _carbonCopies = _carbonCopies ?? new List<string>();
+            _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
         }
@@ -86,7 +86,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage Bcc(IEnumerable<string> blindCarbonCopies)
         {
-            _blindCarbonCopies = _blindCarbonCopies ?? new List<string>();
+            _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
@@ -98,58 +98,58 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public SendMessage Bcc(params string[] blindCarbonCopies)
         {
-            _blindCarbonCopies = _blindCarbonCopies ?? new List<string>();
+            _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
         public SendMessage Attachment(FileStream stream, ContentType contentType = null)
         {
-            _attachments = _attachments ?? new List<Attachment>();
-            contentType = contentType ?? new ContentType(MediaTypeNames.Text.Plain);
+            _attachments ??= new List<Attachment>();
+            contentType ??= new ContentType(MediaTypeNames.Text.Plain);
             _attachments.Add(new Attachment(stream, contentType));
             return this;
         }
 
         public SendMessage Attachment(Stream stream, string name)
         {
-            _attachments = _attachments ?? new List<Attachment>();
+            _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name));
             return this;
         }
 
         public SendMessage Attachment(FileStream stream, string name, string mediaType)
         {
-            _attachments = _attachments ?? new List<Attachment>();
+            _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name, mediaType));
             return this;
         }
 
         public SendMessage Attachment(string fileName)
         {
-            _attachments = _attachments ?? new List<Attachment>();
+            _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName));
             return this;
         }
 
         public SendMessage Attachment(string fileName, ContentType contentType)
         {
-            _attachments = _attachments ?? new List<Attachment>();
-            contentType = contentType ?? new ContentType(MediaTypeNames.Text.Plain);
+            _attachments ??= new List<Attachment>();
+            contentType ??= new ContentType(MediaTypeNames.Text.Plain);
             _attachments.Add(new Attachment(fileName, contentType));
             return this;
         }
 
         public SendMessage Attachment(string fileName, string mediaType)
         {
-            _attachments = _attachments ?? new List<Attachment>();
+            _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName, mediaType));
             return this;
         }
 
         public SendMessage Attachment(List<Tuple<Stream, string>> attachments)
         {
-            _attachments = _attachments ?? new List<Attachment>();
+            _attachments ??= new List<Attachment>();
             attachments?.ForEach(attachment => _attachments.Add(new Attachment(attachment.Item1, attachment.Item2)));
             return this;
         }
