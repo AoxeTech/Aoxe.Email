@@ -5,7 +5,7 @@ using MimeKit;
 
 namespace Zaabee.MailKit
 {
-    public class SendMessage
+    public class Mail
     {
         private string _from;
         private string _subject;
@@ -21,7 +21,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="from"></param>
         /// <returns></returns>
-        public SendMessage From(string from)
+        public Mail From(string from)
         {
             _from = from;
             return this;
@@ -32,7 +32,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="recipients"></param>
         /// <returns></returns>
-        public SendMessage To(IEnumerable<string> recipients)
+        public Mail To(IEnumerable<string> recipients)
         {
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
@@ -44,7 +44,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="recipients"></param>
         /// <returns></returns>
-        public SendMessage To(params string[] recipients)
+        public Mail To(params string[] recipients)
         {
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
@@ -56,7 +56,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="carbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Cc(IEnumerable<string> carbonCopies)
+        public Mail Cc(IEnumerable<string> carbonCopies)
         {
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
@@ -68,7 +68,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="carbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Cc(params string[] carbonCopies)
+        public Mail Cc(params string[] carbonCopies)
         {
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
@@ -80,7 +80,7 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="blindCarbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Bcc(IEnumerable<string> blindCarbonCopies)
+        public Mail Bcc(IEnumerable<string> blindCarbonCopies)
         {
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
@@ -92,14 +92,14 @@ namespace Zaabee.MailKit
         /// </summary>
         /// <param name="blindCarbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Bcc(params string[] blindCarbonCopies)
+        public Mail Bcc(params string[] blindCarbonCopies)
         {
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
-        public SendMessage Attachment(Stream stream, string fileName)
+        public Mail Attachment(Stream stream, string fileName)
         {
             _attachments ??= new List<MimePart>();
             var attachment = new MimePart
@@ -113,19 +113,19 @@ namespace Zaabee.MailKit
             return this;
         }
 
-        public SendMessage Subject(string subject)
+        public Mail Subject(string subject)
         {
             _subject = subject;
             return this;
         }
 
-        public SendMessage Body(string body)
+        public Mail Body(string body)
         {
             _body = body;
             return this;
         }
 
-        public SendMessage Priority(MessagePriority messagePriority)
+        public Mail Priority(MessagePriority messagePriority)
         {
             _messagePriority = messagePriority;
             return this;

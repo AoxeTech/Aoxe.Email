@@ -98,9 +98,9 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public void Send(SendMessage sendMessage)
+        public void Send(Mail sendMessage)
         {
-            if (sendMessage == null) return;
+            if (sendMessage is null) return;
             using (var client = new System.Net.Mail.SmtpClient
             {
                 Host = _host,
@@ -119,9 +119,9 @@ namespace Zaabee.SmtpClient
             }
         }
 
-        public async Task SendAsync(SendMessage sendMessage)
+        public async Task SendAsync(Mail sendMessage)
         {
-            if (sendMessage == null) return;
+            if (sendMessage is null) return;
             using (var client = new System.Net.Mail.SmtpClient
             {
                 Host = _host,

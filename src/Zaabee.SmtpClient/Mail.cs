@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Zaabee.SmtpClient
 {
-    public class SendMessage
+    public class Mail
     {
         private string _from;
         private string _subject;
@@ -25,7 +25,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="from"></param>
         /// <returns></returns>
-        public SendMessage From(string from)
+        public Mail From(string from)
         {
             _from = from;
             return this;
@@ -36,7 +36,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="recipients"></param>
         /// <returns></returns>
-        public SendMessage To(IEnumerable<string> recipients)
+        public Mail To(IEnumerable<string> recipients)
         {
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
@@ -48,7 +48,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="recipients"></param>
         /// <returns></returns>
-        public SendMessage To(params string[] recipients)
+        public Mail To(params string[] recipients)
         {
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
@@ -60,7 +60,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="carbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Cc(IEnumerable<string> carbonCopies)
+        public Mail Cc(IEnumerable<string> carbonCopies)
         {
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
@@ -72,7 +72,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="carbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Cc(params string[] carbonCopies)
+        public Mail Cc(params string[] carbonCopies)
         {
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
@@ -84,7 +84,7 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="blindCarbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Bcc(IEnumerable<string> blindCarbonCopies)
+        public Mail Bcc(IEnumerable<string> blindCarbonCopies)
         {
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
@@ -96,14 +96,14 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="blindCarbonCopies"></param>
         /// <returns></returns>
-        public SendMessage Bcc(params string[] blindCarbonCopies)
+        public Mail Bcc(params string[] blindCarbonCopies)
         {
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
-        public SendMessage Attachment(FileStream stream, ContentType contentType = null)
+        public Mail Attachment(FileStream stream, ContentType contentType = null)
         {
             _attachments ??= new List<Attachment>();
             contentType ??= new ContentType(MediaTypeNames.Text.Plain);
@@ -111,28 +111,28 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public SendMessage Attachment(Stream stream, string name)
+        public Mail Attachment(Stream stream, string name)
         {
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name));
             return this;
         }
 
-        public SendMessage Attachment(FileStream stream, string name, string mediaType)
+        public Mail Attachment(FileStream stream, string name, string mediaType)
         {
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name, mediaType));
             return this;
         }
 
-        public SendMessage Attachment(string fileName)
+        public Mail Attachment(string fileName)
         {
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName));
             return this;
         }
 
-        public SendMessage Attachment(string fileName, ContentType contentType)
+        public Mail Attachment(string fileName, ContentType contentType)
         {
             _attachments ??= new List<Attachment>();
             contentType ??= new ContentType(MediaTypeNames.Text.Plain);
@@ -140,45 +140,45 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public SendMessage Attachment(string fileName, string mediaType)
+        public Mail Attachment(string fileName, string mediaType)
         {
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName, mediaType));
             return this;
         }
 
-        public SendMessage Attachment(List<Tuple<Stream, string>> attachments)
+        public Mail Attachment(List<Tuple<Stream, string>> attachments)
         {
             _attachments ??= new List<Attachment>();
             attachments?.ForEach(attachment => _attachments.Add(new Attachment(attachment.Item1, attachment.Item2)));
             return this;
         }
 
-        public SendMessage Subject(string subject)
+        public Mail Subject(string subject)
         {
             _subject = subject;
             return this;
         }
 
-        public SendMessage Body(string body)
+        public Mail Body(string body)
         {
             _body = body;
             return this;
         }
 
-        public SendMessage IsBodyHtml(bool isBodyHtml)
+        public Mail IsBodyHtml(bool isBodyHtml)
         {
             _isBodyHtml = isBodyHtml;
             return this;
         }
 
-        public SendMessage BodyEncoding(Encoding bodyEncoding)
+        public Mail BodyEncoding(Encoding bodyEncoding)
         {
             _bodyEncoding = bodyEncoding;
             return this;
         }
 
-        public SendMessage Priority(MailPriority mailPriority)
+        public Mail Priority(MailPriority mailPriority)
         {
             _mailPriority = mailPriority;
             return this;

@@ -6,8 +6,18 @@
 public void Demo()
 {
     var stmpClientHelper = new StmpClientHelper();
-    var sendMessage = new SendMessage();
     var fileStream = FileToStream(@"D:\test_attachment.txt");
+    var mail = new Mail();
+    mail.From("From address")
+        .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
+        .IsBodyHtml(true)
+        .BodyEncoding(Encoding.UTF8)
+        .Body(@"Across the Great Wall we can reach every corner in the world.")
+        .Priority(MailPriority.High)
+        .To(new List<string> {"123@live.com", "456@gmail.com"})
+        .Cc("987@hotmail.com")
+        .Bcc("654@msn.com")
+        .Attachment(fileStream, "test_attachment.txt");
     stmpClientHelper.Host("Your SMTP server's IP.")
         .Port(587)
         .UserName("The userName for NetworkCredential")
@@ -16,16 +26,7 @@ public void Demo()
         .DeliveryMethod(SmtpDeliveryMethod.Network)
         .DeliveryFormat(SmtpDeliveryFormat.SevenBit)
         .Timeout(TimeSpan.FromSeconds(100))
-        .Send(sendMessage.From("From address")
-            .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-            .IsBodyHtml(true)
-            .BodyEncoding(Encoding.UTF8)
-            .Body(@"Across the Great Wall we can reach every corner in the world.")
-            .Priority(MailPriority.High)
-            .To(new List<string> {"123@live.com", "456@gmail.com"})
-            .Cc("987@hotmail.com")
-            .Bcc("654@msn.com")
-            .Attachment(fileStream, "test_attachment.txt"));
+        .Send(mail);
 }
 
 private static Stream FileToStream(string fileName)

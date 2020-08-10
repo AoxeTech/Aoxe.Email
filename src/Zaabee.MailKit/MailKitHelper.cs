@@ -42,7 +42,7 @@ namespace Zaabee.MailKit
             return this;
         }
 
-        public void Send(SendMessage sendMessage)
+        public void Send(Mail sendMessage)
         {
             if (sendMessage is null) return;
             using (var client = new SmtpClient())
@@ -55,7 +55,7 @@ namespace Zaabee.MailKit
             }
         }
 
-        public async Task SendAsync(SendMessage sendMessage)
+        public async Task SendAsync(Mail sendMessage)
         {
             if (sendMessage is null) return;
             using (var client = new SmtpClient())
