@@ -4,21 +4,32 @@ using System.IO;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Text;
+using Zaabee.Extensions;
 
 namespace Zaabee.SmtpClient
 {
     public class Mail
     {
         private string _from;
+        public string GetFrom => _from;
         private string _subject;
+        public string GetSubject => _subject;
         private bool _isBodyHtml = true;
+        public bool GetIsBodyHtml => _isBodyHtml;
         private Encoding _bodyEncoding = Encoding.UTF8;
+        public Encoding GetBodyEncoding => _bodyEncoding;
         private string _body;
+        public string GetBody => _body;
         private MailPriority _mailPriority = MailPriority.Normal;
+        public MailPriority GetMailPriority => _mailPriority;
         private List<string> _recipients;
+        public List<string> GetRecipients => _recipients;
         private List<string> _carbonCopies;
+        public List<string> GetCarbonCopies => _carbonCopies;
         private List<string> _blindCarbonCopies;
+        public List<string> GetBlindCarbonCopies => _blindCarbonCopies;
         private List<Attachment> _attachments;
+        public List<Attachment> GetAttachments => _attachments;
 
         /// <summary>
         /// From address
@@ -36,8 +47,9 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="recipients"></param>
         /// <returns></returns>
-        public Mail To(IEnumerable<string> recipients)
+        public Mail To(IList<string> recipients)
         {
+            if (recipients.IsNullOrEmpty()) return this;
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
@@ -50,6 +62,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public Mail To(params string[] recipients)
         {
+            if (recipients.IsNullOrEmpty()) return this;
             _recipients ??= new List<string>();
             _recipients.AddRange(recipients);
             return this;
@@ -60,8 +73,9 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="carbonCopies"></param>
         /// <returns></returns>
-        public Mail Cc(IEnumerable<string> carbonCopies)
+        public Mail Cc(IList<string> carbonCopies)
         {
+            if (carbonCopies.IsNullOrEmpty()) return this;
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
@@ -74,6 +88,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public Mail Cc(params string[] carbonCopies)
         {
+            if (carbonCopies.IsNullOrEmpty()) return this;
             _carbonCopies ??= new List<string>();
             _carbonCopies.AddRange(carbonCopies);
             return this;
@@ -84,8 +99,9 @@ namespace Zaabee.SmtpClient
         /// </summary>
         /// <param name="blindCarbonCopies"></param>
         /// <returns></returns>
-        public Mail Bcc(IEnumerable<string> blindCarbonCopies)
+        public Mail Bcc(IList<string> blindCarbonCopies)
         {
+            if (blindCarbonCopies.IsNullOrEmpty()) return this;
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
@@ -98,6 +114,7 @@ namespace Zaabee.SmtpClient
         /// <returns></returns>
         public Mail Bcc(params string[] blindCarbonCopies)
         {
+            if (blindCarbonCopies.IsNullOrEmpty()) return this;
             _blindCarbonCopies ??= new List<string>();
             _blindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
@@ -105,6 +122,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(FileStream stream, ContentType contentType = null)
         {
+            if (stream is null) return this;
             _attachments ??= new List<Attachment>();
             contentType ??= new ContentType(MediaTypeNames.Text.Plain);
             _attachments.Add(new Attachment(stream, contentType));
@@ -113,6 +131,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(Stream stream, string name)
         {
+            if (stream is null) return this;
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name));
             return this;
@@ -120,6 +139,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(FileStream stream, string name, string mediaType)
         {
+            if (stream is null) return this;
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(stream, name, mediaType));
             return this;
@@ -127,6 +147,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(string fileName)
         {
+            if (fileName.IsNullOrEmpty()) return this;
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName));
             return this;
@@ -134,6 +155,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(string fileName, ContentType contentType)
         {
+            if (fileName.IsNullOrEmpty()) return this;
             _attachments ??= new List<Attachment>();
             contentType ??= new ContentType(MediaTypeNames.Text.Plain);
             _attachments.Add(new Attachment(fileName, contentType));
@@ -142,6 +164,7 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(string fileName, string mediaType)
         {
+            if (fileName.IsNullOrEmpty()) return this;
             _attachments ??= new List<Attachment>();
             _attachments.Add(new Attachment(fileName, mediaType));
             return this;
@@ -149,8 +172,9 @@ namespace Zaabee.SmtpClient
 
         public Mail Attachment(List<Tuple<Stream, string>> attachments)
         {
+            if (attachments.IsNullOrEmpty()) return this;
             _attachments ??= new List<Attachment>();
-            attachments?.ForEach(attachment => _attachments.Add(new Attachment(attachment.Item1, attachment.Item2)));
+            attachments.ForEach(attachment => _attachments.Add(new Attachment(attachment.Item1, attachment.Item2)));
             return this;
         }
 
@@ -184,7 +208,7 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        internal MailMessage CreateMail()
+        public MailMessage CreateMail()
         {
             var mail = new MailMessage
             {

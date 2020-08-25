@@ -8,15 +8,25 @@ namespace Zaabee.SmtpClient
     public class StmpClientHelper
     {
         private string _host;
+        public string GetHost => _host;
         private int _port;
+        public int GetPort => _port;
         private string _userName;
+        public string GetUserName => _userName;
         private string _password;
+        public string GetPassword => _password;
         private bool _enableSsl;
+        public bool GetEnableSsl => _enableSsl;
         private SmtpDeliveryMethod _deliveryMethod = SmtpDeliveryMethod.Network;
-        private SmtpDeliveryFormat _smtpDeliveryFormat = SmtpDeliveryFormat.SevenBit;
+        public SmtpDeliveryMethod GetDeliveryMethod => _deliveryMethod;
+        private SmtpDeliveryFormat _deliveryFormat = SmtpDeliveryFormat.SevenBit;
+        public SmtpDeliveryFormat GetDeliveryFormat => _deliveryFormat;
         private string _pickupDirectoryLocation;
+        public string GetPickupDirectoryLocation => _pickupDirectoryLocation;
         private string _targetName = "SMTPSVC/";
+        public string GetTargetName => _targetName;
         private TimeSpan? _timeout;
+        public TimeSpan? GetTimeout => _timeout;
 
         /// <summary>
         /// SMTP server's IP
@@ -76,7 +86,7 @@ namespace Zaabee.SmtpClient
 
         public StmpClientHelper DeliveryFormat(SmtpDeliveryFormat smtpDeliveryMethod)
         {
-            _smtpDeliveryFormat = smtpDeliveryMethod;
+            _deliveryFormat = smtpDeliveryMethod;
             return this;
         }
 
@@ -98,46 +108,50 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public void Send(Mail sendMessage)
+        public void Send(Mail sendMessage, System.Net.Mail.SmtpClient smtpClient = null)
         {
             if (sendMessage is null) return;
-            using (var client = new System.Net.Mail.SmtpClient
+            var client = smtpClient ?? new System.Net.Mail.SmtpClient
             {
                 Host = _host,
                 Port = _port,
                 Credentials = new NetworkCredential(_userName, _password),
                 EnableSsl = _enableSsl,
                 DeliveryMethod = _deliveryMethod,
-                DeliveryFormat = _smtpDeliveryFormat,
+                DeliveryFormat = _deliveryFormat,
                 PickupDirectoryLocation = _pickupDirectoryLocation,
                 TargetName = _targetName,
                 Timeout = _timeout?.Milliseconds ?? 100000
-            })
+            };
             using (var mailMessage = sendMessage.CreateMail())
             {
                 client.Send(mailMessage);
             }
+
+            if (smtpClient is null) client.Dispose();
         }
 
-        public async Task SendAsync(Mail sendMessage)
+        public async Task SendAsync(Mail sendMessage, System.Net.Mail.SmtpClient smtpClient = null)
         {
             if (sendMessage is null) return;
-            using (var client = new System.Net.Mail.SmtpClient
+            var client = smtpClient ?? new System.Net.Mail.SmtpClient
             {
                 Host = _host,
                 Port = _port,
                 Credentials = new NetworkCredential(_userName, _password),
                 EnableSsl = _enableSsl,
                 DeliveryMethod = _deliveryMethod,
-                DeliveryFormat = _smtpDeliveryFormat,
+                DeliveryFormat = _deliveryFormat,
                 PickupDirectoryLocation = _pickupDirectoryLocation,
                 TargetName = _targetName,
                 Timeout = _timeout?.Milliseconds ?? 100000
-            })
+            };
             using (var mailMessage = sendMessage.CreateMail())
             {
                 await client.SendMailAsync(mailMessage);
             }
+
+            if (smtpClient is null) client.Dispose();
         }
     }
 }
