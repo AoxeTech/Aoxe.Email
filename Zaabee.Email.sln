@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SmtpClient", "src\Za
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.MailKit.TestProject", "tests\Zaabee.MailKit.TestProject\Zaabee.MailKit.TestProject.csproj", "{5F60A317-CD25-4DFB-90A1-E46C647B0FD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SmtpClient.Test", "tests\Zaabee.SmtpClient.Test\Zaabee.SmtpClient.Test.csproj", "{427DC075-E5D5-4BD3-B10C-F8473873A15A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.SmtpClient.TestProject", "tests\Zaabee.SmtpClient.TestProject\Zaabee.SmtpClient.TestProject.csproj", "{427DC075-E5D5-4BD3-B10C-F8473873A15A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

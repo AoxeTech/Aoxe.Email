@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Zaabee.SmtpClient.Test
+namespace Zaabee.SmtpClient.TestProject
 {
     public class UnitTest
     {
