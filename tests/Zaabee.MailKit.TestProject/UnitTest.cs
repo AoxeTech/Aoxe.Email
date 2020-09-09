@@ -52,10 +52,14 @@ namespace Zaabee.MailKit.TestProject
 
         private static Stream FileToStream(string fileName)
         {
-            var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var bytes = new byte[fileStream.Length];
-            fileStream.Read(bytes, 0, bytes.Length);
-            fileStream.Close();
+            byte[] bytes;
+            using (var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                bytes = new byte[fileStream.Length];
+                fileStream.Read(bytes, 0, bytes.Length);
+                fileStream.Close();
+            }
+
             return new MemoryStream(bytes);
         }
     }
