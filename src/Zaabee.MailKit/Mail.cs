@@ -8,22 +8,21 @@ namespace Zaabee.MailKit
 {
     public class Mail
     {
-        private string _from;
-        public string GetFrom => _from;
-        private string _subject;
-        public string GetSubject => _subject;
-        private string _body;
-        public string GetBody => _body;
-        private MessagePriority _messagePriority = MessagePriority.Normal;
-        public MessagePriority GetMessagePriority => _messagePriority;
-        private List<string> _recipients;
-        public List<string> GetRecipients => _recipients;
-        private List<string> _carbonCopies;
-        public List<string> GetCarbonCopies => _carbonCopies;
-        private List<string> _blindCarbonCopies;
-        public List<string> GetBlindCarbonCopies => _blindCarbonCopies;
-        private List<MimePart> _attachments;
-        public List<MimePart> GetAttachments => _attachments;
+        public string GetFrom { get; private set; }
+
+        public string GetSubject { get; private set; }
+
+        public string GetBody { get; private set; }
+
+        public MessagePriority GetMessagePriority { get; private set; } = MessagePriority.Normal;
+
+        public List<string> GetRecipients { get; private set; }
+
+        public List<string> GetCarbonCopies { get; private set; }
+
+        public List<string> GetBlindCarbonCopies { get; private set; }
+
+        public List<MimePart> GetAttachments { get; private set; }
 
         /// <summary>
         /// From address
@@ -32,7 +31,7 @@ namespace Zaabee.MailKit
         /// <returns></returns>
         public Mail From(string from)
         {
-            _from = from;
+            GetFrom = from;
             return this;
         }
 
@@ -44,8 +43,8 @@ namespace Zaabee.MailKit
         public Mail To(IList<string> recipients)
         {
             if (recipients.IsNullOrEmpty()) return this;
-            _recipients ??= new List<string>();
-            _recipients.AddRange(recipients);
+            GetRecipients ??= new List<string>();
+            GetRecipients.AddRange(recipients);
             return this;
         }
 
@@ -57,8 +56,8 @@ namespace Zaabee.MailKit
         public Mail To(params string[] recipients)
         {
             if (recipients.IsNullOrEmpty()) return this;
-            _recipients ??= new List<string>();
-            _recipients.AddRange(recipients);
+            GetRecipients ??= new List<string>();
+            GetRecipients.AddRange(recipients);
             return this;
         }
 
@@ -70,8 +69,8 @@ namespace Zaabee.MailKit
         public Mail Cc(IList<string> carbonCopies)
         {
             if (carbonCopies.IsNullOrEmpty()) return this;
-            _carbonCopies ??= new List<string>();
-            _carbonCopies.AddRange(carbonCopies);
+            GetCarbonCopies ??= new List<string>();
+            GetCarbonCopies.AddRange(carbonCopies);
             return this;
         }
 
@@ -83,8 +82,8 @@ namespace Zaabee.MailKit
         public Mail Cc(params string[] carbonCopies)
         {
             if (carbonCopies.IsNullOrEmpty()) return this;
-            _carbonCopies ??= new List<string>();
-            _carbonCopies.AddRange(carbonCopies);
+            GetCarbonCopies ??= new List<string>();
+            GetCarbonCopies.AddRange(carbonCopies);
             return this;
         }
 
@@ -96,8 +95,8 @@ namespace Zaabee.MailKit
         public Mail Bcc(IList<string> blindCarbonCopies)
         {
             if (blindCarbonCopies.IsNullOrEmpty()) return this;
-            _blindCarbonCopies ??= new List<string>();
-            _blindCarbonCopies.AddRange(blindCarbonCopies);
+            GetBlindCarbonCopies ??= new List<string>();
+            GetBlindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
@@ -109,15 +108,15 @@ namespace Zaabee.MailKit
         public Mail Bcc(params string[] blindCarbonCopies)
         {
             if (blindCarbonCopies.IsNullOrEmpty()) return this;
-            _blindCarbonCopies ??= new List<string>();
-            _blindCarbonCopies.AddRange(blindCarbonCopies);
+            GetBlindCarbonCopies ??= new List<string>();
+            GetBlindCarbonCopies.AddRange(blindCarbonCopies);
             return this;
         }
 
         public Mail Attachment(Stream stream, string fileName)
         {
             if (stream is null) return this;
-            _attachments ??= new List<MimePart>();
+            GetAttachments ??= new List<MimePart>();
             var attachment = new MimePart
             {
                 Content = new MimeContent(stream),
@@ -125,44 +124,44 @@ namespace Zaabee.MailKit
                 ContentTransferEncoding = ContentEncoding.Base64,
                 FileName = fileName
             };
-            _attachments.Add(attachment);
+            GetAttachments.Add(attachment);
             return this;
         }
 
         public Mail Subject(string subject)
         {
-            _subject = subject;
+            GetSubject = subject;
             return this;
         }
 
         public Mail Body(string body)
         {
-            _body = body;
+            GetBody = body;
             return this;
         }
 
         public Mail Priority(MessagePriority messagePriority)
         {
-            _messagePriority = messagePriority;
+            GetMessagePriority = messagePriority;
             return this;
         }
 
         public MimeMessage CreateMail()
         {
             var mail = new MimeMessage();
-            mail.From.Add(new MailboxAddress(_from, _from));
-            if (!_recipients.IsNullOrEmpty())
-                mail.To.AddRange(_recipients.Select(to => new MailboxAddress(to, to)));
-            if (!_carbonCopies.IsNullOrEmpty())
-                mail.Cc.AddRange(_carbonCopies.Select(cc => new MailboxAddress(cc, cc)));
-            if (!_blindCarbonCopies.IsNullOrEmpty())
-                mail.Bcc.AddRange(_blindCarbonCopies.Select(bcc => new MailboxAddress(bcc, bcc)));
+            mail.From.Add(new MailboxAddress(GetFrom, GetFrom));
+            if (!GetRecipients.IsNullOrEmpty())
+                mail.To.AddRange(GetRecipients.Select(to => new MailboxAddress(to, to)));
+            if (!GetCarbonCopies.IsNullOrEmpty())
+                mail.Cc.AddRange(GetCarbonCopies.Select(cc => new MailboxAddress(cc, cc)));
+            if (!GetBlindCarbonCopies.IsNullOrEmpty())
+                mail.Bcc.AddRange(GetBlindCarbonCopies.Select(bcc => new MailboxAddress(bcc, bcc)));
 
-            mail.Subject = _subject;
-            var multipart = new Multipart {new TextPart("html") {Text = _body}};
-            _attachments?.ForEach(attachment => multipart.Add(attachment));
+            mail.Subject = GetSubject;
+            var multipart = new Multipart {new TextPart("html") {Text = GetBody}};
+            GetAttachments?.ForEach(attachment => multipart.Add(attachment));
             mail.Body = multipart;
-            mail.Priority = _messagePriority;
+            mail.Priority = GetMessagePriority;
 
             return mail;
         }

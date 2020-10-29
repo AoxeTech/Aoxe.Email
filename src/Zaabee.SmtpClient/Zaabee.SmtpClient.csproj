@@ -2,8 +2,8 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2020.2.0</PackageVersion>
-        <Version>2020.2.0</Version>
+        <PackageVersion>2020.2.1</PackageVersion>
+        <Version>2020.2.1</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.SmtpClient</PackageProjectUrl>
@@ -13,6 +13,6 @@
         <LangVersion>Latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Zaabee.Extensions" Version="2020.2.0" />
+      <PackageReference Include="Zaabee.Extensions" Version="2020.6.0" />
     </ItemGroup>
 </Project>
