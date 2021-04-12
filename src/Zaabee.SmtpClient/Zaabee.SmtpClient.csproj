@@ -2,17 +2,17 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.1.1</PackageVersion>
-        <Version>2021.1.1</Version>
+        <PackageVersion>2021.2.0</PackageVersion>
+        <Version>2021.2.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.SmtpClient</PackageProjectUrl>
         <Description>The fluent style wrappers for System.Net.Mail.SmtpClient.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageTags>Zaabee System.Net.Mail.Smtp Email</PackageTags>
-        <LangVersion>Latest</LangVersion>
+        <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Zaabee.Extensions" Version="2021.1.0" />
+      <PackageReference Include="Zaabee.Extensions" Version="2021.1.1" />
     </ItemGroup>
 </Project>

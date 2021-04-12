@@ -56,11 +56,9 @@ namespace Zaabee.MailKit
             client.Authenticate(_userName, _password);
             client.Send(sendMessage.CreateMail());
 
-            if (smtpClient is null)
-            {
-                client.Disconnect(true);
-                client.Dispose();
-            }
+            if (smtpClient is not null) return;
+            client.Disconnect(true);
+            client.Dispose();
         }
 
         public async Task SendAsync(Mail sendMessage, SmtpClient smtpClient = null)
