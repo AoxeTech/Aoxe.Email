@@ -1,19 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.2.5</PackageVersion>
-        <Version>2021.2.5</Version>
+        <PackageVersion>2021.2.6</PackageVersion>
+        <Version>2021.2.6</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
         <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
+        <PackageTags>Zaabee;MailKit;SmtpClient;Email</PackageTags>
         <Description>The fluent style wrappers for MailKit.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>Zaabee MailKit Smtp Email</PackageTags>
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="MailKit" Version="2.14.0" />
-      <PackageReference Include="Zaabee.Extensions" Version="2021.4.0" />
+      <PackageReference Include="MailKit" Version="2.15.0" />
+      <PackageReference Include="Zaabee.Extensions" Version="2021.5.0" />
     </ItemGroup>
 </Project>
