@@ -8,21 +8,21 @@ namespace Zaabee.MailKit
 {
     public class Mail
     {
-        public string GetFrom { get; private set; }
+        public string? GetFrom { get; private set; }
 
-        public string GetSubject { get; private set; }
+        public string? GetSubject { get; private set; }
 
-        public string GetBody { get; private set; }
+        public string? GetBody { get; private set; }
 
         public MessagePriority GetMessagePriority { get; private set; } = MessagePriority.Normal;
 
-        public List<string> GetRecipients { get; private set; }
+        public List<string>? GetRecipients { get; private set; }
 
-        public List<string> GetCarbonCopies { get; private set; }
+        public List<string>? GetCarbonCopies { get; private set; }
 
-        public List<string> GetBlindCarbonCopies { get; private set; }
+        public List<string>? GetBlindCarbonCopies { get; private set; }
 
-        public List<MimePart> GetAttachments { get; private set; }
+        public List<MimePart>? GetAttachments { get; private set; }
 
         /// <summary>
         /// From address
@@ -158,7 +158,7 @@ namespace Zaabee.MailKit
                 mail.Bcc.AddRange(GetBlindCarbonCopies.Select(bcc => new MailboxAddress(bcc, bcc)));
 
             mail.Subject = GetSubject;
-            var multipart = new Multipart {new TextPart("html") {Text = GetBody}};
+            var multipart = new Multipart { new TextPart("html") { Text = GetBody } };
             GetAttachments?.ForEach(attachment => multipart.Add(attachment));
             mail.Body = multipart;
             mail.Priority = GetMessagePriority;

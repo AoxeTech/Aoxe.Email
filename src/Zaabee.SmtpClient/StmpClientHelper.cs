@@ -7,13 +7,13 @@ namespace Zaabee.SmtpClient
 {
     public class StmpClientHelper
     {
-        private string _host;
+        private string? _host;
         public string GetHost => _host;
         private int _port;
         public int GetPort => _port;
-        private string _userName;
+        private string? _userName;
         public string GetUserName => _userName;
-        private string _password;
+        private string? _password;
         public string GetPassword => _password;
         private bool _enableSsl;
         public bool GetEnableSsl => _enableSsl;
@@ -21,10 +21,10 @@ namespace Zaabee.SmtpClient
         public SmtpDeliveryMethod GetDeliveryMethod => _deliveryMethod;
         private SmtpDeliveryFormat _deliveryFormat = SmtpDeliveryFormat.SevenBit;
         public SmtpDeliveryFormat GetDeliveryFormat => _deliveryFormat;
-        private string _pickupDirectoryLocation;
-        public string GetPickupDirectoryLocation => _pickupDirectoryLocation;
-        private string _targetName = "SMTPSVC/";
-        public string GetTargetName => _targetName;
+        private string? _pickupDirectoryLocation;
+        public string? GetPickupDirectoryLocation => _pickupDirectoryLocation;
+        private string? _targetName = "SMTPSVC/";
+        public string? GetTargetName => _targetName;
         private TimeSpan? _timeout;
         public TimeSpan? GetTimeout => _timeout;
 
@@ -108,7 +108,7 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public void Send(Mail sendMessage, System.Net.Mail.SmtpClient smtpClient = null)
+        public void Send(Mail? sendMessage, System.Net.Mail.SmtpClient? smtpClient = null)
         {
             if (sendMessage is null) return;
             var client = smtpClient ?? new System.Net.Mail.SmtpClient
@@ -131,7 +131,7 @@ namespace Zaabee.SmtpClient
             if (smtpClient is null) client.Dispose();
         }
 
-        public async Task SendAsync(Mail sendMessage, System.Net.Mail.SmtpClient smtpClient = null)
+        public async Task SendAsync(Mail? sendMessage, System.Net.Mail.SmtpClient? smtpClient = null)
         {
             if (sendMessage is null) return;
             var client = smtpClient ?? new System.Net.Mail.SmtpClient

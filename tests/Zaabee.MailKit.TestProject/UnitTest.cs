@@ -17,7 +17,7 @@ namespace Zaabee.MailKit.TestProject
             mail.From("From email")
                 .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
-                .To(new List<string> {"123@live.com", "456@gmail.com"})
+                .To(new List<string> { "123@live.com", "456@gmail.com" })
                 .Cc("789@hotmail.com")
                 .Bcc("123@163.com")
                 .Attachment(fileStream, "test_attachment.txt");
@@ -28,7 +28,7 @@ namespace Zaabee.MailKit.TestProject
                 .Ssl(true)
                 .Send(mail);
         }
-        
+
         [Fact]
         public async Task TestAsync()
         {
@@ -38,7 +38,7 @@ namespace Zaabee.MailKit.TestProject
             mail.From("From email")
                 .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
-                .To(new List<string> {"123@live.com", "456@gmail.com"})
+                .To(new List<string> { "123@live.com", "456@gmail.com" })
                 .Cc("789@hotmail.com")
                 .Bcc("123@163.com")
                 .Attachment(fileStream, "test_attachment.txt");

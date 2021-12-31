@@ -22,7 +22,7 @@ namespace Zaabee.SmtpClient.TestProject
                 .BodyEncoding(Encoding.UTF8)
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
                 .Priority(MailPriority.High)
-                .To(new List<string> {"123@live.com", "456@gmail.com"})
+                .To(new List<string> { "123@live.com", "456@gmail.com" })
                 .Cc("987@hotmail.com")
                 .Bcc("654@msn.com")
                 .Attachment(fileStream, "test_attachment.txt");
@@ -49,7 +49,7 @@ namespace Zaabee.SmtpClient.TestProject
                 .BodyEncoding(Encoding.UTF8)
                 .Body(@"Across the Great Wall we can reach every corner in the world.")
                 .Priority(MailPriority.High)
-                .To(new List<string> {"123@live.com", "456@gmail.com"})
+                .To(new List<string> { "123@live.com", "456@gmail.com" })
                 .Cc("987@hotmail.com")
                 .Bcc("654@msn.com")
                 .Attachment(fileStream, "test_attachment.txt");

@@ -10,25 +10,25 @@ namespace Zaabee.SmtpClient
 {
     public class Mail
     {
-        public string GetFrom { get; private set; }
+        public string? GetFrom { get; private set; }
 
-        public string GetSubject { get; private set; }
+        public string? GetSubject { get; private set; }
 
         public bool GetIsBodyHtml { get; private set; } = true;
 
         public Encoding GetBodyEncoding { get; private set; } = Encoding.UTF8;
 
-        public string GetBody { get; private set; }
+        public string? GetBody { get; private set; }
 
         public MailPriority GetMailPriority { get; private set; } = MailPriority.Normal;
 
-        public List<string> GetRecipients { get; private set; }
+        public List<string>? GetRecipients { get; private set; }
 
-        public List<string> GetCarbonCopies { get; private set; }
+        public List<string>? GetCarbonCopies { get; private set; }
 
-        public List<string> GetBlindCarbonCopies { get; private set; }
+        public List<string>? GetBlindCarbonCopies { get; private set; }
 
-        public List<Attachment> GetAttachments { get; private set; }
+        public List<Attachment>? GetAttachments { get; private set; }
 
         /// <summary>
         /// From address
@@ -119,7 +119,7 @@ namespace Zaabee.SmtpClient
             return this;
         }
 
-        public Mail Attachment(FileStream stream, ContentType contentType = null)
+        public Mail Attachment(FileStream stream, ContentType? contentType = null)
         {
             if (stream is null) return this;
             GetAttachments ??= new List<Attachment>();
