@@ -2,11 +2,11 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2021.2.8</PackageVersion>
-        <Version>2021.2.8</Version>
+        <PackageVersion>2021.4.0</PackageVersion>
+        <Version>2021.4.0</Version>
         <Authors>Mutuduxf</Authors>
         <Company>Mutuduxf</Company>
-        <PackageProjectUrl>https://github.com/Mutuduxf/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
+        <PackageProjectUrl>https://github.com/PicoHex/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
         <PackageTags>Zaabee;MailKit;SmtpClient;Email</PackageTags>
         <Description>The fluent style wrappers for MailKit.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -14,7 +14,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="MailKit" Version="3.0.0" />
-      <PackageReference Include="Zaabee.Extensions" Version="2022.2.0" />
+      <PackageReference Include="MailKit" Version="3.1.0" />
+      <PackageReference Include="Zaabee.Extensions" Version="2022.8.0" />
     </ItemGroup>
 </Project>
