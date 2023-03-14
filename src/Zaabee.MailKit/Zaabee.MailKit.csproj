@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2023.1.0</PackageVersion>
-		<Version>2023.1.0</Version>
+		<PackageVersion>2023.1.1</PackageVersion>
+		<Version>2023.1.1</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
@@ -16,8 +16,8 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="MailKit" Version="3.5.0" />
-		<PackageReference Include="Zaabee.Extensions" Version="2023.1.0" />
+		<PackageReference Include="MailKit" Version="3.6.0" />
+		<PackageReference Include="Zaabee.Extensions" Version="2023.1.2" />
 	</ItemGroup>
 	
 </Project>
