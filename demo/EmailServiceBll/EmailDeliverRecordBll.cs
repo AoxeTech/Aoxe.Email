@@ -23,7 +23,6 @@ public class EmailDeliverRecordBll : IBll
 
     public async Task SendEmailAsync(SendEmailCommand sendEmailCommand)
     {
-        var mailKitHelper = new MailKitHelper();
         var mail = new Mail();
         mail.From(sendEmailCommand.FromEmail)
             .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
@@ -31,6 +30,8 @@ public class EmailDeliverRecordBll : IBll
             .To(sendEmailCommand.ToEmails)
             .Cc(sendEmailCommand.CcEmails)
             .Bcc(sendEmailCommand.BccEmails);
+
+        var mailKitHelper = new MailKitHelper();
         await mailKitHelper.Host("Your SMTP server's IP.")
             .Port(587)
             .UserName("The user name for NetworkCredential")
