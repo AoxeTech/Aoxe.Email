@@ -1,6 +1,7 @@
 // Global using directives
 
 global using EmailServiceBll;
+global using EmailServiceContract;
 global using EmailServiceModel;
 global using Microsoft.AspNetCore.Mvc;
 global using Zaabee.RabbitMQ.Abstractions;

@@ -1,5 +1,3 @@
-using EmailServiceContract;
-
 namespace EmailSystem;
 
 public class EmailSystemBackgroundService : BackgroundService
