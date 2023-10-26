@@ -5,6 +5,8 @@ public class SendEmailCommand
     public string FromEmail { get; set; }
 
     public string DisplayName { get; set; }
+    
+    public string Body { get; set; }
 
     public List<string> ToEmails { get; set; }
 

@@ -18,19 +18,19 @@ public class EmailDeliverRecordBll : IBll
     public async Task UpdateAsync(EmailDeliveryRecord emailDeliveryRecord) =>
         await _emailDeliveryRecordDal.UpdateAsync(emailDeliveryRecord);
 
-    public async Task<EmailDeliveryRecord> GetAsync(string id) =>
+    public async Task<EmailDeliveryRecord?> GetAsync(string id) =>
         await _emailDeliveryRecordDal.GetAsync(id);
 
-    public async Task SendEmailAsync(SendEmailCommand? sendEmailCommand)
+    public async Task SendEmailAsync(SendEmailCommand sendEmailCommand)
     {
         var mailKitHelper = new MailKitHelper();
         var mail = new Mail();
-        mail.From("From email")
+        mail.From(sendEmailCommand.FromEmail)
             .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-            .Body(@"Across the Great Wall we can reach every corner in the world.")
-            .To(new List<string> { "123@live.com", "456@gmail.com" })
-            .Cc("789@hotmail.com")
-            .Bcc("123@163.com");
+            .Body(sendEmailCommand.Body)
+            .To(sendEmailCommand.ToEmails)
+            .Cc(sendEmailCommand.CcEmails)
+            .Bcc(sendEmailCommand.BccEmails);
         await mailKitHelper.Host("Your SMTP server's IP.")
             .Port(587)
             .UserName("The user name for NetworkCredential")
