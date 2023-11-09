@@ -11,4 +11,9 @@ public class MailKitProvider : IEmailProvider
 
     public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _smtpClient.SendAsync(Factory.Create(emailCommand), cancellationToken);
+
+    public void Dispose()
+    {
+        _smtpClient.Dispose();
+    }
 }

@@ -11,4 +11,9 @@ public class AzureEmailProvider : IEmailProvider
 
     public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _emailClient.SendAsync(WaitUntil.Completed, Factory.Create(emailCommand), cancellationToken);
+
+    public void Dispose()
+    {
+
+    }
 }

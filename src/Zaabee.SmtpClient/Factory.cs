@@ -7,11 +7,11 @@ public static class Factory
         var email = new MailMessage
         {
             From = new MailAddress(emailCommand.From.Address, emailCommand.From.Name),
-            Sender = new MailAddress(emailCommand.Sender.Address, emailCommand.Sender.Name),
+            Sender = string.IsNullOrWhiteSpace(emailCommand.Sender.Address)?null: new MailAddress(emailCommand.Sender.Address, emailCommand.Sender.Name),
             Subject = emailCommand.Content.Subject,
-            IsBodyHtml = !emailCommand.Content.Html.IsNullOrEmpty(),
+            IsBodyHtml = !string.IsNullOrWhiteSpace(emailCommand.Content.Html),
             BodyEncoding = Encoding.UTF8,
-            Body = emailCommand.Content.Html.IsNullOrEmpty() ? emailCommand.Content.PlainText : emailCommand.Content.Html,
+            Body = string.IsNullOrWhiteSpace(emailCommand.Content.Html) ? emailCommand.Content.PlainText : emailCommand.Content.Html,
             Priority = MailPriority.Normal,
             SubjectEncoding = Encoding.UTF8,
             HeadersEncoding = Encoding.UTF8

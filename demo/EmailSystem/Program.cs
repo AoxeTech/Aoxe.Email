@@ -17,7 +17,7 @@ builder.Services.AddThreeTier();
 builder.Services.AddSingleton<IZaabeeMongoClient, ZaabeeMongoClient>();
 // todo: config rabbitmq
 builder.Services.AddSingleton<IZaabeeRabbitMqClient, ZaabeeRabbitMqClient>();
-
+// todo: register IEmailProvider
 
 var app = builder.Build();
 

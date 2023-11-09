@@ -11,4 +11,9 @@ public class AwsSimpleEmailProvider : IEmailProvider
 
     public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _sesClient.SendEmailAsync(Factory.Create(emailCommand), cancellationToken);
+
+    public void Dispose()
+    {
+        _sesClient.Dispose();
+    }
 }

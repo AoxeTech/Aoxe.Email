@@ -11,4 +11,10 @@ public class SmtpProvider : IEmailProvider
 
     public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _smtpClient.SendMailAsync(Factory.Create(emailCommand));
+
+    public void Dispose()
+    {
+        // Transient
+        _smtpClient.Dispose();
+    }
 }
