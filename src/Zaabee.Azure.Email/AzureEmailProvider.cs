@@ -9,6 +9,6 @@ public class AzureEmailProvider : IEmailProvider
         _emailClient = emailClient;
     }
 
-    public async ValueTask SendAsync(EmailCommand emailCommand, CancellationToken cancellationToken = default) =>
+    public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _emailClient.SendAsync(WaitUntil.Completed, Factory.Create(emailCommand), cancellationToken);
 }

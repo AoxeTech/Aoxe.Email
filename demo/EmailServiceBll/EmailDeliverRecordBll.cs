@@ -3,10 +3,13 @@ namespace EmailServiceBll;
 public class EmailDeliverRecordBll : IBll
 {
     private readonly IEmailDeliveryRecordDal _emailDeliveryRecordDal;
+    private readonly IEmailProvider _emailProvider;
 
-    public EmailDeliverRecordBll(IEmailDeliveryRecordDal emailDeliveryRecordDal)
+    public EmailDeliverRecordBll(IEmailDeliveryRecordDal emailDeliveryRecordDal,
+        IEmailProvider emailProvider)
     {
         _emailDeliveryRecordDal = emailDeliveryRecordDal;
+        _emailProvider = emailProvider;
     }
 
     public async Task AddAsync(EmailDeliveryRecord emailDeliveryRecord) =>
@@ -21,22 +24,10 @@ public class EmailDeliverRecordBll : IBll
     public async Task<EmailDeliveryRecord?> GetAsync(string id) =>
         await _emailDeliveryRecordDal.GetAsync(id);
 
-    public async Task SendEmailAsync(SendEmailCommand sendEmailCommand)
+    public async Task SendEmailAsync(SendEmailCommand? sendEmailCommand)
     {
-        var mail = new Mail();
-        mail.From(sendEmailCommand.FromEmail)
-            .Subject($"email test({DateTime.Now}+{Guid.NewGuid()})")
-            .Body(sendEmailCommand.Body)
-            .To(sendEmailCommand.ToEmails)
-            .Cc(sendEmailCommand.CcEmails)
-            .Bcc(sendEmailCommand.BccEmails);
-
-        var mailKitHelper = new MailKitHelper();
-        await mailKitHelper.Host("Your SMTP server's IP.")
-            .Port(587)
-            .UserName("The user name for NetworkCredential")
-            .Password("The password for NetworkCredential")
-            .Ssl(true)
-            .SendAsync(mail);
+        if (sendEmailCommand is null) return;
+        await _emailProvider.SendAsync(sendEmailCommand);
+        await _emailDeliveryRecordDal.AddAsync(new EmailDeliveryRecord(sendEmailCommand));
     }
 }

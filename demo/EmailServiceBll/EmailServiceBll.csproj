@@ -7,13 +7,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaabee.MailKit\Zaabee.MailKit.csproj" />
-      <ProjectReference Include="..\EmailServiceContract\EmailServiceContract.csproj" />
-      <ProjectReference Include="..\IEmailServiceDal\IEmailServiceDal.csproj" />
+        <ProjectReference Include="..\..\src\Zaabee.MailKit\Zaabee.MailKit.csproj" />
+        <ProjectReference Include="..\IEmailServiceDal\IEmailServiceDal.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2023.11.0" />
+        <PackageReference Include="Zaabee.RabbitMQ.Abstractions" Version="2023.11.0" />
     </ItemGroup>
 
 </Project>

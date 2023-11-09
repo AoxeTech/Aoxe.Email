@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Zaabee.Email.Abstractions\Zaabee.Email.Abstractions.csproj" />
+    </ItemGroup>
+
 </Project>

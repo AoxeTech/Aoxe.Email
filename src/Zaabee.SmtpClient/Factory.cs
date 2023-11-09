@@ -2,7 +2,7 @@
 
 public static class Factory
 {
-    public static MailMessage Create(EmailCommand emailCommand)
+    public static MailMessage Create(SendEmailCommand emailCommand)
     {
         var email = new MailMessage
         {

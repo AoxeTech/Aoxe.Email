@@ -1,6 +1,3 @@
-using EmailServiceDal;
-using Zaabee.Mongo;
-
 namespace EmailSystem;
 
 public class EmailSystemBackgroundService : BackgroundService

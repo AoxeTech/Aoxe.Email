@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// auto register three tier
+// auto register three tiers
 builder.Services.AddThreeTier();
 // todo: config mongo
 builder.Services.AddSingleton<IZaabeeMongoClient, ZaabeeMongoClient>();

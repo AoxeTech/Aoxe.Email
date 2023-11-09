@@ -7,4 +7,3 @@ global using Azure;
 global using Azure.Communication.Email;
 global using Zaabee.Email.Abstractions;
 global using Zaabee.Email.Abstractions.Contracts;
-global using EmailRecipients = Azure.Communication.Email.EmailRecipients;

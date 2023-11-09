@@ -22,7 +22,7 @@ public class EmailDeliveryRecordDal : IEmailDeliveryRecordDal
     public async Task UpdateAsync(EmailDeliveryRecord emailDeliveryRecord) =>
         await _zaabeeMongoClient.UpdateAsync(emailDeliveryRecord);
 
-    public async Task<EmailDeliveryRecord?> GetAsync(string id) =>
-        _zaabeeMongoClient
-            .GetQueryable<EmailDeliveryRecord>().FirstOrDefault(p => p.Id == id);
+    public Task<EmailDeliveryRecord?> GetAsync(string id) =>
+        Task.FromResult(_zaabeeMongoClient
+            .GetQueryable<EmailDeliveryRecord>().FirstOrDefault(p => p.Id == id));
 }

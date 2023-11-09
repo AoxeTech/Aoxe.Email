@@ -4,7 +4,7 @@ namespace Zaabee.MailKit;
 
 public static class Factory
 {
-    public static MimeMessage Create(EmailCommand emailCommand)
+    public static MimeMessage Create(SendEmailCommand emailCommand)
     {
         var email = new MimeMessage
         {

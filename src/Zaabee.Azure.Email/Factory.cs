@@ -1,11 +1,12 @@
 ﻿using EmailAddress = Azure.Communication.Email.EmailAddress;
 using EmailContent = Azure.Communication.Email.EmailContent;
+using EmailRecipients = Azure.Communication.Email.EmailRecipients;
 
 namespace Zaabee.Azure.Email;
 
 public static class Factory
 {
-    public static EmailMessage Create(EmailCommand emailCommand)
+    public static EmailMessage Create(SendEmailCommand emailCommand)
     {
         var email =
             new EmailMessage(emailCommand.From.Address,

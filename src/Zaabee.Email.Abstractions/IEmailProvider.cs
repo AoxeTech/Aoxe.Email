@@ -2,5 +2,5 @@ namespace Zaabee.Email.Abstractions;
 
 public interface IEmailProvider
 {
-    ValueTask SendAsync(EmailCommand emailCommand, CancellationToken cancellationToken = default);
+    ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default);
 }

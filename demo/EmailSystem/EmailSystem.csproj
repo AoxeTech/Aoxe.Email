@@ -14,6 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\src\Zaabee.Aws.SimpleEmail\Zaabee.Aws.SimpleEmail.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.Azure.Email\Zaabee.Azure.Email.csproj" />
+      <ProjectReference Include="..\..\src\Zaabee.SmtpClient\Zaabee.SmtpClient.csproj" />
       <ProjectReference Include="..\EmailServiceBll\EmailServiceBll.csproj" />
       <ProjectReference Include="..\EmailServiceContract\EmailServiceContract.csproj" />
       <ProjectReference Include="..\EmailServiceDal\EmailServiceDal.csproj" />

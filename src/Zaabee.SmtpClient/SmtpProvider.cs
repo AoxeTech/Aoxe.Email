@@ -9,6 +9,6 @@ public class SmtpProvider : IEmailProvider
         _smtpClient = smtpClient;
     }
 
-    public async ValueTask SendAsync(EmailCommand emailCommand, CancellationToken cancellationToken = default) =>
+    public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
         await _smtpClient.SendMailAsync(Factory.Create(emailCommand));
 }
