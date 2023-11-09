@@ -1,5 +1,3 @@
-using System;
-
 namespace Zaabee.MailKit;
 
 public static class Factory
@@ -9,7 +7,9 @@ public static class Factory
         var email = new MimeMessage
         {
             From = { new MailboxAddress(emailCommand.From.Name, emailCommand.From.Address) },
-            Sender = new MailboxAddress(emailCommand.Sender.Name, emailCommand.Sender.Address),
+            Sender =  string.IsNullOrWhiteSpace(emailCommand.Sender?.Address)
+                ? new MailboxAddress(emailCommand.From.Name, emailCommand.From.Address)
+                : new MailboxAddress(emailCommand.Sender!.Name, emailCommand.Sender.Address),
             Subject = emailCommand.Content.Subject,
             Body = new Multipart
             {

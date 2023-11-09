@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFrameworks>net48;net6.0;net7.0;net8.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
@@ -26,7 +26,6 @@
     <ItemGroup>
         <ProjectReference Include="..\..\src\Zaabee.Aws.SimpleEmail\Zaabee.Aws.SimpleEmail.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.Azure.Email\Zaabee.Azure.Email.csproj" />
-        <ProjectReference Include="..\..\src\Zaabee.Email.Abstractions\Zaabee.Email.Abstractions.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.MailKit\Zaabee.MailKit.csproj" />
         <ProjectReference Include="..\..\src\Zaabee.SmtpClient\Zaabee.SmtpClient.csproj" />
     </ItemGroup>

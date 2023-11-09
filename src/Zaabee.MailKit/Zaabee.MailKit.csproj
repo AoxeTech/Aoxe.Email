@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<PackageVersion>2023.1.5</PackageVersion>
-		<Version>2023.1.5</Version>
+		<PackageVersion>2023.2.0</PackageVersion>
+		<Version>2023.2.0</Version>
 		<Authors>Mutuduxf</Authors>
 		<Company>Mutuduxf</Company>
 		<PackageProjectUrl>https://github.com/PicoHex/Zaabee.Email/tree/master/src/Zaabee.MailKit</PackageProjectUrl>
 		<PackageTags>Zaabee;MailKit;SmtpClient;Email</PackageTags>
-		<Description>The fluent style wrappers for MailKit.</Description>
+		<Description>The email provider base by MailKit.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
@@ -18,10 +18,7 @@
 	<ItemGroup>
 		<PackageReference Include="MailKit" Version="4.2.0" />
 		<PackageReference Include="Zaabee.Extensions" Version="2023.11.0" />
-	</ItemGroup>
-	
-	<ItemGroup>
-	  	<ProjectReference Include="..\Zaabee.Email.Abstractions\Zaabee.Email.Abstractions.csproj" />
+		<PackageReference Include="Zaabee.Email.Abstractions" Version="2023.1.4" />
 	</ItemGroup>
 	
 </Project>

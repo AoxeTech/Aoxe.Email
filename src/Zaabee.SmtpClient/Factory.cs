@@ -7,7 +7,9 @@ public static class Factory
         var email = new MailMessage
         {
             From = new MailAddress(emailCommand.From.Address, emailCommand.From.Name),
-            Sender = string.IsNullOrWhiteSpace(emailCommand.Sender.Address)?null: new MailAddress(emailCommand.Sender.Address, emailCommand.Sender.Name),
+            Sender = string.IsNullOrWhiteSpace(emailCommand.Sender?.Address)
+                ? new MailAddress(emailCommand.From.Address, emailCommand.From.Name)
+                : new MailAddress(emailCommand.Sender!.Address, emailCommand.Sender.Name),
             Subject = emailCommand.Content.Subject,
             IsBodyHtml = !string.IsNullOrWhiteSpace(emailCommand.Content.Html),
             BodyEncoding = Encoding.UTF8,
