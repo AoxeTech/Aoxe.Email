@@ -8,6 +8,7 @@ public class Email
     public List<EmailAddress> ReplyTo { get; set; } = new();
     public EmailRecipients Recipients { get; set; } = new();
     public EmailContent Content { get; set; } = new();
+    public List<EmailAttachment> Attachments { get; set; } = new();
 
     public Email()
     {
