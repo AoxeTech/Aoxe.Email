@@ -3,12 +3,12 @@ using Azure.Communication.Email;
 using Zaabee.Aws.SimpleEmail;
 using Zaabee.Azure.Email;
 using Zaabee.Email.Abstractions;
-using Zaabee.Email.Abstractions.Contracts;
+using Zaabee.Email.Abstractions.Models;
 using Zaabee.MailKit;
 using Zaabee.SmtpClient;
-using EmailAddress = Zaabee.Email.Abstractions.Contracts.EmailAddress;
-using EmailContent = Zaabee.Email.Abstractions.Contracts.EmailContent;
-using EmailRecipients = Zaabee.Email.Abstractions.Contracts.EmailRecipients;
+using EmailAddress = Zaabee.Email.Abstractions.Models.EmailAddress;
+using EmailContent = Zaabee.Email.Abstractions.Models.EmailContent;
+using EmailRecipients = Zaabee.Email.Abstractions.Models.EmailRecipients;
 
 namespace Zaabee.Email.TestProject;
 
@@ -46,7 +46,7 @@ public class EmailProviderTest
 
     private static async Task SendEmailAsync(IEmailProvider emailProvider)
     {
-        var emailCommand = new SendEmailCommand
+        var emailCommand = new Abstractions.Models.Email
         {
             From = new EmailAddress
             {

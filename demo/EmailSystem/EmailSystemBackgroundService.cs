@@ -13,7 +13,7 @@ public class EmailSystemBackgroundService : BackgroundService
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _messageBus.ReceiveCommand<SendEmailCommand>(() =>
+        _messageBus.ReceiveCommand<Email>(() =>
         {
             using var scope = _serviceProvider.CreateScope();
             return scope.ServiceProvider.GetRequiredService<EmailDeliverRecordBll>().SendEmailAsync;

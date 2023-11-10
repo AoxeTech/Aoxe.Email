@@ -1,6 +1,6 @@
-namespace Zaabee.Email.Abstractions.Contracts;
+namespace Zaabee.Email.Abstractions.Models;
 
-public class SendEmailCommand
+public class Email
 {
     public string Id { get;}
     public EmailAddress From { get; set; } = new();
@@ -9,12 +9,12 @@ public class SendEmailCommand
     public EmailRecipients Recipients { get; set; } = new();
     public EmailContent Content { get; set; } = new();
 
-    public SendEmailCommand()
+    public Email()
     {
         Id = SequentialGuidHelper.GenerateComb().ToString();
     }
 
-    public SendEmailCommand(string id)
+    public Email(string id)
     {
         if (string.IsNullOrWhiteSpace(id))
             throw new ArgumentNullException($"{nameof(id)} can not be null or empty or white space.");

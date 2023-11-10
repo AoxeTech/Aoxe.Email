@@ -23,6 +23,6 @@ public class EmailDeliveryRecordController : ControllerBase
     public async Task<EmailDeliveryRecord?> GetAsync(string id) =>
         await _emailDeliverRecordBll.GetAsync(id);
 
-    public async Task SendEmailAsync(SendEmailCommand? sendEmailCommand) =>
-        await _emailDeliverRecordBll.SendEmailAsync(sendEmailCommand);
+    public async Task SendEmailAsync(Email? email) =>
+        await _emailDeliverRecordBll.SendEmailAsync(email);
 }

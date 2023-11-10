@@ -1,4 +1,4 @@
-namespace Zaabee.Email.Abstractions.Contracts;
+namespace Zaabee.Email.Abstractions.Models;
 
 public class EmailContent
 {

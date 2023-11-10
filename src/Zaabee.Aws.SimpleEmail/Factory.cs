@@ -1,8 +1,10 @@
-﻿namespace Zaabee.Aws.SimpleEmail;
+﻿using Zaabee.Email.Abstractions.Models;
+
+namespace Zaabee.Aws.SimpleEmail;
 
 public static class Factory
 {
-    public static SendEmailRequest Create(SendEmailCommand emailCommand)
+    public static SendEmailRequest Create(Email.Abstractions.Models.Email emailCommand)
     {
         var email = new SendEmailRequest
         {

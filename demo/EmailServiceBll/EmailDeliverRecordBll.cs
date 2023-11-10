@@ -24,10 +24,10 @@ public class EmailDeliverRecordBll : IBll
     public async Task<EmailDeliveryRecord?> GetAsync(string id) =>
         await _emailDeliveryRecordDal.GetAsync(id);
 
-    public async Task SendEmailAsync(SendEmailCommand? sendEmailCommand)
+    public async Task SendEmailAsync(Email? email)
     {
-        if (sendEmailCommand is null) return;
-        await _emailProvider.SendAsync(sendEmailCommand);
-        await _emailDeliveryRecordDal.AddAsync(new EmailDeliveryRecord(sendEmailCommand));
+        if (email is null) return;
+        await _emailProvider.SendAsync(email);
+        await _emailDeliveryRecordDal.AddAsync(new EmailDeliveryRecord(email));
     }
 }

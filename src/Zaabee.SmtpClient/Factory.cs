@@ -1,8 +1,10 @@
-﻿namespace Zaabee.SmtpClient;
+﻿using Zaabee.Email.Abstractions.Models;
+
+namespace Zaabee.SmtpClient;
 
 public static class Factory
 {
-    public static MailMessage Create(SendEmailCommand emailCommand)
+    public static MailMessage Create(Email.Abstractions.Models.Email emailCommand)
     {
         var email = new MailMessage
         {

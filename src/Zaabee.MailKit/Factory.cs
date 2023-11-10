@@ -1,8 +1,10 @@
+using Zaabee.Email.Abstractions.Models;
+
 namespace Zaabee.MailKit;
 
 public static class Factory
 {
-    public static MimeMessage Create(SendEmailCommand emailCommand)
+    public static MimeMessage Create(Email.Abstractions.Models.Email emailCommand)
     {
         var email = new MimeMessage
         {

@@ -1,3 +1,5 @@
+using Zaabee.Email.Abstractions.Models;
+
 namespace Zaabee.Aws.SimpleEmail;
 
 public class AwsSimpleEmailProvider : IEmailProvider
@@ -9,7 +11,7 @@ public class AwsSimpleEmailProvider : IEmailProvider
         _sesClient = sesClient;
     }
 
-    public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
+    public async ValueTask SendAsync(Email.Abstractions.Models.Email emailCommand, CancellationToken cancellationToken = default) =>
         await _sesClient.SendEmailAsync(Factory.Create(emailCommand), cancellationToken);
 
     public void Dispose()

@@ -1,3 +1,5 @@
+using Zaabee.Email.Abstractions.Models;
+
 namespace Zaabee.SmtpClient;
 
 public class SmtpProvider : IEmailProvider
@@ -9,7 +11,7 @@ public class SmtpProvider : IEmailProvider
         _smtpClient = smtpClient;
     }
 
-    public async ValueTask SendAsync(SendEmailCommand emailCommand, CancellationToken cancellationToken = default) =>
+    public async ValueTask SendAsync(Email.Abstractions.Models.Email emailCommand, CancellationToken cancellationToken = default) =>
         await _smtpClient.SendMailAsync(Factory.Create(emailCommand));
 
     public void Dispose()

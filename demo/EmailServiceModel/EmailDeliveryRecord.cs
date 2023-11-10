@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Contracts;
-
 namespace EmailServiceModel;
 
 public class EmailDeliveryRecord : ModelBase
@@ -16,13 +14,13 @@ public class EmailDeliveryRecord : ModelBase
     
     public EmailDeliveryRecord(){}
 
-    public EmailDeliveryRecord(SendEmailCommand emailCommand)
+    public EmailDeliveryRecord(Email email)
     {
-        Id = emailCommand.Id;
-        FromEmail = emailCommand.From.Address;
-        DisplayName = emailCommand.From.Name;
-        ToEmails = emailCommand.Recipients.To.Select(to => to.Address).ToList();
-        CcEmails = emailCommand.Recipients.Cc.Select(cc => cc.Address).ToList();
-        BccEmails = emailCommand.Recipients.Bcc.Select(bcc => bcc.Address).ToList();
+        Id = email.Id;
+        FromEmail = email.From.Address;
+        DisplayName = email.From.Name;
+        ToEmails = email.Recipients.To.Select(to => to.Address).ToList();
+        CcEmails = email.Recipients.Cc.Select(cc => cc.Address).ToList();
+        BccEmails = email.Recipients.Bcc.Select(bcc => bcc.Address).ToList();
     }
 }
