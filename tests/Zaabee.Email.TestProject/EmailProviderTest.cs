@@ -3,7 +3,6 @@ using Azure.Communication.Email;
 using Zaabee.Aws.SimpleEmail;
 using Zaabee.Azure.Email;
 using Zaabee.Email.Abstractions;
-using Zaabee.Email.Abstractions.Models;
 using Zaabee.MailKit;
 using Zaabee.SmtpClient;
 using EmailAddress = Zaabee.Email.Abstractions.Models.EmailAddress;
