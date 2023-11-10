@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <PackageReference Include="Azure.Communication.Email" Version="1.0.1" />
-        <PackageReference Include="Zaabee.Email.Abstractions" Version="2023.2.1" />
+        <PackageReference Include="Zaabee.Email.Abstractions" Version="2023.3.0" />
     </ItemGroup>
 
 </Project>

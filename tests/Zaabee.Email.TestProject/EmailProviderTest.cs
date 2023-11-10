@@ -6,6 +6,7 @@ using Zaabee.Email.Abstractions;
 using Zaabee.MailKit;
 using Zaabee.SmtpClient;
 using EmailAddress = Zaabee.Email.Abstractions.Models.EmailAddress;
+using EmailAttachment = Zaabee.Email.Abstractions.Models.EmailAttachment;
 using EmailContent = Zaabee.Email.Abstractions.Models.EmailContent;
 using EmailRecipients = Zaabee.Email.Abstractions.Models.EmailRecipients;
 
@@ -43,7 +44,7 @@ public class EmailProviderTest
         await SendEmailAsync(smtpClientProvider);
     }
 
-    private static async Task SendEmailAsync(IEmailProvider emailProvider)
+    private async Task SendEmailAsync(IEmailProvider emailProvider)
     {
         var emailCommand = new Abstractions.Models.Email
         {
@@ -69,8 +70,29 @@ public class EmailProviderTest
                 Cc = new List<EmailAddress> { new("Cc@Fake.com", "Cc") },
                 Bcc = new List<EmailAddress> { new("Bcc@Fake.com", "Bcc") }
             },
-            ReplyTo = new List<EmailAddress>{new("ReplyTo@Fake.com", "ReplyTo") }
+            ReplyTo = new List<EmailAddress> { new("ReplyTo@Fake.com", "ReplyTo") },
+            Attachments = new List<EmailAttachment>
+            {
+                new()
+                {
+                    Name = "test.txt",
+                    Content = (await FileToStreamAsync("D:\\MyProjects\\Zaabee\\Zaabee.Email\\tests\\Zaabee.Email.TestProject\\AttchmentTestFile.txt")).ToArray()
+                }
+            }
         };
         await emailProvider.SendAsync(emailCommand);
+    }
+
+    private Task<MemoryStream> FileToStreamAsync(string path)
+    {
+        byte[] bytes;
+        using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+        {
+            bytes = new byte[fileStream.Length];
+            var read = fileStream.Read(bytes, 0, bytes.Length);
+            fileStream.Close();
+        }
+
+        return Task.FromResult(new MemoryStream(bytes));
     }
 }

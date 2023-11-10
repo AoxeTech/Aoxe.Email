@@ -1,31 +1,34 @@
-﻿using Zaabee.Email.Abstractions.Models;
+﻿using System.IO;
+using System.Linq;
 
 namespace Zaabee.SmtpClient;
 
 public static class Factory
 {
-    public static MailMessage Create(Email.Abstractions.Models.Email emailCommand)
+    public static MailMessage Create(Email.Abstractions.Models.Email email)
     {
-        var email = new MailMessage
+        var mailMessage = new MailMessage
         {
-            From = new MailAddress(emailCommand.From.Address, emailCommand.From.Name),
-            Sender = string.IsNullOrWhiteSpace(emailCommand.Sender?.Address)
-                ? new MailAddress(emailCommand.From.Address, emailCommand.From.Name)
-                : new MailAddress(emailCommand.Sender!.Address, emailCommand.Sender.Name),
-            Subject = emailCommand.Content.Subject,
-            IsBodyHtml = !string.IsNullOrWhiteSpace(emailCommand.Content.Html),
+            From = new MailAddress(email.From.Address, email.From.Name),
+            Sender = string.IsNullOrWhiteSpace(email.Sender?.Address)
+                ? new MailAddress(email.From.Address, email.From.Name)
+                : new MailAddress(email.Sender!.Address, email.Sender.Name),
+            Subject = email.Content.Subject,
+            IsBodyHtml = !string.IsNullOrWhiteSpace(email.Content.Html),
             BodyEncoding = Encoding.UTF8,
-            Body = string.IsNullOrWhiteSpace(emailCommand.Content.Html) ? emailCommand.Content.PlainText : emailCommand.Content.Html,
+            Body = string.IsNullOrWhiteSpace(email.Content.Html) ? email.Content.PlainText : email.Content.Html,
             Priority = MailPriority.Normal,
             SubjectEncoding = Encoding.UTF8,
             HeadersEncoding = Encoding.UTF8
         };
 
-        emailCommand.Recipients.To.ForEach(to => email.To.Add(new MailAddress(to.Address, to.Name)));
-        emailCommand.Recipients.Cc.ForEach(cc => email.CC.Add(new MailAddress(cc.Address, cc.Name)));
-        emailCommand.Recipients.Bcc.ForEach(bcc => email.Bcc.Add(new MailAddress(bcc.Address, bcc.Name)));
-        emailCommand.ReplyTo.ForEach(replyTo => email.ReplyToList.Add(new MailAddress(replyTo.Address, replyTo.Name)));
+        email.Recipients.To.ForEach(to => mailMessage.To.Add(new MailAddress(to.Address, to.Name)));
+        email.Recipients.Cc.ForEach(cc => mailMessage.CC.Add(new MailAddress(cc.Address, cc.Name)));
+        email.Recipients.Bcc.ForEach(bcc => mailMessage.Bcc.Add(new MailAddress(bcc.Address, bcc.Name)));
+        email.ReplyTo.ForEach(replyTo => mailMessage.ReplyToList.Add(new MailAddress(replyTo.Address, replyTo.Name)));
 
-        return email;
+        mailMessage.Attachments.AddRange(email.Attachments.Select(attachment =>
+            new Attachment(new MemoryStream(attachment.Content), attachment.Name, attachment.ContentType)));
+        return mailMessage;
     }
 }

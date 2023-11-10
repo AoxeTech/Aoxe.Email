@@ -1,43 +1,54 @@
-﻿using Zaabee.Email.Abstractions.Models;
-
-namespace Zaabee.Aws.SimpleEmail;
+﻿namespace Zaabee.Aws.SimpleEmail;
 
 public static class Factory
 {
-    public static SendEmailRequest Create(Email.Abstractions.Models.Email emailCommand)
+    public static SendEmailRequest Create(Email.Abstractions.Models.Email email)
     {
-        var email = new SendEmailRequest
+        var sendEmailRequest = new SendEmailRequest
         {
-            FromEmailAddress = emailCommand.From.Address,
+            FromEmailAddress = email.From.Address,
             Destination = new Destination
             {
-                ToAddresses = emailCommand.Recipients.To.Select(to => to.Address).ToList(),
-                CcAddresses = emailCommand.Recipients.Cc.Select(cc => cc.Address).ToList(),
-                BccAddresses = emailCommand.Recipients.Bcc.Select(bcc => bcc.Address).ToList()
+                ToAddresses = email.Recipients.To.Select(to => to.Address).ToList(),
+                CcAddresses = email.Recipients.Cc.Select(cc => cc.Address).ToList(),
+                BccAddresses = email.Recipients.Bcc.Select(bcc => bcc.Address).ToList()
             },
-            Content = new Amazon.SimpleEmailV2.Model.EmailContent
+            Content = new EmailContent
             {
                 Simple = new Message
                 {
                     Subject = new Content
                     {
-                        Data = emailCommand.Content.Subject
+                        Data = email.Content.Subject
                     },
                     Body = new Body
                     {
                         Html = new Content
                         {
-                            Data = emailCommand.Content.Html
+                            Data = email.Content.Html
                         },
                         Text = new Content
                         {
-                            Data = emailCommand.Content.PlainText
+                            Data = email.Content.PlainText
                         }
                     }
+                },
+                Raw = new RawMessage
+                {
+                    
+                },
+                Template = new Template
+                {
+                    TemplateArn = string.Empty,
+                    TemplateData = string.Empty,
+                    TemplateName = string.Empty
                 }
             }
         };
 
-        return email;
+        var i = new Message();
+        var j = new RawMessage();
+
+        return sendEmailRequest;
     }
 }

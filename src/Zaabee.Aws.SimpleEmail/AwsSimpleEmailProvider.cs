@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.Aws.SimpleEmail;
 
 public class AwsSimpleEmailProvider : IEmailProvider

@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.Azure.Email;
 
 public class AzureEmailProvider : IEmailProvider

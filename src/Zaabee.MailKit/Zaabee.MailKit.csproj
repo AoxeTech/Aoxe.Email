@@ -18,7 +18,7 @@
 	<ItemGroup>
 		<PackageReference Include="MailKit" Version="4.2.0" />
 		<PackageReference Include="Zaabee.Extensions" Version="2023.11.0" />
-		<PackageReference Include="Zaabee.Email.Abstractions" Version="2023.2.1" />
+		<PackageReference Include="Zaabee.Email.Abstractions" Version="2023.3.0" />
 	</ItemGroup>
 	
 </Project>

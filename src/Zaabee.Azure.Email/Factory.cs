@@ -1,5 +1,4 @@
-﻿using Zaabee.Email.Abstractions.Models;
-using EmailAddress = Azure.Communication.Email.EmailAddress;
+﻿using EmailAddress = Azure.Communication.Email.EmailAddress;
 using EmailContent = Azure.Communication.Email.EmailContent;
 using EmailRecipients = Azure.Communication.Email.EmailRecipients;
 
@@ -7,21 +6,27 @@ namespace Zaabee.Azure.Email;
 
 public static class Factory
 {
-    public static EmailMessage Create(Zaabee.Email.Abstractions.Models.Email emailCommand)
+    public static EmailMessage Create(Zaabee.Email.Abstractions.Models.Email email)
     {
-        var email =
-            new EmailMessage(emailCommand.From.Address,
+        var emailMessage =
+            new EmailMessage(email.From.Address,
                 new EmailRecipients(
-                    emailCommand.Recipients.To.Select(to => new EmailAddress(to.Address, to.Name)),
-                    emailCommand.Recipients.Cc.Select(cc => new EmailAddress(cc.Address, cc.Name)),
-                    emailCommand.Recipients.Bcc.Select(bcc => new EmailAddress(bcc.Address, bcc.Name))),
-                new EmailContent(emailCommand.Content.Subject)
+                    email.Recipients.To.Select(to => new EmailAddress(to.Address, to.Name)),
+                    email.Recipients.Cc.Select(cc => new EmailAddress(cc.Address, cc.Name)),
+                    email.Recipients.Bcc.Select(bcc => new EmailAddress(bcc.Address, bcc.Name))),
+                new EmailContent(email.Content.Subject)
                 {
-                    Html = emailCommand.Content.Html,
-                    PlainText = emailCommand.Content.PlainText
+                    Html = email.Content.Html,
+                    PlainText = email.Content.PlainText
                 });
-        emailCommand.ReplyTo.ForEach(replyTo => email.ReplyTo.Add(new EmailAddress(replyTo.Address, replyTo.Name)));
+        email.ReplyTo.ForEach(replyTo => emailMessage.ReplyTo.Add(new EmailAddress(replyTo.Address, replyTo.Name)));
+        email.Attachments.ForEach(attachment =>
+            emailMessage.Attachments.Add(
+                new EmailAttachment(
+                    attachment.Name,
+                    attachment.ContentType,
+                    BinaryData.FromBytes(attachment.Content))));
 
-        return email;
+        return emailMessage;
     }
 }
