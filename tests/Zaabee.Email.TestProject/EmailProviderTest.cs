@@ -75,8 +75,13 @@ public class EmailProviderTest
             {
                 new()
                 {
-                    Name = "test.txt",
-                    Content = (await FileToStreamAsync("D:\\MyProjects\\Zaabee\\Zaabee.Email\\tests\\Zaabee.Email.TestProject\\AttchmentTestFile.txt")).ToArray()
+                    Name = "test1.txt",
+                    Content = (await FileToStreamAsync(".\\AttachmentTestFile.txt")).ToArray()
+                },
+                new()
+                {
+                    Name = "test2.txt",
+                    Content = (await FileToStreamAsync(".\\AttachmentTestFile.txt")).ToArray()
                 }
             }
         };

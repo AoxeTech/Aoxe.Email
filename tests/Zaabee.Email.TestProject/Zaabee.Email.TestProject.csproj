@@ -30,4 +30,10 @@
         <ProjectReference Include="..\..\src\Zaabee.SmtpClient\Zaabee.SmtpClient.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="AttachmentTestFile.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

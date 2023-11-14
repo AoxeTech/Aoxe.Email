@@ -1,4 +1,6 @@
-﻿namespace Zaabee.Aws.SimpleEmail;
+﻿using System.IO;
+
+namespace Zaabee.Aws.SimpleEmail;
 
 public static class Factory
 {
@@ -33,22 +35,18 @@ public static class Factory
                         }
                     }
                 },
-                Raw = new RawMessage
-                {
-                    
-                },
-                Template = new Template
-                {
-                    TemplateArn = string.Empty,
-                    TemplateData = string.Empty,
-                    TemplateName = string.Empty
-                }
+                // Raw = new RawMessage
+                // {
+                //     Data = new MemoryStream()
+                // },
+                // Template = new Template
+                // {
+                //     TemplateArn = string.Empty,
+                //     TemplateData = string.Empty,
+                //     TemplateName = string.Empty
+                // }
             }
         };
-
-        var i = new Message();
-        var j = new RawMessage();
-
         return sendEmailRequest;
     }
 }
