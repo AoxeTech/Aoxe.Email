@@ -7,7 +7,7 @@ public static class Factory
         var mimeMessage = new MimeMessage
         {
             From = { new MailboxAddress(email.From.Name, email.From.Address) },
-            Sender =  string.IsNullOrWhiteSpace(email.Sender?.Address)
+            Sender = string.IsNullOrWhiteSpace(email.Sender?.Address)
                 ? new MailboxAddress(email.From.Name, email.From.Address)
                 : new MailboxAddress(email.Sender!.Name, email.Sender.Address),
             Subject = email.Content.Subject,
@@ -21,7 +21,7 @@ public static class Factory
             MessageId = email.Id,
             Date = DateTimeOffset.Now
         };
-        
+
         var body = new Multipart
         {
             new TextPart(TextFormat.Html) { Text = email.Content.Html },
@@ -35,12 +35,12 @@ public static class Factory
             FileName = attachment.Name
         }));
         mimeMessage.Body = body;
-        
+
         mimeMessage.To.AddRange(email.Recipients.To.Select(to => new MailboxAddress(to.Name, to.Address)));
         mimeMessage.Cc.AddRange(email.Recipients.Cc.Select(cc => new MailboxAddress(cc.Name, cc.Address)));
         mimeMessage.Bcc.AddRange(email.Recipients.Bcc.Select(bcc => new MailboxAddress(bcc.Name, bcc.Address)));
         mimeMessage.ReplyTo.AddRange(email.ReplyTo.Select(replyTo => new MailboxAddress(replyTo.Name, replyTo.Address)));
-      
+
         return mimeMessage;
     }
 }
