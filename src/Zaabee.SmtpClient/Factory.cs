@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-
-namespace Zaabee.SmtpClient;
+﻿namespace Zaabee.SmtpClient;
 
 public static class Factory
 {

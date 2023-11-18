@@ -1,6 +1,4 @@
-﻿using System.IO;
-
-namespace Zaabee.Aws.SimpleEmail;
+﻿namespace Zaabee.Aws.SimpleEmail;
 
 public static class Factory
 {

@@ -1,6 +1,3 @@
-using System.IO;
-using Zaabee.Extensions;
-
 namespace Zaabee.MailKit;
 
 public static class Factory

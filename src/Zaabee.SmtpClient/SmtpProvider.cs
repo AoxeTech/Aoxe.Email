@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.SmtpClient;
 
 public class SmtpProvider : IEmailProvider
@@ -16,7 +14,6 @@ public class SmtpProvider : IEmailProvider
 
     public void Dispose()
     {
-        // Transient
         _smtpClient.Dispose();
     }
 }

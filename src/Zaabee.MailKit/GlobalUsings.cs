@@ -6,3 +6,4 @@ global using System.Threading.Tasks;
 global using MailKit.Net.Smtp;
 global using MimeKit.Text;
 global using Zaabee.Email.Abstractions;
+global using Zaabee.Extensions;

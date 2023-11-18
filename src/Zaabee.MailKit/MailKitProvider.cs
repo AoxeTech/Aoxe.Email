@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.MailKit;
 
 public class MailKitProvider : IEmailProvider
