@@ -1,8 +1,4 @@
-﻿using EmailAddress = Azure.Communication.Email.EmailAddress;
-using EmailContent = Azure.Communication.Email.EmailContent;
-using EmailRecipients = Azure.Communication.Email.EmailRecipients;
-
-namespace Zaabee.Azure.Email;
+﻿namespace Zaabee.Azure.Email;
 
 public static class Factory
 {

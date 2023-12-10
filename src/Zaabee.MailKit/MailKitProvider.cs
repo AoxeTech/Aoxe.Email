@@ -1,19 +1,12 @@
 namespace Zaabee.MailKit;
 
-public class MailKitProvider : IEmailProvider
+public class MailKitProvider(IMailTransport smtpClient) : IEmailProvider
 {
-    private readonly SmtpClient _smtpClient;
-
-    public MailKitProvider(SmtpClient smtpClient)
-    {
-        _smtpClient = smtpClient;
-    }
-
     public async ValueTask SendAsync(Email.Abstractions.Models.Email emailCommand, CancellationToken cancellationToken = default) =>
-        await _smtpClient.SendAsync(Factory.Create(emailCommand), cancellationToken);
+        await smtpClient.SendAsync(Factory.Create(emailCommand), cancellationToken);
 
     public void Dispose()
     {
-        _smtpClient.Dispose();
+        smtpClient.Dispose();
     }
 }
