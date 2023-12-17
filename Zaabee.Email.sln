@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Azure.Email", "src\Z
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Email.TestProject", "tests\Zaabee.Email.TestProject\Zaabee.Email.TestProject.csproj", "{362FFD6A-7E04-465D-B3B8-E3721265CE68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaabee.Email.Abstractions.TestProject", "tests\Zaabee.Email.Abstractions.TestProject\Zaabee.Email.Abstractions.TestProject.csproj", "{AFACA7B9-60B9-48EB-8111-9071441E73A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{362FFD6A-7E04-465D-B3B8-E3721265CE68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{362FFD6A-7E04-465D-B3B8-E3721265CE68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{362FFD6A-7E04-465D-B3B8-E3721265CE68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFACA7B9-60B9-48EB-8111-9071441E73A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFACA7B9-60B9-48EB-8111-9071441E73A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFACA7B9-60B9-48EB-8111-9071441E73A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFACA7B9-60B9-48EB-8111-9071441E73A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,5 +106,6 @@ Global
 		{F68D5E50-364B-441C-B7B9-0FA87F738EB3} = {6D45CD23-54D5-49A8-8ED4-85B03A52474A}
 		{04969CDB-ED41-4B24-B803-85CAEB6635BE} = {6D45CD23-54D5-49A8-8ED4-85B03A52474A}
 		{362FFD6A-7E04-465D-B3B8-E3721265CE68} = {77092489-4F70-4128-99D8-C6CCD45C3BC9}
+		{AFACA7B9-60B9-48EB-8111-9071441E73A3} = {77092489-4F70-4128-99D8-C6CCD45C3BC9}
 	EndGlobalSection
 EndGlobal

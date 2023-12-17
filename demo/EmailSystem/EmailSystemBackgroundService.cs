@@ -5,7 +5,10 @@ public class EmailSystemBackgroundService : BackgroundService
     private readonly IZaabeeRabbitMqClient _messageBus;
     private readonly IServiceProvider _serviceProvider;
 
-    public EmailSystemBackgroundService(IZaabeeRabbitMqClient messageBus, IServiceProvider serviceProvider)
+    public EmailSystemBackgroundService(
+        IZaabeeRabbitMqClient messageBus,
+        IServiceProvider serviceProvider
+    )
     {
         _messageBus = messageBus;
         _serviceProvider = serviceProvider;

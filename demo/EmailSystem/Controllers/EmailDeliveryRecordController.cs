@@ -14,8 +14,7 @@ public class EmailDeliveryRecordController : ControllerBase
     public async Task AddAsync(EmailDeliveryRecord emailDeliveryRecord) =>
         await _emailDeliverRecordBll.AddAsync(emailDeliveryRecord);
 
-    public async Task DeleteAsync(string id) =>
-        await _emailDeliverRecordBll.DeleteAsync(id);
+    public async Task DeleteAsync(string id) => await _emailDeliverRecordBll.DeleteAsync(id);
 
     public async Task UpdateAsync(EmailDeliveryRecord emailDeliveryRecord) =>
         await _emailDeliverRecordBll.UpdateAsync(emailDeliveryRecord);

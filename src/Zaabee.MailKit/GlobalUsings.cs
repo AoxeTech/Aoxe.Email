@@ -1,9 +1,9 @@
 global using System;
 global using System.Linq;
 global using System.Threading;
-global using MimeKit;
 global using System.Threading.Tasks;
 global using MailKit;
+global using MimeKit;
 global using MimeKit.Text;
 global using Zaabee.Email.Abstractions;
 global using Zaabee.Extensions;

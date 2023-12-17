@@ -7,16 +7,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // auto register three tiers
 builder.Services.AddThreeTier();
+
 // todo: config mongo
 builder.Services.AddSingleton<IZaabeeMongoClient, ZaabeeMongoClient>();
+
 // todo: config rabbitmq
 builder.Services.AddSingleton<IZaabeeRabbitMqClient, ZaabeeRabbitMqClient>();
+
 // todo: register IEmailProvider
 
 var app = builder.Build();

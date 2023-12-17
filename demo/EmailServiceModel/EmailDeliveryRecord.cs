@@ -11,8 +11,8 @@ public class EmailDeliveryRecord : ModelBase
     public List<string> CcEmails { get; set; } = new();
 
     public List<string> BccEmails { get; set; } = new();
-    
-    public EmailDeliveryRecord(){}
+
+    public EmailDeliveryRecord() { }
 
     public EmailDeliveryRecord(Email email)
     {

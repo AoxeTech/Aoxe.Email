@@ -17,20 +17,11 @@ public static class Factory
             {
                 Simple = new Message
                 {
-                    Subject = new Content
-                    {
-                        Data = email.Content.Subject
-                    },
+                    Subject = new Content { Data = email.Content.Subject },
                     Body = new Body
                     {
-                        Html = new Content
-                        {
-                            Data = email.Content.Html
-                        },
-                        Text = new Content
-                        {
-                            Data = email.Content.PlainText
-                        }
+                        Html = new Content { Data = email.Content.HtmlBody },
+                        Text = new Content { Data = email.Content.TextBody }
                     }
                 },
                 // Raw = new RawMessage

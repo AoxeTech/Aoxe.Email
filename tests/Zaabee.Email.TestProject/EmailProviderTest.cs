@@ -40,7 +40,9 @@ public class EmailProviderTest
     [Fact]
     public async Task SmtpClientProviderTest()
     {
-        var smtpClientProvider = new SmtpProvider(new System.Net.Mail.SmtpClient("192.168.78.130", 2525));
+        var smtpClientProvider = new SmtpProvider(
+            new System.Net.Mail.SmtpClient("192.168.78.130", 2525)
+        );
         await SendEmailAsync(smtpClientProvider);
     }
 
@@ -48,56 +50,50 @@ public class EmailProviderTest
     {
         var emailCommand = new Abstractions.Models.Email
         {
-            From = new EmailAddress
-            {
-                Address = "From@Fake.com",
-                Name = "From"
-            },
-            Sender = new EmailAddress
-            {
-                Address = "Sender@Fake.com",
-                Name = "Sender"
-            },
+            From = new EmailAddress { Address = "From@Fake.com", Name = "From" },
+            Sender = new EmailAddress { Address = "Sender@Fake.com", Name = "Sender" },
             Content = new EmailContent
             {
                 Subject = $"Test {emailProvider.GetType()} {DateTime.UtcNow}",
-                PlainText = "This is a test email",
-                Html = "<h1>This is a test email</h1>"
+                TextBody = "This is a test email",
+                HtmlBody = "<h1>This is a test email</h1>"
             },
             Recipients = new EmailRecipients
             {
-                To = new List<EmailAddress> { new("To@Fake.com", "To") },
-                Cc = new List<EmailAddress> { new("Cc@Fake.com", "Cc") },
-                Bcc = new List<EmailAddress> { new("Bcc@Fake.com", "Bcc") }
+                To =  [new EmailAddress("To@Fake.com", "To")],
+                Cc =  [new EmailAddress("Cc@Fake.com", "Cc")],
+                Bcc =  [new EmailAddress("Bcc@Fake.com", "Bcc")]
             },
-            ReplyTo = new List<EmailAddress> { new("ReplyTo@Fake.com", "ReplyTo") },
-            Attachments = new List<EmailAttachment>
-            {
-                new()
+            ReplyTo =  [new("ReplyTo@Fake.com", "ReplyTo")],
+            Attachments =
+            [
+                new EmailAttachment
                 {
                     Name = "test1.txt",
-                    Content = (await FileToStreamAsync(".\\AttachmentTestFile.txt")).ToArray()
+                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
                 },
-                new()
+                new EmailAttachment
                 {
                     Name = "test2.txt",
-                    Content = (await FileToStreamAsync(".\\AttachmentTestFile.txt")).ToArray()
+                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
                 }
-            }
+            ]
         };
         await emailProvider.SendAsync(emailCommand);
     }
 
-    private Task<MemoryStream> FileToStreamAsync(string path)
+    private Task<byte[]> FileToBytesAsync(string path)
     {
         byte[] bytes;
-        using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
+        using (
+            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read)
+        )
         {
             bytes = new byte[fileStream.Length];
-            var read = fileStream.Read(bytes, 0, bytes.Length);
+            _ = fileStream.Read(bytes, 0, bytes.Length);
             fileStream.Close();
         }
 
-        return Task.FromResult(new MemoryStream(bytes));
+        return Task.FromResult(bytes);
     }
 }
