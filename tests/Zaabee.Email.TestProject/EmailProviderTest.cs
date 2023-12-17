@@ -1,15 +1,3 @@
-using Amazon.SimpleEmailV2;
-using Azure.Communication.Email;
-using Zaabee.Aws.SimpleEmail;
-using Zaabee.Azure.Email;
-using Zaabee.Email.Abstractions;
-using Zaabee.MailKit;
-using Zaabee.SmtpClient;
-using EmailAddress = Zaabee.Email.Abstractions.Models.EmailAddress;
-using EmailAttachment = Zaabee.Email.Abstractions.Models.EmailAttachment;
-using EmailContent = Zaabee.Email.Abstractions.Models.EmailContent;
-using EmailRecipients = Zaabee.Email.Abstractions.Models.EmailRecipients;
-
 namespace Zaabee.Email.TestProject;
 
 public class EmailProviderTest
@@ -17,30 +5,30 @@ public class EmailProviderTest
     [Fact]
     public async Task AwsEmailProviderTest()
     {
-        var awsEmailProvider = new AwsSimpleEmailProvider(new AmazonSimpleEmailServiceV2Client());
+        using var awsEmailProvider = new AwsSimpleEmailProvider(new AmazonSimpleEmailServiceV2Client());
         await SendEmailAsync(awsEmailProvider);
     }
 
     [Fact]
     public async Task AzureEmailProviderTest()
     {
-        var azureEmailProvider = new AzureEmailProvider(new EmailClient(""));
+        using var azureEmailProvider = new AzureEmailProvider(new EmailClient(""));
         await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task MailKitProviderTest()
     {
-        var client = new global::MailKit.Net.Smtp.SmtpClient();
+        using var client = new global::MailKit.Net.Smtp.SmtpClient();
         await client.ConnectAsync("192.168.78.130", 2525);
-        var mailKitProvider = new MailKitProvider(client);
+        using var mailKitProvider = new MailKitProvider(client);
         await SendEmailAsync(mailKitProvider);
     }
 
     [Fact]
     public async Task SmtpClientProviderTest()
     {
-        var smtpClientProvider = new SmtpProvider(
+        using var smtpClientProvider = new SmtpProvider(
             new System.Net.Mail.SmtpClient("192.168.78.130", 2525)
         );
         await SendEmailAsync(smtpClientProvider);
