@@ -1,8 +1,8 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.Email.Abstractions;
 
 public interface IEmailProvider : IDisposable
 {
-    ValueTask SendAsync(Models.Email emailCommand, CancellationToken cancellationToken = default);
+    Models.Email? Email { get; set; }
+    ValueTask SendAsync(Models.Email email, CancellationToken cancellationToken = default);
+    void CleanEmail();
 }

@@ -2,7 +2,7 @@
 
 public class EmailRecipients
 {
-    public List<EmailAddress> To { get; set; } = new();
-    public List<EmailAddress> Cc { get; set; } = new();
-    public List<EmailAddress> Bcc { get; set; } = new();
+    public List<EmailAddress> To { get; set; } = [];
+    public List<EmailAddress> Cc { get; set; } = [];
+    public List<EmailAddress> Bcc { get; set; } = [];
 }
