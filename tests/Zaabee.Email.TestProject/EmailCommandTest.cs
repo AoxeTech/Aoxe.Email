@@ -5,7 +5,9 @@ public class EmailCommandTest
     [Fact]
     public void AwsEmailProviderTest()
     {
-        using var awsEmailProvider = new AwsSimpleEmailProvider(new AmazonSimpleEmailServiceV2Client());
+        using var awsEmailProvider = new AwsSimpleEmailProvider(
+            new AmazonSimpleEmailServiceV2Client()
+        );
         EmailTest(awsEmailProvider);
     }
 
@@ -32,8 +34,7 @@ public class EmailCommandTest
         );
         EmailTest(smtpClientProvider);
     }
-    
-    
+
     private void EmailTest(IEmailProvider emailProvider)
     {
         Assert.Null(emailProvider.Email);

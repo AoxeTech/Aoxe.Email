@@ -5,7 +5,9 @@ public class EmailProviderTest
     [Fact]
     public async Task AwsEmailProviderTest()
     {
-        using var awsEmailProvider = new AwsSimpleEmailProvider(new AmazonSimpleEmailServiceV2Client());
+        using var awsEmailProvider = new AwsSimpleEmailProvider(
+            new AmazonSimpleEmailServiceV2Client()
+        );
         await SendEmailAsync(awsEmailProvider);
     }
 
