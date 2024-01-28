@@ -268,9 +268,8 @@ public class EmailProviderExtensionsTest
         return Task.FromResult(bytes);
     }
 
-    private async Task<Email.Abstractions.Models.Email> CreateEmailAsync()
-    {
-        return new Abstractions.Models.Email
+    private async Task<Email.Abstractions.Models.Email> CreateEmailAsync() =>
+        new()
         {
             From = new EmailAddress { Address = "From@Fake.com", Name = "From" },
             Sender = new EmailAddress { Address = "Sender@Fake.com", Name = "Sender" },
@@ -282,11 +281,11 @@ public class EmailProviderExtensionsTest
             },
             Recipients = new EmailRecipients
             {
-                To =  [new EmailAddress("To@Fake.com", "To")],
-                Cc =  [new EmailAddress("Cc@Fake.com", "Cc")],
-                Bcc =  [new EmailAddress("Bcc@Fake.com", "Bcc")]
+                To = [new EmailAddress("To@Fake.com", "To")],
+                Cc = [new EmailAddress("Cc@Fake.com", "Cc")],
+                Bcc = [new EmailAddress("Bcc@Fake.com", "Bcc")]
             },
-            ReplyTo =  [new("ReplyTo@Fake.com", "ReplyTo")],
+            ReplyTo = [new("ReplyTo@Fake.com", "ReplyTo")],
             Attachments =
             [
                 new EmailAttachment
@@ -303,5 +302,4 @@ public class EmailProviderExtensionsTest
                 }
             ]
         };
-    }
 }
