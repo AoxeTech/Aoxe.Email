@@ -15,27 +15,27 @@ public static class Factory
             },
             Content = new EmailContent
             {
-                Simple = new Message
+                Raw = new RawMessage
                 {
-                    Subject = new Content { Data = email.Content.Subject },
-                    Body = new Body
-                    {
-                        Html = new Content { Data = email.Content.HtmlBody },
-                        Text = new Content { Data = email.Content.TextBody }
-                    }
-                },
-                // Raw = new RawMessage
-                // {
-                //     Data = new MemoryStream()
-                // },
-                // Template = new Template
-                // {
-                //     TemplateArn = string.Empty,
-                //     TemplateData = string.Empty,
-                //     TemplateName = string.Empty
-                // }
+                    Data = CreateMessageStream(email.Content.Subject, email.Content.HtmlBody, email.Content.TextBody)
+                }
             }
         };
         return sendEmailRequest;
+    }
+
+    private static MemoryStream CreateMessageStream(string subject, string html, string text)
+    {
+        var stream = new MemoryStream();
+        new MimeMessage
+        {
+            Subject = subject,
+            Body = new BodyBuilder
+            {
+                HtmlBody = html,
+                TextBody = text
+            }.ToMessageBody()
+        }.WriteTo(stream);
+        return stream;
     }
 }
