@@ -17,24 +17,32 @@ public static class Factory
             {
                 Raw = new RawMessage
                 {
-                    Data = CreateMessageStream(email.Content.Subject, email.Content.HtmlBody, email.Content.TextBody)
+                    Data = CreateMessageStream(email)
                 }
             }
         };
         return sendEmailRequest;
     }
 
-    private static MemoryStream CreateMessageStream(string subject, string html, string text)
+    private static MemoryStream CreateMessageStream(Email.Abstractions.Models.Email email)
     {
+
+        // Create the body of the email
+        var bodyBuilder = new BodyBuilder
+        {
+            HtmlBody = email.Content.HtmlBody,
+            TextBody = email.Content.TextBody
+        };
+
+        // Add attachments
+        email.Attachments.ForEach(
+            attachment => bodyBuilder.Attachments.Add(attachment.Name, attachment.Content, new ContentType("application", attachment.ContentType)));
+
         var stream = new MemoryStream();
         new MimeMessage
         {
-            Subject = subject,
-            Body = new BodyBuilder
-            {
-                HtmlBody = html,
-                TextBody = text
-            }.ToMessageBody()
+            Subject = email.Content.Subject,
+            Body = bodyBuilder.ToMessageBody()
         }.WriteTo(stream);
         return stream;
     }
