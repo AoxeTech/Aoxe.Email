@@ -36,7 +36,13 @@ public static class Factory
 
         // Add attachments
         email.Attachments.ForEach(
-            attachment => bodyBuilder.Attachments.Add(attachment.Name, attachment.Content, new ContentType("application", attachment.ContentType)));
+            attachment =>
+            {
+                var mediaTypes = attachment.ContentType.Split('/');
+                var mediaType = mediaTypes.FirstOrDefault();
+                var mediaSubType = mediaTypes.LastOrDefault();
+                bodyBuilder.Attachments.Add(attachment.Name, attachment.Content, new ContentType(mediaType ?? MediaType.Application, mediaSubType ?? MediaSubType.OctetStream));
+            });
 
         var stream = new MemoryStream();
         new MimeMessage

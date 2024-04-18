@@ -6,4 +6,5 @@ global using MailKit;
 global using MimeKit;
 global using MimeKit.Text;
 global using Zaabee.Email.Abstractions;
+global using Zaabee.Email.Abstractions.Models;
 global using Zaabee.Extensions;

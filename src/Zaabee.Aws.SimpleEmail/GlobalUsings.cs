@@ -8,3 +8,5 @@ global using Amazon.SimpleEmailV2;
 global using Amazon.SimpleEmailV2.Model;
 global using MimeKit;
 global using Zaabee.Email.Abstractions;
+global using Zaabee.Email.Abstractions.Models;
+global using EmailContent = Amazon.SimpleEmailV2.Model.EmailContent;

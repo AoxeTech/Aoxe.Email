@@ -1,5 +1,3 @@
-using Zaabee.Email.Abstractions.Models;
-
 namespace Zaabee.Email.Abstractions.TestProject;
 
 public class EmailProviderExtensionsTest
@@ -194,11 +192,9 @@ public class EmailProviderExtensionsTest
         var attachment = new EmailAttachment
         {
             Content = fileBytes,
-            ContentType = "txt",
             Name = "test.txt"
         };
         Assert.NotNull(attachment.Content);
-        Assert.Equal("txt", attachment.ContentType);
         Assert.Equal("test.txt", attachment.Name);
     }
 
@@ -285,20 +281,18 @@ public class EmailProviderExtensionsTest
                 Cc = [new EmailAddress("Cc@Fake.com", "Cc")],
                 Bcc = [new EmailAddress("Bcc@Fake.com", "Bcc")]
             },
-            ReplyTo = [new("ReplyTo@Fake.com", "ReplyTo")],
+            ReplyTo = [new EmailAddress("ReplyTo@Fake.com", "ReplyTo")],
             Attachments =
             [
                 new EmailAttachment
                 {
                     Name = "test1.txt",
-                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt"),
-                    ContentType = "txt"
+                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
                 },
                 new EmailAttachment
                 {
                     Name = "test2.txt",
-                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt"),
-                    ContentType = "txt"
+                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
                 }
             ]
         };

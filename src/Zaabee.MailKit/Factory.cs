@@ -32,7 +32,11 @@ public static class Factory
                 .Attachments
                 .Select(
                     attachment =>
-                        new MimePart
+                    {
+                        var mediaTypes = attachment.ContentType.Split('/');
+                        var mediaType = mediaTypes.FirstOrDefault();
+                        var mediaSubType = mediaTypes.LastOrDefault();
+                        return new MimePart(new ContentType(mediaType ?? MediaType.Application, mediaSubType ?? MediaSubType.OctetStream))
                         {
                             Content = new MimeContent(attachment.Content.ToMemoryStream()),
                             ContentDisposition = new ContentDisposition(
@@ -40,7 +44,8 @@ public static class Factory
                             ),
                             ContentTransferEncoding = ContentEncoding.Base64,
                             FileName = attachment.Name
-                        }
+                        };
+                    }
                 )
         );
         mimeMessage.Body = body;
