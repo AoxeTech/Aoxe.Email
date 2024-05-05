@@ -2,25 +2,33 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2024.1.5</PackageVersion>
-        <Version>2024.1.5</Version>
-        <Authors>Mutuduxf</Authors>
-        <Company>Mutuduxf</Company>
+        <PackageVersion>2024.1.6</PackageVersion>
+        <Version>2024.1.6</Version>
+        <Description>The email provider base by Azure.Communication.Email.</Description>
+        <PackageTags>Zaabee;Azure;SmtpClient;Email;Azure.Communication.Email</PackageTags>
         <PackageProjectUrl>https://github.com/PicoHex</PackageProjectUrl>
         <RepositoryUrl>https://github.com/PicoHex/Zaabee.Email</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>Zaabee;Azure;SmtpClient;Email;Azure.Communication.Email</PackageTags>
-        <Description>The email provider base by Azure.Communication.Email.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <Authors>Roman Du</Authors>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RepositoryType>git</RepositoryType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Authors>Mutuduxf</Authors>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Azure.Communication.Email" Version="1.0.1" />
-        <PackageReference Include="Zaabee.Email.Abstractions" Version="2024.1.5" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Zaabee.Email.Abstractions" Version="2024.1.6" />
     </ItemGroup>
 
 </Project>

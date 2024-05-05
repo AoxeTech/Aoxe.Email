@@ -2,27 +2,35 @@
 
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>2024.1.10</PackageVersion>
-        <Version>2024.1.10</Version>
-        <Authors>Mutuduxf</Authors>
-        <Company>Mutuduxf</Company>
+        <PackageVersion>2024.1.11</PackageVersion>
+        <Version>2024.1.11</Version>
+        <Description>The email provider base by Amazon.SimpleEmailV2.</Description>
+        <PackageTags>Zaabee;Aws;SmtpClient;Email;Amazon.SimpleEmailV2</PackageTags>
         <PackageProjectUrl>https://github.com/PicoHex</PackageProjectUrl>
         <RepositoryUrl>https://github.com/PicoHex/Zaabee.Email</RepositoryUrl>
-        <RepositoryType>git</RepositoryType>
-        <PackageTags>Zaabee;Aws;SmtpClient;Email;Amazon.SimpleEmailV2</PackageTags>
-        <Description>The email provider base by Amazon.SimpleEmailV2.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
-        <Authors>Roman Du</Authors>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RepositoryType>git</RepositoryType>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Authors>Mutuduxf</Authors>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AWSSDK.SimpleEmailV2" Version="3.7.301.24" />
+        <PackageReference Include="AWSSDK.SimpleEmailV2" Version="3.7.303" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
         <PackageReference Include="MimeKit" Version="4.5.0" />
-        <PackageReference Include="Zaabee.Email.Abstractions" Version="2024.1.5" />
-        <PackageReference Include="Zaabee.Extensions" Version="2024.1.5" />
+        <PackageReference Include="Zaabee.Email.Abstractions" Version="2024.1.6" />
+        <PackageReference Include="Zaabee.Extensions" Version="2024.1.6" />
     </ItemGroup>
 
 </Project>
