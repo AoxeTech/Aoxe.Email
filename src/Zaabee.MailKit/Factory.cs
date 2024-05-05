@@ -30,23 +30,24 @@ public static class Factory
         body.AddRange(
             email
                 .Attachments
-                .Select(
-                    attachment =>
+                .Select(attachment =>
+                {
+                    var mediaTypes = attachment.ContentType.Split('/');
+                    var mediaType = mediaTypes.FirstOrDefault();
+                    var mediaSubType = mediaTypes.LastOrDefault();
+                    return new MimePart(
+                        new ContentType(
+                            mediaType ?? MediaType.Application,
+                            mediaSubType ?? MediaSubType.OctetStream
+                        )
+                    )
                     {
-                        var mediaTypes = attachment.ContentType.Split('/');
-                        var mediaType = mediaTypes.FirstOrDefault();
-                        var mediaSubType = mediaTypes.LastOrDefault();
-                        return new MimePart(new ContentType(mediaType ?? MediaType.Application, mediaSubType ?? MediaSubType.OctetStream))
-                        {
-                            Content = new MimeContent(attachment.Content.ToMemoryStream()),
-                            ContentDisposition = new ContentDisposition(
-                                ContentDisposition.Attachment
-                            ),
-                            ContentTransferEncoding = ContentEncoding.Base64,
-                            FileName = attachment.Name
-                        };
-                    }
-                )
+                        Content = new MimeContent(attachment.Content.ToMemoryStream()),
+                        ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                        ContentTransferEncoding = ContentEncoding.Base64,
+                        FileName = attachment.Name
+                    };
+                })
         );
         mimeMessage.Body = body;
 

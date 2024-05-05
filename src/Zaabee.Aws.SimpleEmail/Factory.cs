@@ -15,10 +15,7 @@ public static class Factory
             },
             Content = new EmailContent
             {
-                Raw = new RawMessage
-                {
-                    Data = CreateMessageStream(email)
-                }
+                Raw = new RawMessage { Data = CreateMessageStream(email) }
             }
         };
         return sendEmailRequest;
@@ -26,7 +23,6 @@ public static class Factory
 
     private static MemoryStream CreateMessageStream(Email.Abstractions.Models.Email email)
     {
-
         // Create the body of the email
         var bodyBuilder = new BodyBuilder
         {
@@ -35,13 +31,23 @@ public static class Factory
         };
 
         // Add attachments
-        email.Attachments.ForEach(
-            attachment =>
+        email
+            .Attachments
+            .ForEach(attachment =>
             {
                 var mediaTypes = attachment.ContentType.Split('/');
                 var mediaType = mediaTypes.FirstOrDefault();
                 var mediaSubType = mediaTypes.LastOrDefault();
-                bodyBuilder.Attachments.Add(attachment.Name, attachment.Content, new ContentType(mediaType ?? MediaType.Application, mediaSubType ?? MediaSubType.OctetStream));
+                bodyBuilder
+                    .Attachments
+                    .Add(
+                        attachment.Name,
+                        attachment.Content,
+                        new ContentType(
+                            mediaType ?? MediaType.Application,
+                            mediaSubType ?? MediaSubType.OctetStream
+                        )
+                    );
             });
 
         var stream = new MemoryStream();

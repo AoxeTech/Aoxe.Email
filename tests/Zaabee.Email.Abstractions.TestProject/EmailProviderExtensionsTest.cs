@@ -189,11 +189,7 @@ public class EmailProviderExtensionsTest
     public async Task AttachTest()
     {
         var fileBytes = await FileToBytesAsync(".\\AttachmentTestFile.txt");
-        var attachment = new EmailAttachment
-        {
-            Content = fileBytes,
-            Name = "test.txt"
-        };
+        var attachment = new EmailAttachment { Content = fileBytes, Name = "test.txt" };
         Assert.NotNull(attachment.Content);
         Assert.Equal("test.txt", attachment.Name);
     }
@@ -277,11 +273,11 @@ public class EmailProviderExtensionsTest
             },
             Recipients = new EmailRecipients
             {
-                To = [new EmailAddress("To@Fake.com", "To")],
-                Cc = [new EmailAddress("Cc@Fake.com", "Cc")],
-                Bcc = [new EmailAddress("Bcc@Fake.com", "Bcc")]
+                To =  [new EmailAddress("To@Fake.com", "To")],
+                Cc =  [new EmailAddress("Cc@Fake.com", "Cc")],
+                Bcc =  [new EmailAddress("Bcc@Fake.com", "Bcc")]
             },
-            ReplyTo = [new EmailAddress("ReplyTo@Fake.com", "ReplyTo")],
+            ReplyTo =  [new EmailAddress("ReplyTo@Fake.com", "ReplyTo")],
             Attachments =
             [
                 new EmailAttachment
