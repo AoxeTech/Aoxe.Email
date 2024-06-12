@@ -8,15 +8,15 @@
 
     <ItemGroup>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-        <PackageReference Include="Zaabee.Mongo" Version="2024.1.4" />
-        <PackageReference Include="Zaabee.RabbitMQ" Version="2024.1.5" />
-        <PackageReference Include="Zaaby.ThreeTier" Version="2022.3.0" />
+        <PackageReference Include="Aoxe.Mongo" Version="2024.1.0" />
+        <PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.0" />
+        <PackageReference Include="Aoxe.ThreeTier" Version="2024.1.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Zaabee.Aws.SimpleEmail\Zaabee.Aws.SimpleEmail.csproj" />
-      <ProjectReference Include="..\..\src\Zaabee.Azure.Email\Zaabee.Azure.Email.csproj" />
-      <ProjectReference Include="..\..\src\Zaabee.SmtpClient\Zaabee.SmtpClient.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" />
       <ProjectReference Include="..\EmailServiceBll\EmailServiceBll.csproj" />
       <ProjectReference Include="..\EmailServiceDal\EmailServiceDal.csproj" />
     </ItemGroup>

@@ -1,6 +1,6 @@
-using Zaabee.Mongo;
-using Zaabee.Mongo.Abstractions;
-using Zaabee.RabbitMQ;
+using Aoxe.Mongo;
+using Aoxe.Mongo.Abstractions;
+using Aoxe.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddThreeTier();
 
 // todo: config mongo
-builder.Services.AddSingleton<IZaabeeMongoClient, ZaabeeMongoClient>();
+builder.Services.AddSingleton<IAoxeMongoClient, AoxeMongoClient>();
 
 // todo: config rabbitmq
-builder.Services.AddSingleton<IZaabeeRabbitMqClient, ZaabeeRabbitMqClient>();
+builder.Services.AddSingleton<IAoxeRabbitMqClient, AoxeRabbitMqClient>();
 
 // todo: register IEmailProvider
 

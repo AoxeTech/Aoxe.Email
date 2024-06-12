@@ -2,11 +2,11 @@ namespace EmailSystem;
 
 public class EmailSystemBackgroundService : BackgroundService
 {
-    private readonly IZaabeeRabbitMqClient _messageBus;
+    private readonly IAoxeRabbitMqClient _messageBus;
     private readonly IServiceProvider _serviceProvider;
 
     public EmailSystemBackgroundService(
-        IZaabeeRabbitMqClient messageBus,
+        IAoxeRabbitMqClient messageBus,
         IServiceProvider serviceProvider
     )
     {
