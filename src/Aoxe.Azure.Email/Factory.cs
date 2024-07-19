@@ -17,24 +17,24 @@ public static class Factory
                 PlainText = email.Content.TextBody
             }
         );
-        email
+        emailMessage
             .ReplyTo
-            .ForEach(
-                replyTo => emailMessage.ReplyTo.Add(new EmailAddress(replyTo.Address, replyTo.Name))
+            .AddRange(
+                email.ReplyTo.Select(replyTo => new EmailAddress(replyTo.Address, replyTo.Name))
             );
-        email
+        emailMessage
             .Attachments
-            .ForEach(
-                attachment =>
-                    emailMessage
-                        .Attachments
-                        .Add(
+            .AddRange(
+                email
+                    .Attachments
+                    .Select(
+                        attachment =>
                             new EmailAttachment(
                                 attachment.Name,
                                 attachment.ContentType,
                                 BinaryData.FromBytes(attachment.Content)
                             )
-                        )
+                    )
             );
 
         return emailMessage;
