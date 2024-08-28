@@ -38,6 +38,7 @@ public class EmailProviderTest
 
     private async Task SendEmailAsync(IEmailProvider emailProvider)
     {
+        var (fileName, fileBytes) = FileHelper.LoadFileBytes(".\\AttachmentTestFile.txt");
         var emailCommand = new Abstractions.Models.Email
         {
             From = new EmailAddress { Address = "From@Fake.com", Name = "From" },
@@ -60,30 +61,15 @@ public class EmailProviderTest
                 new EmailAttachment
                 {
                     Name = "test1.txt",
-                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
+                    Content = fileBytes
                 },
                 new EmailAttachment
                 {
                     Name = "test2.txt",
-                    Content = await FileToBytesAsync(".\\AttachmentTestFile.txt")
+                    Content = fileBytes
                 }
             ]
         };
         await emailProvider.SendAsync(emailCommand);
-    }
-
-    private Task<byte[]> FileToBytesAsync(string path)
-    {
-        byte[] bytes;
-        using (
-            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read)
-        )
-        {
-            bytes = new byte[fileStream.Length];
-            _ = fileStream.Read(bytes, 0, bytes.Length);
-            fileStream.Close();
-        }
-
-        return Task.FromResult(bytes);
     }
 }

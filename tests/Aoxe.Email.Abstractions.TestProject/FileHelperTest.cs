@@ -3,16 +3,20 @@
 public class FileHelperTest
 {
     [Fact]
-    public void GetFileTest()
+    public async Task GetFileTest()
     {
-        var (fileName, fileBytes) = FileHelper.LoadFileBytes("AttachmentTestFile.txt");
+        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
+            "AttachmentTestFile.txt"
+        );
         Assert.Equal("AttachmentTestFile.txt", fileName);
         Assert.NotNull(fileBytes);
     }
 
     [Fact]
-    public void AttachmentsByPathExTest()
+    public async Task AttachmentsByPathExTest()
     {
-        Assert.Throws<FileNotFoundException>(() => FileHelper.LoadFileBytes(".\\notExist.txt"));
+        await Assert.ThrowsAsync<FileNotFoundException>(
+            async () => await new FileHelper().LoadFileBytesAsync(".\\notExist.txt")
+        );
     }
 }
