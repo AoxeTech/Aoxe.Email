@@ -2,6 +2,6 @@
 
 global using Aoxe.Email.Abstractions;
 global using Aoxe.Email.Abstractions.Models;
+global using Aoxe.ThreeTier.Abstractions.BusinessLogic;
 global using EmailServiceModel;
 global using IEmailServiceDal;
-global using Zaaby.ThreeTier.Annotations.BusinessLogic;

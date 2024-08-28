@@ -1,4 +1,4 @@
 // Global using directives
 
-global using Aoxe.ThreeTier.Annotations.DataAccess;
+global using Aoxe.ThreeTier.Abstractions.DataAccess;
 global using EmailServiceModel;
