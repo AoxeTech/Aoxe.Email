@@ -1,6 +1,6 @@
 namespace Aoxe.Email.Abstractions.Models;
 
-public class MediaType
+public static class MediaType
 {
     public const string Text = "text";
     public const string Image = "image";

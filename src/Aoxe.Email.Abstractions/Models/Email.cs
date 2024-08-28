@@ -1,8 +1,8 @@
 namespace Aoxe.Email.Abstractions.Models;
 
-public class Email
+public class Email(string? id = null)
 {
-    public string Id { get; }
+    public string Id { get; } = id is null ? Guid.NewGuid().ToString() : id.Trim();
     public EmailAddress From { get; set; } = new();
     public EmailAddress Sender { get; set; } = new();
     public List<EmailAddress> ReplyTo { get; set; } = [];
@@ -10,17 +10,113 @@ public class Email
     public EmailContent Content { get; set; } = new();
     public List<EmailAttachment> Attachments { get; set; } = [];
 
-    public Email()
+    public Email Attach(string fileName, byte[] content, string? contentType = null)
     {
-        Id = SequentialGuidHelper.GenerateComb().ToString();
+        Attachments.Add(
+            new EmailAttachment
+            {
+                Name = fileName,
+                ContentType = contentType ?? Defaults.ContentType,
+                Content = content
+            }
+        );
+        return this;
     }
 
-    public Email(string id)
+    public Email Attach(
+        IEnumerable<(string fileName, byte[] content)> attachments,
+        string? contentType = null
+    )
     {
-        if (string.IsNullOrWhiteSpace(id))
-            throw new ArgumentNullException(
-                $"{nameof(id)} can not be null or empty or white space."
-            );
-        Id = id.Trim();
+        Attachments.AddRange(
+            attachments.Select(
+                x =>
+                    new EmailAttachment
+                    {
+                        Name = x.fileName,
+                        ContentType = contentType ?? Defaults.ContentType,
+                        Content = x.content
+                    }
+            )
+        );
+        return this;
+    }
+
+    public Email Subject(string subject)
+    {
+        Content.Subject = subject;
+        return this;
+    }
+
+    public Email TextBody(string textBody)
+    {
+        Content.TextBody = textBody;
+        return this;
+    }
+
+    public Email HtmlBody(string htmlBody)
+    {
+        Content.HtmlBody = htmlBody;
+        return this;
+    }
+
+    public Email EmailFrom(string address, string? name = null)
+    {
+        From = new EmailAddress(address, name);
+        return this;
+    }
+
+    public Email EmailTo(string address, string? name = null)
+    {
+        Recipients.To.Add(new EmailAddress(address, name));
+        return this;
+    }
+
+    public Email EmailTo(IEnumerable<EmailAddress> emailAddresses)
+    {
+        Recipients.To.AddRange(emailAddresses);
+        return this;
+    }
+
+    public Email EmailCc(string address, string? name = null)
+    {
+        Recipients.Cc.Add(new EmailAddress(address, name));
+        return this;
+    }
+
+    public Email EmailCc(IEnumerable<EmailAddress> emailAddresses)
+    {
+        Recipients.Cc.AddRange(emailAddresses);
+        return this;
+    }
+
+    public Email EmailBcc(string address, string? name = null)
+    {
+        Recipients.Bcc.Add(new EmailAddress(address, name));
+        return this;
+    }
+
+    public Email EmailBcc(IEnumerable<EmailAddress> emailAddresses)
+    {
+        Recipients.Bcc.AddRange(emailAddresses);
+        return this;
+    }
+
+    public Email EmailReplyTo(string address, string? name = null)
+    {
+        ReplyTo.Add(new EmailAddress(address, name));
+        return this;
+    }
+
+    public Email EmailReplyTo(IEnumerable<EmailAddress> emailAddresses)
+    {
+        ReplyTo.AddRange(emailAddresses);
+        return this;
+    }
+
+    public Email EmailSender(string address, string? name = null)
+    {
+        Sender = new EmailAddress(address, name);
+        return this;
     }
 }

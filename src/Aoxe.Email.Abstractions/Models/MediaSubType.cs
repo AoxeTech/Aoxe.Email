@@ -1,6 +1,6 @@
 namespace Aoxe.Email.Abstractions.Models;
 
-public class MediaSubType
+public static class MediaSubType
 {
     public const string Html = "html";
     public const string Plain = "plain";
