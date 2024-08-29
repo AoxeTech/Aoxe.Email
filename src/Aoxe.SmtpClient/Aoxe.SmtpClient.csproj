@@ -2,8 +2,8 @@
     
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
-        <PackageVersion>2024.2.2</PackageVersion>
-        <Version>2024.2.2</Version>
+        <PackageVersion>2024.2.3</PackageVersion>
+        <Version>2024.2.3</Version>
         <Description>The aoxe email provider implement by SmtpClient.</Description>
         <PackageTags>Aoxe;SmtpClient;Email;System.Net.Mail.SmtpClient</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
