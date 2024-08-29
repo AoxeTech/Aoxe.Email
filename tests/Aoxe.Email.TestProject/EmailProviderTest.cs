@@ -30,9 +30,9 @@ public class EmailProviderTest
         await SendEmailAsync(smtpClientProvider);
     }
 
-    private async Task SendEmailAsync(IEmailProvider emailProvider)
+    private static async Task SendEmailAsync(IEmailProvider emailProvider)
     {
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
+        var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync(
             ".\\AttachmentTestFile.txt"
         );
         var email = new Abstractions.Models.Email();

@@ -5,9 +5,7 @@ public class FileHelperTest
     [Fact]
     public async Task GetFileTest()
     {
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
-            "AttachmentTestFile.txt"
-        );
+        var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
         Assert.Equal("AttachmentTestFile.txt", fileName);
         Assert.NotNull(fileBytes);
     }
@@ -16,7 +14,7 @@ public class FileHelperTest
     public async Task AttachmentsByPathExTest()
     {
         await Assert.ThrowsAsync<FileNotFoundException>(
-            async () => await new FileHelper().LoadFileBytesAsync(".\\notExist.txt")
+            async () => await FileHelper.LoadFileBytesAsync(".\\notExist.txt")
         );
     }
 }

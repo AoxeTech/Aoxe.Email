@@ -160,9 +160,7 @@ public class EmailTest
     public async Task AttachmentsByPathTest()
     {
         var email = new Models.Email();
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
-            "AttachmentTestFile.txt"
-        );
+        var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
         email
             .Attach(fileName, fileBytes)
             .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);
@@ -186,7 +184,7 @@ public class EmailTest
     [Fact]
     public async Task AttachTest()
     {
-        var (_, fileBytes) = await new FileHelper().LoadFileBytesAsync("AttachmentTestFile.txt");
+        var (_, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
         var attachment = new EmailAttachment("test.txt", fileBytes);
         Assert.NotNull(attachment.Content);
         Assert.Equal("test.txt", attachment.Name);
@@ -195,7 +193,7 @@ public class EmailTest
     [Fact]
     public async Task AttachmentsByBytesTest()
     {
-        var (_, fileBytes) = await new FileHelper().LoadFileBytesAsync("AttachmentTestFile.txt");
+        var (_, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
         var email = new Models.Email();
         email
             .Attach("test0.txt", fileBytes)
@@ -259,9 +257,7 @@ public class EmailTest
                 [new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")]
             )
             .EmailSender("address", "name");
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
-            "AttachmentTestFile.txt"
-        );
+        var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
         email
             .Attach(fileName, fileBytes)
             .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);

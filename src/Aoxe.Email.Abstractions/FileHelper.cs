@@ -1,8 +1,8 @@
 ﻿namespace Aoxe.Email.Abstractions;
 
-public class FileHelper
+public static class FileHelper
 {
-    public async ValueTask<(string, byte[])> LoadFileBytesAsync(string filePath)
+    public static async ValueTask<(string, byte[])> LoadFileBytesAsync(string filePath)
     {
         var fileInfo = new FileInfo(filePath);
         if (!fileInfo.Exists)
