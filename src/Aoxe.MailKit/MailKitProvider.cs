@@ -14,8 +14,9 @@ public class MailKitProvider(
         CancellationToken cancellationToken = default
     )
     {
-        await _mailTransport.ConnectAsync(host, port, cancellationToken: cancellationToken);
-        if (userName is not null && password is not null)
+        if (!_mailTransport.IsConnected)
+            await _mailTransport.ConnectAsync(host, port, cancellationToken: cancellationToken);
+        if (!_mailTransport.IsAuthenticated && userName is not null && password is not null)
             await _mailTransport.AuthenticateAsync(userName, password, cancellationToken);
         await _mailTransport.SendAsync(Factory.Create(emailCommand), cancellationToken);
     }
