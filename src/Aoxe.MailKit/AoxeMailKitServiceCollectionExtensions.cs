@@ -5,7 +5,7 @@ public static class AoxeMailKitServiceCollectionExtensions
     public static IServiceCollection AddMailKit(
         this IServiceCollection serviceCollection,
         string host,
-        int port = 2525,
+        int port = 25,
         string? userName = null,
         string? password = null
     )
