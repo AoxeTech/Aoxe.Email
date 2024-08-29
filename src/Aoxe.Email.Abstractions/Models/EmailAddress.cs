@@ -1,9 +1,9 @@
 namespace Aoxe.Email.Abstractions.Models;
 
-public class EmailAddress
+public sealed class EmailAddress
 {
-    public string Name { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
+    public string Name { get; } = string.Empty;
+    public string Address { get; } = string.Empty;
 
     public EmailAddress() { }
 

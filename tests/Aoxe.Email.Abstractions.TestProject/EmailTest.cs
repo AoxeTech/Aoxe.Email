@@ -28,8 +28,6 @@ public class EmailTest
         Assert.Empty(email.Recipients.To);
         Assert.Empty(email.Recipients.Cc);
         Assert.Empty(email.Recipients.Bcc);
-        email.Recipients = new();
-        Assert.NotNull(email.Recipients);
     }
 
     [Theory]
@@ -44,8 +42,9 @@ public class EmailTest
     )
     {
         var email = new Models.Email();
-        email.EmailTo(address0, name0);
-        email.EmailTo([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
+        email
+            .EmailTo(address0, name0)
+            .EmailTo([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
         Assert.NotNull(email);
         Assert.Equal(address0, email.Recipients.To.First().Address);
         Assert.Equal(name0, email.Recipients.To.First().Name);
@@ -53,8 +52,6 @@ public class EmailTest
         Assert.Equal(name1, email.Recipients.To.Skip(1).First().Name);
         Assert.Equal(address2, email.Recipients.To.Skip(2).First().Address);
         Assert.Equal(name2, email.Recipients.To.Skip(2).First().Name);
-        email.Recipients.To = new();
-        Assert.Empty(email.Recipients.To);
     }
 
     [Theory]
@@ -69,8 +66,9 @@ public class EmailTest
     )
     {
         var email = new Models.Email();
-        email.EmailCc(address0, name0);
-        email.EmailCc([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
+        email
+            .EmailCc(address0, name0)
+            .EmailCc([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
         Assert.NotNull(email);
         Assert.Equal(address0, email.Recipients.Cc.First().Address);
         Assert.Equal(name0, email.Recipients.Cc.First().Name);
@@ -78,8 +76,6 @@ public class EmailTest
         Assert.Equal(name1, email.Recipients.Cc.Skip(1).First().Name);
         Assert.Equal(address2, email.Recipients.Cc.Skip(2).First().Address);
         Assert.Equal(name2, email.Recipients.Cc.Skip(2).First().Name);
-        email.Recipients.Cc = new();
-        Assert.Empty(email.Recipients.Cc);
     }
 
     [Theory]
@@ -94,8 +90,9 @@ public class EmailTest
     )
     {
         var email = new Models.Email();
-        email.EmailBcc(address0, name0);
-        email.EmailBcc([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
+        email
+            .EmailBcc(address0, name0)
+            .EmailBcc([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
         Assert.NotNull(email);
         Assert.Equal(address0, email.Recipients.Bcc.First().Address);
         Assert.Equal(name0, email.Recipients.Bcc.First().Name);
@@ -103,8 +100,6 @@ public class EmailTest
         Assert.Equal(name1, email.Recipients.Bcc.Skip(1).First().Name);
         Assert.Equal(address2, email.Recipients.Bcc.Skip(2).First().Address);
         Assert.Equal(name2, email.Recipients.Bcc.Skip(2).First().Name);
-        email.Recipients.Bcc = new();
-        Assert.Empty(email.Recipients.Bcc);
     }
 
     [Theory]
@@ -126,8 +121,9 @@ public class EmailTest
     )
     {
         var email = new Models.Email();
-        email.EmailReplyTo(address0, name0);
-        email.EmailReplyTo([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
+        email
+            .EmailReplyTo(address0, name0)
+            .EmailReplyTo([new EmailAddress(address1, name1), new EmailAddress(address2, name2)]);
         Assert.NotNull(email);
         Assert.Equal(address0, email.ReplyTo.First().Address);
         Assert.Equal(name0, email.ReplyTo.First().Name);
@@ -135,8 +131,6 @@ public class EmailTest
         Assert.Equal(name1, email.ReplyTo.Skip(1).First().Name);
         Assert.Equal(address2, email.ReplyTo.Skip(2).First().Address);
         Assert.Equal(name2, email.ReplyTo.Skip(2).First().Name);
-        email.ReplyTo = new();
-        Assert.Empty(email.ReplyTo);
     }
 
     [Theory]
@@ -155,17 +149,11 @@ public class EmailTest
     public void ContentTest(string subject, string textBody, string htmlBody)
     {
         var email = new Models.Email();
-        email.Subject(subject);
-        email.TextBody(textBody);
-        email.HtmlBody(htmlBody);
+        email.Subject(subject).TextBody(textBody).HtmlBody(htmlBody);
         Assert.NotNull(email);
         Assert.Equal(subject, email.Content.Subject);
         Assert.Equal(textBody, email.Content.TextBody);
-        email.Content = new();
-        Assert.NotNull(email.Content);
-        Assert.Equal(string.Empty, email.Content.Subject);
-        Assert.Equal(string.Empty, email.Content.TextBody);
-        Assert.Equal(string.Empty, email.Content.HtmlBody);
+        Assert.Equal(htmlBody, email.Content.HtmlBody);
     }
 
     [Fact]
@@ -175,19 +163,18 @@ public class EmailTest
         var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
             "AttachmentTestFile.txt"
         );
-        email.Attach(fileName, fileBytes);
-        email.Attach([new( fileName, fileBytes), new( fileName, fileBytes)]);
+        email
+            .Attach(fileName, fileBytes)
+            .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);
         Assert.NotNull(email);
         Assert.Equal(3, email.Attachments.Count);
         Assert.Equal(
-            $"{MediaType.Application}/{MediaSubType.OctetStream}",
+            $"{Defaults.MediaTypeApplication}/{Defaults.MediaSubTypeOctetStream}",
             email.Attachments.First().ContentType
         );
         Assert.Equal("AttachmentTestFile.txt", email.Attachments.First().Name);
         Assert.Equal("AttachmentTestFile.txt", email.Attachments.Skip(1).First().Name);
         Assert.Equal("AttachmentTestFile.txt", email.Attachments.Skip(2).First().Name);
-        email.Attachments = new();
-        Assert.Empty(email.Attachments);
     }
 
     [Fact]
@@ -199,10 +186,8 @@ public class EmailTest
     [Fact]
     public async Task AttachTest()
     {
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
-            "AttachmentTestFile.txt"
-        );
-        var attachment = new EmailAttachment { Content = fileBytes, Name = "test.txt" };
+        var (_, fileBytes) = await new FileHelper().LoadFileBytesAsync("AttachmentTestFile.txt");
+        var attachment = new EmailAttachment("test.txt", fileBytes);
         Assert.NotNull(attachment.Content);
         Assert.Equal("test.txt", attachment.Name);
     }
@@ -210,12 +195,11 @@ public class EmailTest
     [Fact]
     public async Task AttachmentsByBytesTest()
     {
-        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
-            "AttachmentTestFile.txt"
-        );
+        var (_, fileBytes) = await new FileHelper().LoadFileBytesAsync("AttachmentTestFile.txt");
         var email = new Models.Email();
-        email.Attach("test0.txt", fileBytes);
-        email.Attach(new[] { ("test1.txt", fileBytes), ("test2.txt", fileBytes) });
+        email
+            .Attach("test0.txt", fileBytes)
+            .Attach(new[] { ("test1.txt", fileBytes), ("test2.txt", fileBytes) });
         Assert.NotNull(email);
         Assert.Equal(3, email.Attachments.Count);
         Assert.Equal("test0.txt", email.Attachments.First().Name);
@@ -224,25 +208,64 @@ public class EmailTest
     }
 
     [Fact]
+    public void AttachmentContentTypeTest()
+    {
+        var attachment = new EmailAttachment("TestAttachment", []);
+        Assert.Equal(attachment.ContentType, $"{attachment.MediaType}/{attachment.SubMediaType}");
+    }
+
+    [Fact]
     public void MediaTypeTest()
     {
-        Assert.Equal("text", MediaType.Text);
-        Assert.Equal("image", MediaType.Image);
-        Assert.Equal("audio", MediaType.Audio);
-        Assert.Equal("video", MediaType.Video);
-        Assert.Equal("application", MediaType.Application);
-        Assert.Equal("multipart", MediaType.Multipart);
-        Assert.Equal("message", MediaType.Message);
+        Assert.Equal("text", Defaults.MediaTypeText);
+        Assert.Equal("image", Defaults.MediaTypeImage);
+        Assert.Equal("audio", Defaults.MediaTypeAudio);
+        Assert.Equal("video", Defaults.MediaTypeVideo);
+        Assert.Equal("application", Defaults.MediaTypeApplication);
+        Assert.Equal("multipart", Defaults.MediaTypeMultipart);
+        Assert.Equal("message", Defaults.MediaTypeMessage);
     }
 
     [Fact]
     public void MediaSubTypeTest()
     {
-        Assert.Equal("html", MediaSubType.Html);
-        Assert.Equal("plain", MediaSubType.Plain);
-        Assert.Equal("xml", MediaSubType.Xml);
-        Assert.Equal("json", MediaSubType.Json);
-        Assert.Equal("octet-stream", MediaSubType.OctetStream);
-        Assert.Equal("x-www-form-urlencoded", MediaSubType.UrlEncoded);
+        Assert.Equal("html", Defaults.MediaSubTypeHtml);
+        Assert.Equal("plain", Defaults.MediaSubTypePlain);
+        Assert.Equal("xml", Defaults.MediaSubTypeXml);
+        Assert.Equal("json", Defaults.MediaSubTypeJson);
+        Assert.Equal("octet-stream", Defaults.MediaSubTypeOctetStream);
+        Assert.Equal("x-www-form-urlencoded", Defaults.MediaSubTypeUrlEncoded);
+    }
+
+    [Fact]
+    public async Task SendAsyncTest()
+    {
+        var email = new Models.Email();
+        email
+            .Subject("subject")
+            .TextBody("textBody")
+            .HtmlBody("htmlBody")
+            .EmailFrom("address", "name")
+            .EmailTo("address0", "name0")
+            .EmailTo([new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")])
+            .EmailCc("address0", "name0")
+            .EmailCc([new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")])
+            .EmailBcc("address0", "name0")
+            .EmailBcc(
+                [new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")]
+            )
+            .EmailReplyTo("address0", "name0")
+            .EmailReplyTo(
+                [new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")]
+            )
+            .EmailSender("address", "name");
+        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
+            "AttachmentTestFile.txt"
+        );
+        email
+            .Attach(fileName, fileBytes)
+            .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);
+        var emailProvider = new NullEmailProvider();
+        await email.SendByAsync(emailProvider);
     }
 }

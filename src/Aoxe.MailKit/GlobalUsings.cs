@@ -6,5 +6,7 @@ global using Aoxe.Email.Abstractions;
 global using Aoxe.Email.Abstractions.Models;
 global using Aoxe.Extensions;
 global using MailKit;
+global using MailKit.Net.Smtp;
+global using Microsoft.Extensions.DependencyInjection;
 global using MimeKit;
 global using MimeKit.Text;

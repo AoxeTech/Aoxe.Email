@@ -1,43 +1,39 @@
 namespace Aoxe.Email.Abstractions.Models;
 
-public class Email(string? id = null)
+public sealed class Email(string? id = null)
 {
     public string Id { get; } = id is null ? Guid.NewGuid().ToString() : id.Trim();
-    public EmailAddress From { get; set; } = new();
-    public EmailAddress Sender { get; set; } = new();
-    public List<EmailAddress> ReplyTo { get; set; } = [];
-    public EmailRecipients Recipients { get; set; } = new();
-    public EmailContent Content { get; set; } = new();
-    public List<EmailAttachment> Attachments { get; set; } = [];
+    public EmailAddress From { get; private set; } = new();
+    public EmailAddress Sender { get; private set; } = new();
+    public List<EmailAddress> ReplyTo { get; } = [];
+    public EmailRecipients Recipients { get; } = new();
+    public EmailContent Content { get; } = new();
+    public List<EmailAttachment> Attachments { get; } = [];
 
-    public Email Attach(string fileName, byte[] content, string? contentType = null)
+    public Email Attach(
+        string fileName,
+        byte[] content,
+        string mediaType = Defaults.MediaTypeApplication,
+        string mediaSubType = Defaults.MediaSubTypeOctetStream
+    )
     {
-        Attachments.Add(
-            new EmailAttachment
-            {
-                Name = fileName,
-                ContentType = contentType ?? Defaults.ContentType,
-                Content = content
-            }
-        );
+        Attachments.Add(new EmailAttachment(fileName, content, mediaType, mediaSubType));
         return this;
     }
 
     public Email Attach(
         IEnumerable<(string fileName, byte[] content)> attachments,
-        string? contentType = null
+        string mediaType = Defaults.MediaTypeApplication,
+        string mediaSubType = Defaults.MediaSubTypeOctetStream
     )
     {
         Attachments.AddRange(
-            attachments.Select(
-                x =>
-                    new EmailAttachment
-                    {
-                        Name = x.fileName,
-                        ContentType = contentType ?? Defaults.ContentType,
-                        Content = x.content
-                    }
-            )
+            attachments.Select(x => new EmailAttachment(
+                x.fileName,
+                x.content,
+                mediaType,
+                mediaSubType
+            ))
         );
         return this;
     }

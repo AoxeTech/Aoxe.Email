@@ -8,6 +8,8 @@ global using Aoxe.Email.Abstractions;
 global using Aoxe.Extensions;
 global using Azure;
 global using Azure.Communication.Email;
+global using Azure.Core;
+global using Microsoft.Extensions.DependencyInjection;
 global using EmailAddress = Azure.Communication.Email.EmailAddress;
 global using EmailContent = Azure.Communication.Email.EmailContent;
 global using EmailRecipients = Azure.Communication.Email.EmailRecipients;

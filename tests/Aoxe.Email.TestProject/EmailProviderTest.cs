@@ -5,71 +5,57 @@ public class EmailProviderTest
     [Fact]
     public async Task AwsEmailProviderTest()
     {
-        using var awsEmailProvider = new AwsSimpleEmailProvider(
-            new AmazonSimpleEmailServiceV2Client()
-        );
+        using var awsEmailProvider = new AwsSimpleEmailProvider();
         await SendEmailAsync(awsEmailProvider);
     }
 
     [Fact]
     public async Task AzureEmailProviderTest()
     {
-        using var azureEmailProvider = new AzureEmailProvider(new EmailClient(""));
+        using var azureEmailProvider = new AzureEmailProvider(string.Empty);
         await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task MailKitProviderTest()
     {
-        using var client = new global::MailKit.Net.Smtp.SmtpClient();
-        await client.ConnectAsync("192.168.78.130", 2525);
-        using var mailKitProvider = new MailKitProvider(client);
+        using var mailKitProvider = new MailKitProvider("192.168.78.130");
         await SendEmailAsync(mailKitProvider);
     }
 
     [Fact]
     public async Task SmtpClientProviderTest()
     {
-        using var smtpClientProvider = new SmtpProvider(
-            new System.Net.Mail.SmtpClient("192.168.78.130", 2525)
-        );
+        using var smtpClientProvider = new SmtpProvider("192.168.78.130");
         await SendEmailAsync(smtpClientProvider);
     }
 
     private async Task SendEmailAsync(IEmailProvider emailProvider)
     {
-        var (fileName, fileBytes) = FileHelper.LoadFileBytes(".\\AttachmentTestFile.txt");
-        var emailCommand = new Abstractions.Models.Email
-        {
-            From = new EmailAddress { Address = "From@Fake.com", Name = "From" },
-            Sender = new EmailAddress { Address = "Sender@Fake.com", Name = "Sender" },
-            Content = new EmailContent
-            {
-                Subject = $"Test {emailProvider.GetType()} {DateTime.UtcNow}",
-                TextBody = "This is a test email",
-                HtmlBody = "<h1>This is a test email</h1>"
-            },
-            Recipients = new EmailRecipients
-            {
-                To =  [new EmailAddress("To@Fake.com", "To")],
-                Cc =  [new EmailAddress("Cc@Fake.com", "Cc")],
-                Bcc =  [new EmailAddress("Bcc@Fake.com", "Bcc")]
-            },
-            ReplyTo =  [new("ReplyTo@Fake.com", "ReplyTo")],
-            Attachments =
-            [
-                new EmailAttachment
-                {
-                    Name = "test1.txt",
-                    Content = fileBytes
-                },
-                new EmailAttachment
-                {
-                    Name = "test2.txt",
-                    Content = fileBytes
-                }
-            ]
-        };
-        await emailProvider.SendAsync(emailCommand);
+        var (fileName, fileBytes) = await new FileHelper().LoadFileBytesAsync(
+            ".\\AttachmentTestFile.txt"
+        );
+        var email = new Abstractions.Models.Email();
+        email
+            .Subject("subject")
+            .TextBody("textBody")
+            .HtmlBody("htmlBody")
+            .EmailFrom("address", "name")
+            .EmailTo("address0", "name0")
+            .EmailTo([new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")])
+            .EmailCc("address0", "name0")
+            .EmailCc([new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")])
+            .EmailBcc("address0", "name0")
+            .EmailBcc(
+                [new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")]
+            )
+            .EmailReplyTo("address0", "name0")
+            .EmailReplyTo(
+                [new EmailAddress("address1", "name1"), new EmailAddress("address2", "name2")]
+            )
+            .EmailSender("address", "name")
+            .Attach(fileName, fileBytes)
+            .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);
+        await emailProvider.SendAsync(email);
     }
 }

@@ -3,9 +3,12 @@
 global using System.IO;
 global using System.Threading;
 global using System.Threading.Tasks;
+global using Amazon;
+global using Amazon.Runtime;
 global using Amazon.SimpleEmailV2;
 global using Amazon.SimpleEmailV2.Model;
 global using Aoxe.Email.Abstractions;
 global using Aoxe.Email.Abstractions.Models;
+global using Microsoft.Extensions.DependencyInjection;
 global using MimeKit;
 global using EmailContent = Amazon.SimpleEmailV2.Model.EmailContent;
