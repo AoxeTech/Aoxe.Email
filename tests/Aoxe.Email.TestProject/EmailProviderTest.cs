@@ -7,11 +7,7 @@ public class EmailProviderTest
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddAwsSimpleEmail();
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-        using var scope = serviceProvider.CreateScope();
-        var provider = scope.ServiceProvider;
-        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
-        await SendEmailAsync(azureEmailProvider);
+        await EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
@@ -19,11 +15,7 @@ public class EmailProviderTest
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddAzureEmail(string.Empty);
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-        using var scope = serviceProvider.CreateScope();
-        var provider = scope.ServiceProvider;
-        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
-        await SendEmailAsync(azureEmailProvider);
+        await EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
@@ -31,11 +23,7 @@ public class EmailProviderTest
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddMailKit("192.168.78.130", 2525);
-        var serviceProvider = serviceCollection.BuildServiceProvider();
-        using var scope = serviceProvider.CreateScope();
-        var provider = scope.ServiceProvider;
-        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
-        await SendEmailAsync(azureEmailProvider);
+        await EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
@@ -43,11 +31,16 @@ public class EmailProviderTest
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddSmtpClient("192.168.78.130", 2525);
+        await EmailProviderTestAsync(serviceCollection);
+    }
+
+    private static async Task EmailProviderTestAsync(IServiceCollection serviceCollection)
+    {
         var serviceProvider = serviceCollection.BuildServiceProvider();
         using var scope = serviceProvider.CreateScope();
         var provider = scope.ServiceProvider;
-        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
-        await SendEmailAsync(azureEmailProvider);
+        using var emailProvider = provider.GetRequiredService<IEmailProvider>();
+        await SendEmailAsync(emailProvider);
     }
 
     private static async Task SendEmailAsync(IEmailProvider emailProvider)
