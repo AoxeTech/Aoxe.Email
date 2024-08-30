@@ -1,5 +1,3 @@
-using SmtpClientFactory = Aoxe.SmtpClient.SmtpClientFactory;
-
 namespace Aoxe.Email.TestProject;
 
 public class EmailProviderTest
@@ -7,33 +5,49 @@ public class EmailProviderTest
     [Fact]
     public async Task AwsEmailProviderTest()
     {
-        using var awsEmailProvider = new AwsSimpleEmailProvider(new SesClientFactory());
-        await SendEmailAsync(awsEmailProvider);
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddAwsSimpleEmail();
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        using var scope = serviceProvider.CreateScope();
+        var provider = scope.ServiceProvider;
+        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
+        await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task AzureEmailProviderTest()
     {
-        using var azureEmailProvider = new AzureEmailProvider(new EmailClientFactory(string.Empty));
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddAzureEmail(string.Empty);
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        using var scope = serviceProvider.CreateScope();
+        var provider = scope.ServiceProvider;
+        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
         await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task MailKitProviderTest()
     {
-        using var mailKitProvider = new MailKitProvider(
-            new MailKit.SmtpClientFactory("192.168.78.130", 2525)
-        );
-        await SendEmailAsync(mailKitProvider);
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddMailKit("192.168.78.130", 2525);
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        using var scope = serviceProvider.CreateScope();
+        var provider = scope.ServiceProvider;
+        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
+        await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task SmtpClientProviderTest()
     {
-        using var smtpClientProvider = new SmtpProvider(
-            new SmtpClientFactory("192.168.78.130", 2525)
-        );
-        await SendEmailAsync(smtpClientProvider);
+        var serviceCollection = new ServiceCollection();
+        serviceCollection.AddSmtpClient("192.168.78.130", 2525);
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        using var scope = serviceProvider.CreateScope();
+        var provider = scope.ServiceProvider;
+        using var azureEmailProvider = provider.GetRequiredService<IEmailProvider>();
+        await SendEmailAsync(azureEmailProvider);
     }
 
     private static async Task SendEmailAsync(IEmailProvider emailProvider)

@@ -1,12 +1,8 @@
-global using Amazon.SimpleEmailV2;
 global using Aoxe.Aws.SimpleEmail;
 global using Aoxe.Azure.Email;
 global using Aoxe.Email.Abstractions;
 global using Aoxe.MailKit;
 global using Aoxe.SmtpClient;
-global using Azure.Communication.Email;
+global using Microsoft.Extensions.DependencyInjection;
 global using Xunit;
 global using EmailAddress = Aoxe.Email.Abstractions.Models.EmailAddress;
-global using EmailAttachment = Aoxe.Email.Abstractions.Models.EmailAttachment;
-global using EmailContent = Aoxe.Email.Abstractions.Models.EmailContent;
-global using EmailRecipients = Aoxe.Email.Abstractions.Models.EmailRecipients;
