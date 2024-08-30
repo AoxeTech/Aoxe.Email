@@ -7,7 +7,13 @@ public static class FileHelper
         var fileInfo = new FileInfo(filePath);
         if (!fileInfo.Exists)
             throw new FileNotFoundException($"File {filePath} not found.");
-        using var fileStream = fileInfo.OpenRead();
+
+        using var fileStream = new FileStream(
+            filePath,
+            FileMode.Open,
+            FileAccess.Read,
+            FileShare.Read
+        );
         var bytes = new byte[fileStream.Length];
         _ = await fileStream.ReadAsync(bytes, 0, bytes.Length);
         return (fileInfo.Name, bytes);
