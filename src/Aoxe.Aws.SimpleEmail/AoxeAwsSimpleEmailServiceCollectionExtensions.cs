@@ -7,9 +7,9 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         RegionEndpoint? region = null
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(region)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ => new AwsSimpleEmailProvider(new SesClientFactory(region))
+        );
         return serviceCollection;
     }
 
@@ -18,9 +18,9 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         AmazonSimpleEmailServiceV2Config config
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(config)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ => new AwsSimpleEmailProvider(new SesClientFactory(config))
+        );
         return serviceCollection;
     }
 
@@ -30,9 +30,9 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         RegionEndpoint? region = null
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(credentials, region)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ => new AwsSimpleEmailProvider(new SesClientFactory(credentials, region))
+        );
         return serviceCollection;
     }
 
@@ -42,21 +42,9 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         AmazonSimpleEmailServiceV2Config clientConfig
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(credentials, clientConfig)
-        ));
-        return serviceCollection;
-    }
-
-    public static IServiceCollection AddAwsSimpleEmail(
-        this IServiceCollection serviceCollection,
-        string awsAccessKeyId,
-        string awsSecretAccessKey
-    )
-    {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(awsAccessKeyId, awsSecretAccessKey)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ => new AwsSimpleEmailProvider(new SesClientFactory(credentials, clientConfig))
+        );
         return serviceCollection;
     }
 
@@ -64,12 +52,15 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         this IServiceCollection serviceCollection,
         string awsAccessKeyId,
         string awsSecretAccessKey,
-        RegionEndpoint region
+        RegionEndpoint? region = null
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, region)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ =>
+                new AwsSimpleEmailProvider(
+                    new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, region)
+                )
+        );
         return serviceCollection;
     }
 
@@ -80,9 +71,12 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         AmazonSimpleEmailServiceV2Config clientConfig
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, clientConfig)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ =>
+                new AwsSimpleEmailProvider(
+                    new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, clientConfig)
+                )
+        );
         return serviceCollection;
     }
 
@@ -94,9 +88,17 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         RegionEndpoint? region = null
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, region)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ =>
+                new AwsSimpleEmailProvider(
+                    new SesClientFactory(
+                        awsAccessKeyId,
+                        awsSecretAccessKey,
+                        awsSessionToken,
+                        region
+                    )
+                )
+        );
         return serviceCollection;
     }
 
@@ -108,9 +110,17 @@ public static class AoxeAwsSimpleEmailServiceCollectionExtensions
         AmazonSimpleEmailServiceV2Config clientConfig
     )
     {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new AwsSimpleEmailProvider(
-            new SesClientFactory(awsAccessKeyId, awsSecretAccessKey, awsSessionToken, clientConfig)
-        ));
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ =>
+                new AwsSimpleEmailProvider(
+                    new SesClientFactory(
+                        awsAccessKeyId,
+                        awsSecretAccessKey,
+                        awsSessionToken,
+                        clientConfig
+                    )
+                )
+        );
         return serviceCollection;
     }
 }

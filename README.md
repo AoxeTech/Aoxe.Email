@@ -16,7 +16,7 @@ This is the first release of version 2 of the Amazon SES API. You can use this A
 
 ### 1.2. Aoxe.Azure.Email
 
-Use Azure.Communication.Email.
+This client library enables working with the Microsoft Azure Communication Email service.
 
 ### 1.3. Aoxe.MailKit
 
@@ -34,10 +34,14 @@ Install the package
 PM> Install-Package Aoxe.MailKit
 ```
 
-Register the email provider
+Register the email provider. All the implements has the same abstractions so we can easily switch between them.
 
 ```csharp
-serviceCollection.AddMailKit("192.168.78.130", 2525);
+// Please replace the host and port with your own
+serviceCollection.AddMailKit("your host", 25);
+serviceCollection.AddSmtpClient("your host", 25);
+serviceCollection.AddAwsSimpleEmail("awsAccessKeyId", "awsSecretAccessKey");
+serviceCollection.AddAzureEmail("connectionString");
 ```
 
 Inject the email provider
