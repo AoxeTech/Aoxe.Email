@@ -3,44 +3,44 @@ namespace Aoxe.Email.TestProject;
 public class EmailProviderTest
 {
     [Fact]
-    public async Task AwsEmailProviderTest()
+    public Task AwsEmailProviderTest()
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddAwsSimpleEmail();
-        await EmailProviderTestAsync(serviceCollection);
+        return EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
-    public async Task AzureEmailProviderTest()
+    public Task AzureEmailProviderTest()
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddAzureEmail(string.Empty);
-        await EmailProviderTestAsync(serviceCollection);
+        return EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
-    public async Task MailKitProviderTest()
+    public Task MailKitProviderTest()
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddMailKit("192.168.78.130", 2525);
-        await EmailProviderTestAsync(serviceCollection);
+        return EmailProviderTestAsync(serviceCollection);
     }
 
     [Fact]
-    public async Task SmtpClientProviderTest()
+    public Task SmtpClientProviderTest()
     {
         var serviceCollection = new ServiceCollection();
         serviceCollection.AddSmtpClient("192.168.78.130", 2525);
-        await EmailProviderTestAsync(serviceCollection);
+        return EmailProviderTestAsync(serviceCollection);
     }
 
-    private static async Task EmailProviderTestAsync(IServiceCollection serviceCollection)
+    private static Task EmailProviderTestAsync(IServiceCollection serviceCollection)
     {
         var serviceProvider = serviceCollection.BuildServiceProvider();
         using var scope = serviceProvider.CreateScope();
         var provider = scope.ServiceProvider;
         using var emailProvider = provider.GetRequiredService<IEmailProvider>();
-        await SendEmailAsync(emailProvider);
+        return SendEmailAsync(emailProvider);
     }
 
     private static async Task SendEmailAsync(IEmailProvider emailProvider)
