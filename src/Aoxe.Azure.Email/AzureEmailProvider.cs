@@ -1,31 +1,21 @@
 namespace Aoxe.Azure.Email;
 
-public class AzureEmailProvider : IEmailProvider
+public class AzureEmailProvider(IEmailClientFactory emailClientFactory) : IEmailProvider
 {
-    private readonly EmailClient _emailClient;
-
-    public AzureEmailProvider(string connectionString, EmailClientOptions? options = null) =>
-        _emailClient = options is null
-            ? new EmailClient(connectionString)
-            : new EmailClient(connectionString, options);
-
-    public AzureEmailProvider(
-        Uri endpoint,
-        AzureKeyCredential credential,
-        EmailClientOptions? options = null
-    ) => _emailClient = new EmailClient(endpoint, credential, options);
-
-    public AzureEmailProvider(
-        Uri endpoint,
-        TokenCredential credential,
-        EmailClientOptions? options = null
-    ) => _emailClient = new EmailClient(endpoint, credential, options);
+    private EmailClient? _emailClient;
 
     public async ValueTask SendAsync(
         Aoxe.Email.Abstractions.Models.Email email,
         CancellationToken cancellationToken = default
-    ) =>
-        await _emailClient.SendAsync(WaitUntil.Completed, Factory.Create(email), cancellationToken);
+    )
+    {
+        _emailClient ??= emailClientFactory.Create();
+        await _emailClient.SendAsync(
+            WaitUntil.Completed,
+            email.ToEmailMessage(),
+            cancellationToken
+        );
+    }
 
     public void Dispose() { }
 }

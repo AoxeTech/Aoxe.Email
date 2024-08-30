@@ -1,3 +1,5 @@
+using SmtpClientFactory = Aoxe.SmtpClient.SmtpClientFactory;
+
 namespace Aoxe.Email.TestProject;
 
 public class EmailProviderTest
@@ -5,28 +7,32 @@ public class EmailProviderTest
     [Fact]
     public async Task AwsEmailProviderTest()
     {
-        using var awsEmailProvider = new AwsSimpleEmailProvider();
+        using var awsEmailProvider = new AwsSimpleEmailProvider(new SesClientFactory());
         await SendEmailAsync(awsEmailProvider);
     }
 
     [Fact]
     public async Task AzureEmailProviderTest()
     {
-        using var azureEmailProvider = new AzureEmailProvider(string.Empty);
+        using var azureEmailProvider = new AzureEmailProvider(new EmailClientFactory(string.Empty));
         await SendEmailAsync(azureEmailProvider);
     }
 
     [Fact]
     public async Task MailKitProviderTest()
     {
-        using var mailKitProvider = new MailKitProvider("192.168.78.130", 2525);
+        using var mailKitProvider = new MailKitProvider(
+            new MailKit.SmtpClientFactory("192.168.78.130", 2525)
+        );
         await SendEmailAsync(mailKitProvider);
     }
 
     [Fact]
     public async Task SmtpClientProviderTest()
     {
-        using var smtpClientProvider = new SmtpProvider("192.168.78.130", 2525);
+        using var smtpClientProvider = new SmtpProvider(
+            new SmtpClientFactory("192.168.78.130", 2525)
+        );
         await SendEmailAsync(smtpClientProvider);
     }
 
@@ -43,7 +49,6 @@ public class EmailProviderTest
             .EmailFrom("fromAddress@mock.com", "fromName")
             .EmailTo("toAddress0@mock.com", "name0")
             .EmailTo(
-
                 [
                     new EmailAddress("toAddress1@mock.com", "name1"),
                     new EmailAddress("toAddress2@mock.com", "name2")
@@ -51,7 +56,6 @@ public class EmailProviderTest
             )
             .EmailCc("ccAddress0@mock.com", "name0")
             .EmailCc(
-
                 [
                     new EmailAddress("ccAddress1@mock.com", "name1"),
                     new EmailAddress("ccAddress2@mock.com", "name2")
@@ -59,7 +63,6 @@ public class EmailProviderTest
             )
             .EmailBcc("bccAddress0@mock.com", "name0")
             .EmailBcc(
-
                 [
                     new EmailAddress("bccAddress1@mock.com", "name1"),
                     new EmailAddress("bccAddress2@mock.com", "name2")
@@ -67,7 +70,6 @@ public class EmailProviderTest
             )
             .EmailReplyTo("replyToAddress0@mock.com", "name0")
             .EmailReplyTo(
-
                 [
                     new EmailAddress("replyToAddress1@mock.com", "name1"),
                     new EmailAddress("replyToAddress2@mock.com", "name2")

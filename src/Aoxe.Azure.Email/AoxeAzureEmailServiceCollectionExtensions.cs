@@ -9,8 +9,7 @@ public static class AoxeAzureEmailServiceCollectionExtensions
     )
     {
         serviceCollection.AddScoped<IEmailProvider>(_ => new AzureEmailProvider(
-            connectionString,
-            options
+            new EmailClientFactory(connectionString, options)
         ));
         return serviceCollection;
     }
@@ -23,9 +22,7 @@ public static class AoxeAzureEmailServiceCollectionExtensions
     )
     {
         serviceCollection.AddScoped<IEmailProvider>(_ => new AzureEmailProvider(
-            endpoint,
-            credential,
-            options
+            new EmailClientFactory(endpoint, credential, options)
         ));
         return serviceCollection;
     }
@@ -38,9 +35,7 @@ public static class AoxeAzureEmailServiceCollectionExtensions
     )
     {
         serviceCollection.AddScoped<IEmailProvider>(_ => new AzureEmailProvider(
-            endpoint,
-            credential,
-            options
+            new EmailClientFactory(endpoint, credential, options)
         ));
         return serviceCollection;
     }

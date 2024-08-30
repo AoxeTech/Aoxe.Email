@@ -1,8 +1,8 @@
 ﻿namespace Aoxe.Aws.SimpleEmail;
 
-public static class Factory
+public static class EmailExtensions
 {
-    public static SendEmailRequest Create(Email.Abstractions.Models.Email email)
+    public static SendEmailRequest ToSendEmailRequest(this Email.Abstractions.Models.Email email)
     {
         var sendEmailRequest = new SendEmailRequest
         {

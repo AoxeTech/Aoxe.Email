@@ -1,26 +1,17 @@
 namespace Aoxe.SmtpClient;
 
-public class SmtpProvider(
-    string host,
-    int port = 25,
-    string? userName = null,
-    string? password = null,
-    bool? enableSsl = null
-) : IEmailProvider
+public class SmtpProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
 {
-    private readonly System.Net.Mail.SmtpClient _smtpClient = new(host, port);
+    private System.Net.Mail.SmtpClient? _smtpClient;
 
     public async ValueTask SendAsync(
         Email.Abstractions.Models.Email emailCommand,
         CancellationToken cancellationToken = default
     )
     {
-        if (userName is not null && password is not null)
-            _smtpClient.Credentials = new NetworkCredential(userName, password);
-        if (enableSsl.HasValue)
-            _smtpClient.EnableSsl = enableSsl.Value;
-        await _smtpClient.SendMailAsync(Factory.Create(emailCommand));
+        _smtpClient ??= smtpClientFactory.Create();
+        await _smtpClient.SendMailAsync(emailCommand.ToMailMessage());
     }
 
-    public void Dispose() => _smtpClient.Dispose();
+    public void Dispose() => _smtpClient?.Dispose();
 }

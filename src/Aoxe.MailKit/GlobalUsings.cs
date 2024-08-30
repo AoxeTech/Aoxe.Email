@@ -10,3 +10,6 @@ global using MailKit.Net.Smtp;
 global using Microsoft.Extensions.DependencyInjection;
 global using MimeKit;
 global using MimeKit.Text;
+#if NET8_0_OR_GREATER
+global using System.Diagnostics.Metrics;
+#endif
