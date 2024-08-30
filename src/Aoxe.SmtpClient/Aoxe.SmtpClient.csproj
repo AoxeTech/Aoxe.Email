@@ -2,8 +2,8 @@
     
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
-        <PackageVersion>2024.2.4</PackageVersion>
-        <Version>2024.2.4</Version>
+        <PackageVersion>2024.2.5</PackageVersion>
+        <Version>2024.2.5</Version>
         <Description>The aoxe email provider implement by SmtpClient.</Description>
         <PackageTags>Aoxe;SmtpClient;Email;System.Net.Mail.SmtpClient</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -23,7 +23,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aoxe.Email.Abstractions" Version="2024.8.2" />
+        <PackageReference Include="Aoxe.Email.Abstractions" Version="2024.8.4" />
         <PackageReference Include="Aoxe.Extensions" Version="2024.2.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
