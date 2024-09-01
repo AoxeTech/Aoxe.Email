@@ -43,7 +43,7 @@ Register the email provider. All the implements has the same abstractions so we 
 // Please replace the host and port with your own
 serviceCollection.AddMailKit("your host", 25);
 serviceCollection.AddSmtpClient("your host", 25);
-// The aws and azure email provider has different Add method to match their constructor
+// The aws and azure email provider has different Add method to match their own constructors
 serviceCollection.AddAwsSimpleEmail("awsAccessKeyId", "awsSecretAccessKey");
 serviceCollection.AddAzureEmail("connectionString");
 ```
