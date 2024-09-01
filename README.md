@@ -31,7 +31,10 @@ Use System.Net.Mail.SmtpClient.
 Install the package
 
 ```bash
+PM> Install-Package Aoxe.Aws.SimpleEmail
+PM> Install-Package Aoxe.Azure.Email
 PM> Install-Package Aoxe.MailKit
+PM> Install-Package Aoxe.SmtpClient
 ```
 
 Register the email provider. All the implements has the same abstractions so we can easily switch between them.
@@ -40,11 +43,12 @@ Register the email provider. All the implements has the same abstractions so we 
 // Please replace the host and port with your own
 serviceCollection.AddMailKit("your host", 25);
 serviceCollection.AddSmtpClient("your host", 25);
+// The aws and azure email provider has different Add method to match their constructor
 serviceCollection.AddAwsSimpleEmail("awsAccessKeyId", "awsSecretAccessKey");
 serviceCollection.AddAzureEmail("connectionString");
 ```
 
-Inject the email provider
+Inject the email provider by reference Aoxe.Email.Abstractions.
 
 ```csharp
 public class EmailService
