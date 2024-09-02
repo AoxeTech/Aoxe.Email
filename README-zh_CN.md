@@ -28,7 +28,7 @@ MailKit 是一个开源跨平台 .NET 邮件客户端库，它基于 MimeKit 并
 
 使用了 System.Net.Mail.SmtpClient.
 
-## 2. How to use Aoxe.Email?
+## 2. 如何使用 Aoxe.Email?
 
 Install the package
 
