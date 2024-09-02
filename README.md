@@ -40,7 +40,7 @@ PM> Install-Package Aoxe.SmtpClient
 Register the email provider. All the implements has the same abstractions so we can easily switch between them.
 
 ```csharp
-// Please replace the host and port with your own
+// Please replace the host and port with your own, you can use user name and password for the authentication and so on
 serviceCollection.AddMailKit("your host", 25);
 serviceCollection.AddSmtpClient("your host", 25);
 // The aws and azure email provider has different Add method to match their own constructors
