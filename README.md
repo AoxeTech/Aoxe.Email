@@ -1,10 +1,10 @@
 # Aoxe.Email
 
+English | [简体中文](README-zh_CN.md)
+
 Email, as a messenger of information in the digital age, has transcended the limitations of time and space and, with its unique and far-reaching influence, has been quietly integrated into the veins of civilisation.
 
 For cloud neutrality, we may need a tool that can help us manage our email more efficiently. Aoxe.Email is such a tool. It is a powerful email client that can help you send emails, and avoids being tied to the cloud.
-
-English | [简体中文](README-zh_CN.md)
 
 ---
 
