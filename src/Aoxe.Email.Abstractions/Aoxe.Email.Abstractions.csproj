@@ -2,8 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageVersion>2024.8.4</PackageVersion>
-        <Version>2024.8.4</Version>
+        <PackageVersion>2024.9.0</PackageVersion>
+        <Version>2024.9.0</Version>
         <Description>The abstractions for all Aoxe email provider.</Description>
         <PackageTags>Aoxe;Smtp;Email;Abstractions</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>

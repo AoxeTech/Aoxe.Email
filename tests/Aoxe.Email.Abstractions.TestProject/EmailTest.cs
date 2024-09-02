@@ -213,7 +213,7 @@ public class EmailTest
     }
 
     [Fact]
-    public void MediaTypeTest()
+    public void AttachmentMediaTypeTest()
     {
         Assert.Equal("text", Defaults.MediaTypeText);
         Assert.Equal("image", Defaults.MediaTypeImage);
@@ -225,7 +225,7 @@ public class EmailTest
     }
 
     [Fact]
-    public void MediaSubTypeTest()
+    public void AttachmentMediaSubTypeTest()
     {
         Assert.Equal("html", Defaults.MediaSubTypeHtml);
         Assert.Equal("plain", Defaults.MediaSubTypePlain);
@@ -233,6 +233,31 @@ public class EmailTest
         Assert.Equal("json", Defaults.MediaSubTypeJson);
         Assert.Equal("octet-stream", Defaults.MediaSubTypeOctetStream);
         Assert.Equal("x-www-form-urlencoded", Defaults.MediaSubTypeUrlEncoded);
+    }
+
+    [Fact]
+    public async Task CreateEmailTestAsync()
+    {
+        var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
+        _ = new Models.Email
+        {
+            From = new EmailAddress("from@fake.com", "from"),
+            Sender = new EmailAddress("sender@fake.com", "sender"),
+            Recipients = new EmailRecipients
+            {
+                To = [new EmailAddress("to@fake.com", "to")],
+                Cc = [new EmailAddress("cc@fake.com", "cc")],
+                Bcc = [new EmailAddress("bcc@fake.com", "bcc")],
+            },
+            ReplyTo = [new EmailAddress("replyto@fake.com", "replyTo")],
+            Content = new EmailContent
+            {
+                Subject = "Subject",
+                TextBody = "TextBody",
+                HtmlBody = "HtmlBody",
+            },
+            Attachments = [new EmailAttachment(fileName, fileBytes)]
+        };
     }
 
     [Fact]

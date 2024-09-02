@@ -8,10 +8,8 @@ public sealed class EmailAttachment(
 )
 {
     public string Name { get; } = name;
-    public string MediaType { get; } = mediaType;
-
-    public string SubMediaType { get; } = subMediaType;
-
-    public string ContentType => $"{MediaType}/{SubMediaType}";
     public byte[] Content { get; } = content;
+    public string MediaType { get; } = mediaType;
+    public string SubMediaType { get; } = subMediaType;
+    public string ContentType => $"{MediaType}/{SubMediaType}";
 }

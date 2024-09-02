@@ -2,7 +2,7 @@
 
 public sealed class EmailRecipients
 {
-    public List<EmailAddress> To { get; } = [];
-    public List<EmailAddress> Cc { get; } = [];
-    public List<EmailAddress> Bcc { get; } = [];
+    public List<EmailAddress> To { get; set; } = [];
+    public List<EmailAddress> Cc { get; set; } = [];
+    public List<EmailAddress> Bcc { get; set; } = [];
 }

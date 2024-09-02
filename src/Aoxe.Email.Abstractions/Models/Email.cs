@@ -3,62 +3,34 @@ namespace Aoxe.Email.Abstractions.Models;
 public sealed class Email(string? id = null)
 {
     public string Id { get; } = id is null ? Guid.NewGuid().ToString() : id.Trim();
-    public EmailAddress From { get; private set; } = new();
-    public EmailAddress Sender { get; private set; } = new();
-    public List<EmailAddress> ReplyTo { get; } = [];
-    public EmailRecipients Recipients { get; } = new();
-    public EmailContent Content { get; } = new();
-    public List<EmailAttachment> Attachments { get; } = [];
-
-    public Email Attach(
-        string fileName,
-        byte[] content,
-        string mediaType = Defaults.MediaTypeApplication,
-        string mediaSubType = Defaults.MediaSubTypeOctetStream
-    )
-    {
-        Attachments.Add(new EmailAttachment(fileName, content, mediaType, mediaSubType));
-        return this;
-    }
-
-    public Email Attach(
-        IEnumerable<(string fileName, byte[] content)> attachments,
-        string mediaType = Defaults.MediaTypeApplication,
-        string mediaSubType = Defaults.MediaSubTypeOctetStream
-    )
-    {
-        Attachments.AddRange(
-            attachments.Select(x => new EmailAttachment(
-                x.fileName,
-                x.content,
-                mediaType,
-                mediaSubType
-            ))
-        );
-        return this;
-    }
-
-    public Email Subject(string subject)
-    {
-        Content.Subject = subject;
-        return this;
-    }
-
-    public Email TextBody(string textBody)
-    {
-        Content.TextBody = textBody;
-        return this;
-    }
-
-    public Email HtmlBody(string htmlBody)
-    {
-        Content.HtmlBody = htmlBody;
-        return this;
-    }
+    public EmailAddress From { get; set; } = new();
+    public EmailAddress Sender { get; set; } = new();
+    public List<EmailAddress> ReplyTo { get; set; } = [];
+    public EmailRecipients Recipients { get; set; } = new();
+    public EmailContent Content { get; set; } = new();
+    public List<EmailAttachment> Attachments { get; set; } = [];
 
     public Email EmailFrom(string address, string? name = null)
     {
         From = new EmailAddress(address, name);
+        return this;
+    }
+
+    public Email EmailSender(string address, string? name = null)
+    {
+        Sender = new EmailAddress(address, name);
+        return this;
+    }
+
+    public Email EmailReplyTo(string address, string? name = null)
+    {
+        ReplyTo.Add(new EmailAddress(address, name));
+        return this;
+    }
+
+    public Email EmailReplyTo(IEnumerable<EmailAddress> emailAddresses)
+    {
+        ReplyTo.AddRange(emailAddresses);
         return this;
     }
 
@@ -98,21 +70,49 @@ public sealed class Email(string? id = null)
         return this;
     }
 
-    public Email EmailReplyTo(string address, string? name = null)
+    public Email Subject(string subject)
     {
-        ReplyTo.Add(new EmailAddress(address, name));
+        Content.Subject = subject;
         return this;
     }
 
-    public Email EmailReplyTo(IEnumerable<EmailAddress> emailAddresses)
+    public Email TextBody(string textBody)
     {
-        ReplyTo.AddRange(emailAddresses);
+        Content.TextBody = textBody;
         return this;
     }
 
-    public Email EmailSender(string address, string? name = null)
+    public Email HtmlBody(string htmlBody)
     {
-        Sender = new EmailAddress(address, name);
+        Content.HtmlBody = htmlBody;
+        return this;
+    }
+
+    public Email Attach(
+        string fileName,
+        byte[] content,
+        string mediaType = Defaults.MediaTypeApplication,
+        string mediaSubType = Defaults.MediaSubTypeOctetStream
+    )
+    {
+        Attachments.Add(new EmailAttachment(fileName, content, mediaType, mediaSubType));
+        return this;
+    }
+
+    public Email Attach(
+        IEnumerable<(string fileName, byte[] content)> attachments,
+        string mediaType = Defaults.MediaTypeApplication,
+        string mediaSubType = Defaults.MediaSubTypeOctetStream
+    )
+    {
+        Attachments.AddRange(
+            attachments.Select(x => new EmailAttachment(
+                x.fileName,
+                x.content,
+                mediaType,
+                mediaSubType
+            ))
+        );
         return this;
     }
 }
