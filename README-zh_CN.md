@@ -1,32 +1,32 @@
 # Aoxe.Email
 
-Email, as a messenger of information in the digital age, has transcended the limitations of time and space and, with its unique and far-reaching influence, has been quietly integrated into the veins of civilisation.
+电子邮件作为数字时代的信息使者，已经超越了时间和空间的限制，以其独特而深远的影响力，悄然融入了人类文明的血脉。
 
-For cloud neutrality, we may need a tool that can help us manage our email more efficiently. Aoxe.Email is such a tool. It is a powerful email client that can help you send emails, and avoids being tied to the cloud.
+为了实现云中立，我们可能需要一款能帮助我们更高效地管理电子邮件的工具。Aoxe.Email就是这样一款工具。它是一款功能强大的电子邮件客户端，可以帮助您发送电子邮件，并避免与云绑定。
 
-English | [简体中文](README-zh_CN.md)
+[English](README.md) | 简体中文
 
 ---
 
-## 1. What is Aoxe.Email?
+## 1. Aoxe.Email 是什么?
 
-The Aoxe.Email has four implements for sending emails:
+Aoxe.Email 有四种发送邮件的实现:
 
 ### 1.1. Aoxe.Aws.SimpleEmail
 
-This is the first release of version 2 of the Amazon SES API. You can use this API to configure your Amazon SES account, and to send email. This API extends the functionality that exists in the previous version of the Amazon SES API.
+这是 Amazon SES API 第 2 版的首次发布。您可以使用此 API 配置您的 Amazon SES 账户并发送电子邮件。此 API 扩展了前一版本 Amazon SES API 中的功能.
 
 ### 1.2. Aoxe.Azure.Email
 
-This client library enables working with the Microsoft Azure Communication Email service.
+通过该客户端库，可以使用 Microsoft Azure Communication Email 服务。
 
 ### 1.3. Aoxe.MailKit
 
-MailKit is an Open Source cross-platform .NET mail-client library that is based on MimeKit and optimized for mobile devices.
+MailKit 是一个开源跨平台 .NET 邮件客户端库，它基于 MimeKit 并针对移动设备进行了优化。
 
 ### 1.4. Aoxe.SmtpClient
 
-Use System.Net.Mail.SmtpClient.
+使用了 System.Net.Mail.SmtpClient.
 
 ## 2. How to use Aoxe.Email?
 
@@ -39,18 +39,18 @@ PM> Install-Package Aoxe.MailKit
 PM> Install-Package Aoxe.SmtpClient
 ```
 
-Register the email provider. All the implements has the same abstractions so we can easily switch between them.
+注册 email provider. 我们可以很容易地切换不同的实现, 因为所有实现都基于同样的抽象.
 
 ```csharp
-// Please replace the host and port with your own, you can use user name and password for the authentication and so on
+// 请使用您自己的 host 和 端口, 当然您还可以使用账号密码等功能
 serviceCollection.AddMailKit("your host", 25);
 serviceCollection.AddSmtpClient("your host", 25);
-// The aws and azure email provider has different Add method to match their own constructors
+// AWS 和 Azure 的 Add 方法还有不同的方法重载, 以匹配它们的构造函数以适应不同的场景
 serviceCollection.AddAwsSimpleEmail("awsAccessKeyId", "awsSecretAccessKey");
 serviceCollection.AddAzureEmail("connectionString");
 ```
 
-Inject the email provider by reference Aoxe.Email.Abstractions.
+通过依赖 Aoxe.Email.Abstractions 注入 email provider.
 
 ```shell
 PM> Install-Package Aoxe.Email.Abstractions
@@ -74,30 +74,30 @@ public class EmailService
             .TextBody(email)
             .EmailFrom(fromAddress)
             .EmailTo(toAddress);
-        // You can send the email with extension method
+        // 您可以使用扩展方法来发送邮件
         await email.SendByAsync(_emailProvider);
-        // Or you can send the email with the provider
+        // 也可以使用 provider 发送邮件
         await _emailProvider.SendAsync(email);
     }
 }
 ```
 
-## 3. About Aoxe.Email.Abstractions.Models.Email
+## 3. 关于 Aoxe.Email.Abstractions.Models.Email
 
-The Aoxe.Email.Abstractions.Models.Email class is a comprehensive representation of an email message. Here's a brief overview of its structure and functionality:
+Aoxe.Email.Abstractions.Models.Email 类是电子邮件的综合表示法。下面简要介绍一下它的结构和功能：
 
-1. It uses the primary constructor to optionally set an ID.
-2. It has properties for various email components like From, Sender, ReplyTo, Recipients, Content, and Attachments.
-3. The class implements a fluent interface pattern, allowing method chaining for easy email composition.
+1. 它使用主构造函数来选择性地设置 ID。
+2. 它具有各种电子邮件组件的属性，如 From、Sender、ReplyTo、Recipients、Content 和 Attachments。
+3. 该类实现了流畅的接口模式，允许使用方法链来轻松组成电子邮件。
 
-Key features:
+主要功能:
 
-1. Attachment handling (single and multiple)
-2. Setting email subject, text body, and HTML body
-3. Managing email addresses (From, To, Cc, Bcc, ReplyTo, Sender)
-4. Each method returns this, enabling method chaining.
+1. 附件处理（单个和多个）
+2. 设置电子邮件主题、正文和 HTML 正文
+3. 管理电子邮件地址（发件人、收件人、抄送人、密送人、回复人、发件人）
+4. 每个方法都返回此值，从而实现方法链风格。
 
-You can new an Email like this:
+您可以这样实例化一个 Email 对象:
 
 ```csharp
 var (fileName, fileBytes) = await FileHelper.LoadFileBytesAsync("AttachmentTestFile.txt");
@@ -122,7 +122,7 @@ _ = new Models.Email
 };
 ```
 
-Also you can use a fluent style:
+还可以使用 fluent style:
 
 ```csharp
 var email = new Models.Email();
@@ -150,28 +150,28 @@ email
     .Attach([new(fileName, fileBytes), new(fileName, fileBytes)]);
 ```
 
-In each implement package the Aoxe.Email.Abstractions.Models.Email has its extension methord to convert it into the specify email model which the email client want:
+在每个实现包中，Aoxe.Email.Abstractions.Models.Email 都有其扩展方法，可将其转换为电子邮件客户端所需的指定电子邮件模型：
 
 ```csharp
-// Return Amazon.SimpleEmailV2.Model.SendEmailRequest for IAmazonSimpleEmailServiceV2
+// 返回 Amazon.SimpleEmailV2.Model.SendEmailRequest, 可用于 IAmazonSimpleEmailServiceV2
 email.ToSendEmailRequest();
-// Return Azure.Communication.Email.EmailMessage for Azure.Communication.Email.EmailClient
+// 返回 Azure.Communication.Email.EmailMessage, 可用于 Azure.Communication.Email.EmailClient
 email.ToEmailMessage();
-// Return MimeKit.MimeMessage for IMailTransport
+// 返回 MimeKit.MimeMessage, 可用于 IMailTransport
 email.ToMimeMessage();
-// Return System.Net.Mail.MailMessage for System.Net.Mail.SmtpClient
+// 返回 System.Net.Mail.MailMessage, 可用于 System.Net.Mail.SmtpClient
 email.ToMailMessage();
 ```
 
-This will help you to use the email client with more customization, here is the example in Aoxe.MailKit:
+这将帮助您在使用电子邮件客户端时进行更多定制，以下是 Aoxe.MailKit 中的示例：
 
 ```csharp
 var email = new Models.Email();
 var mimeMessage = email.ToMimeMessage();
-// Just a demo so use memory stream.
+// 使用 memory stream 作为示例
 var smtpClient = new SmtpClient(new ProtocolLogger(new MemoryStream()));
 await smtpClient.ConnectAsync(host, port);
-// If need authenticate
+// 如果需要认证
 await smtpClient.AuthenticateAsync(userName, password);
 await _mailTransport.SendAsync(mimeMessage, cancellationToken);
 ```
