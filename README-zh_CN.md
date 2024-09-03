@@ -10,7 +10,7 @@
 
 ## 1. Aoxe.Email 是什么?
 
-Aoxe.Email 有四种发送邮件的实现:
+Aoxe.Email 有以下几种发送邮件的实现:
 
 ### 1.1. Aoxe.Aws.SimpleEmail
 

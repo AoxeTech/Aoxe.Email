@@ -10,7 +10,7 @@ For cloud neutrality, we may need a tool that can help us manage our email more 
 
 ## 1. What is Aoxe.Email?
 
-The Aoxe.Email has four implements for sending emails:
+The Aoxe.Email has the following implementations for sending emails:
 
 ### 1.1. Aoxe.Aws.SimpleEmail
 
