@@ -1,7 +1,3 @@
-using Aoxe.Mongo;
-using Aoxe.Mongo.Abstractions;
-using Aoxe.RabbitMQ;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddThreeTier();
 
 // todo: config mongo
-builder.Services.AddSingleton<IAoxeMongoClient, AoxeMongoClient>();
+builder.Services.AddAoxeMongo("", "");
 
 // todo: config rabbitmq
 builder.Services.AddSingleton<IAoxeRabbitMqClient, AoxeRabbitMqClient>();

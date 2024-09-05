@@ -2,12 +2,13 @@
     
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
-        <PackageVersion>2024.3.0</PackageVersion>
-        <Version>2024.3.0</Version>
+        <PackageVersion>2024.3.1</PackageVersion>
+        <Version>2024.3.1</Version>
         <Description>The aoxe email provider implement by SmtpClient.</Description>
         <PackageTags>Aoxe;SmtpClient;Email;System.Net.Mail.SmtpClient</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
         <RepositoryUrl>https://github.com/AoxeTech/Aoxe.Email</RepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
@@ -23,13 +24,17 @@
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aoxe.Email.Abstractions" Version="2024.9.0" />
-        <PackageReference Include="Aoxe.Extensions" Version="2024.2.2" />
+        <PackageReference Include="Aoxe.Email.Abstractions" Version="2024.9.1" />
+        <PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="../../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
     
 </Project>
