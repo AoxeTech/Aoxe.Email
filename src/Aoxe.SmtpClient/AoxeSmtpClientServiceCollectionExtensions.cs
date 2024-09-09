@@ -9,11 +9,8 @@ public static class AoxeSmtpClientServiceCollectionExtensions
         string? userName = null,
         string? password = null,
         bool? enableSsl = null
-    )
-    {
-        serviceCollection.AddScoped<IEmailProvider>(_ => new SmtpProvider(
-            new SmtpClientFactory(host, port, userName, password, enableSsl)
-        ));
-        return serviceCollection;
-    }
+    ) =>
+        serviceCollection.AddScoped<IEmailProvider>(
+            _ => new SmtpProvider(new SmtpClientFactory(host, port, userName, password, enableSsl))
+        );
 }
