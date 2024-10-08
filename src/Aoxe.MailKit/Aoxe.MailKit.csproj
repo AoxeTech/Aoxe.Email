@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
-		<PackageVersion>2024.3.1</PackageVersion>
-		<Version>2024.3.1</Version>
+		<TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
+		<PackageVersion>2024.4.0</PackageVersion>
+		<Version>2024.4.0</Version>
 		<Description>The aoxe email provider implement by MailKit.</Description>
 		<PackageTags>Aoxe;MailKit;SmtpClient;Email</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -26,7 +26,7 @@
 	<ItemGroup>
 		<PackageReference Include="Aoxe.Email.Abstractions" Version="2024.9.1" />
 		<PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
-		<PackageReference Include="MailKit" Version="4.7.1.1" />
+		<PackageReference Include="MailKit" Version="4.8.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
 		  <PrivateAssets>all</PrivateAssets>
