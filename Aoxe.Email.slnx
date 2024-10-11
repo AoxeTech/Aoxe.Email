@@ -1,0 +1,20 @@
+﻿<Solution>
+  <Folder Name="/demo/">
+    <Project Path="demo\EmailServiceBll\EmailServiceBll.csproj" Type="Classic C#" />
+    <Project Path="demo\EmailServiceDal\EmailServiceDal.csproj" Type="Classic C#" />
+    <Project Path="demo\EmailServiceModel\EmailServiceModel.csproj" Type="Classic C#" />
+    <Project Path="demo\EmailSystem\EmailSystem.csproj" Type="Classic C#" />
+    <Project Path="demo\IEmailServiceDal\IEmailServiceDal.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe.Email.Abstractions\Aoxe.Email.Abstractions.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe.MailKit\Aoxe.MailKit.csproj" Type="Classic C#" />
+    <Project Path="src\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests\Aoxe.Email.Abstractions.TestProject\Aoxe.Email.Abstractions.TestProject.csproj" Type="Classic C#" />
+    <Project Path="tests\Aoxe.Email.TestProject\Aoxe.Email.TestProject.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>
