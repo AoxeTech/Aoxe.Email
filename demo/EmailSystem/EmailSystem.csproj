@@ -14,9 +14,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" />
-      <ProjectReference Include="..\..\src\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" />
-      <ProjectReference Include="..\..\src\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.Azure.Email\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" />
+      <ProjectReference Include="..\..\src\Aoxe.SmtpClient\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" />
       <ProjectReference Include="..\EmailServiceBll\EmailServiceBll.csproj" />
       <ProjectReference Include="..\EmailServiceDal\EmailServiceDal.csproj" />
     </ItemGroup>

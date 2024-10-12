@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
+    
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net6.0;net8.0;net9.0</TargetFrameworks>
         <PackageVersion>2024.4.1</PackageVersion>
         <Version>2024.4.1</Version>
-        <Description>The aoxe email provider implement by Azure.Communication.Email.</Description>
-        <PackageTags>Aoxe;Azure;SmtpClient;Email;Azure.Communication.Email</PackageTags>
+        <Description>The aoxe email provider implement by SmtpClient.</Description>
+        <PackageTags>Aoxe;SmtpClient;Email;System.Net.Mail.SmtpClient</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
         <RepositoryUrl>https://github.com/AoxeTech/Aoxe.Email</RepositoryUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -22,11 +22,10 @@
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <Authors>Mutuduxf</Authors>
     </PropertyGroup>
-
+    
     <ItemGroup>
         <PackageReference Include="Aoxe.Email.Abstractions" Version="2024.9.1" />
         <PackageReference Include="Aoxe.Extensions" Version="2024.2.4" />
-        <PackageReference Include="Azure.Communication.Email" Version="1.0.1" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
@@ -35,7 +34,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="../../README.md" Pack="true" PackagePath="\"/>
+        <None Include="../../../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
-
+    
 </Project>

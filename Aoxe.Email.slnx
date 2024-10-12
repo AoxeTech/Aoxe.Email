@@ -7,11 +7,19 @@
     <Project Path="demo\IEmailServiceDal\IEmailServiceDal.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" Type="Classic C#" />
-    <Project Path="src\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" Type="Classic C#" />
     <Project Path="src\Aoxe.Email.Abstractions\Aoxe.Email.Abstractions.csproj" Type="Classic C#" />
-    <Project Path="src\Aoxe.MailKit\Aoxe.MailKit.csproj" Type="Classic C#" />
-    <Project Path="src\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Aoxe.Aws.SimpleEmail/">
+    <Project Path="src\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail\Aoxe.Aws.SimpleEmail.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Aoxe.Azure.Email/">
+    <Project Path="src\Aoxe.Azure.Email\Aoxe.Azure.Email\Aoxe.Azure.Email.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Aoxe.MailKit/">
+    <Project Path="src\Aoxe.MailKit\Aoxe.MailKit\Aoxe.MailKit.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/Aoxe.SmtpClient/">
+    <Project Path="src\Aoxe.SmtpClient\Aoxe.SmtpClient\Aoxe.SmtpClient.csproj" Type="Classic C#" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests\Aoxe.Email.Abstractions.TestProject\Aoxe.Email.Abstractions.TestProject.csproj" Type="Classic C#" />
