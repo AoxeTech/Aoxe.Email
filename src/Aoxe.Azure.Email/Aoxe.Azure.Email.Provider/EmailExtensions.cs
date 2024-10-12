@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Azure.Email;
+﻿namespace Aoxe.Azure.Email.Provider;
 
 public static class EmailExtensions
 {

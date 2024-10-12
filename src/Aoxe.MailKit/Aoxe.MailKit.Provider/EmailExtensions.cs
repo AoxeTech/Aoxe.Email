@@ -1,4 +1,4 @@
-namespace Aoxe.MailKit;
+namespace Aoxe.MailKit.Provider;
 
 public static class EmailExtensions
 {

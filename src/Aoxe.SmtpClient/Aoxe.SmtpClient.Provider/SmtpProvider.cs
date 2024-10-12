@@ -1,4 +1,4 @@
-namespace Aoxe.SmtpClient;
+namespace Aoxe.SmtpClient.Provider;
 
 public class SmtpProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
 {

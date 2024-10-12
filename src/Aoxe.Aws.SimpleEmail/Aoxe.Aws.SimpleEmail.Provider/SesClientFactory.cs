@@ -1,4 +1,4 @@
-﻿namespace Aoxe.Aws.SimpleEmail;
+﻿namespace Aoxe.Aws.SimpleEmail.Provider;
 
 public class SesClientFactory : ISesClientFactory
 {

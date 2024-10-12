@@ -1,15 +1,8 @@
-// Global using directives
+﻿// Global using directives
 
-global using System;
-global using System.Linq;
-global using System.Threading;
-global using System.Threading.Tasks;
+global using Aoxe.Azure.Email.Provider;
 global using Aoxe.Email.Abstractions;
-global using Aoxe.Extensions;
 global using Azure;
 global using Azure.Communication.Email;
 global using Azure.Core;
 global using Microsoft.Extensions.DependencyInjection;
-global using EmailAddress = Azure.Communication.Email.EmailAddress;
-global using EmailContent = Azure.Communication.Email.EmailContent;
-global using EmailRecipients = Azure.Communication.Email.EmailRecipients;
