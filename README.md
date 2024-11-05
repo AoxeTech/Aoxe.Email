@@ -30,7 +30,7 @@ Use System.Net.Mail.SmtpClient.
 
 ## 2. How to use Aoxe.Email?
 
-### Install the package
+### 2.1. Install the package
 
 ```bash
 PM> Install-Package Aoxe.Aws.SimpleEmail
@@ -39,7 +39,7 @@ PM> Install-Package Aoxe.MailKit
 PM> Install-Package Aoxe.SmtpClient
 ```
 
-### Register the email provider
+### 2.2. Register the email provider
 
 All the implements has the same abstractions so we can easily switch between them.
 
@@ -84,7 +84,7 @@ public class EmailService
 }
 ```
 
-### Lazy Registration
+### 2.3. Lazy Registration
 
 All email providers support auto lazy registration, which can be useful for improving performance and reducing resource usage. Here is an example of how to use:
 
