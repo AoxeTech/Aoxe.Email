@@ -12,19 +12,9 @@ public static class AoxeMailKitServiceCollectionExtensions
         IProtocolLogger? protocolLogger = null,
         IMeterFactory? meterFactory = null
     ) =>
-        serviceCollection.AddScoped<IEmailProvider>(
-            _ =>
-                new MailKitProvider(
-                    new SmtpClientFactory(
-                        host,
-                        port,
-                        userName,
-                        password,
-                        protocolLogger,
-                        meterFactory
-                    )
-                )
-        );
+        serviceCollection.AddScopedWithLazy<IEmailProvider>(_ => new MailKitProvider(
+            new SmtpClientFactory(host, port, userName, password, protocolLogger, meterFactory)
+        ));
 #else
     public static IServiceCollection AddMailKit(
         this IServiceCollection serviceCollection,
@@ -34,11 +24,8 @@ public static class AoxeMailKitServiceCollectionExtensions
         string? password = null,
         IProtocolLogger? protocolLogger = null
     ) =>
-        serviceCollection.AddScoped<IEmailProvider>(
-            _ =>
-                new MailKitProvider(
-                    new SmtpClientFactory(host, port, userName, password, protocolLogger)
-                )
-        );
+        serviceCollection.AddScopedWithLazy<IEmailProvider>(_ => new MailKitProvider(
+            new SmtpClientFactory(host, port, userName, password, protocolLogger)
+        ));
 #endif
 }

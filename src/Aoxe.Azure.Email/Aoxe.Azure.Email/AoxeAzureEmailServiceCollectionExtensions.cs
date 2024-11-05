@@ -7,9 +7,9 @@ public static class AoxeAzureEmailServiceCollectionExtensions
         string connectionString,
         EmailClientOptions? options = null
     ) =>
-        serviceCollection.AddScoped<IEmailProvider>(
-            _ => new AzureEmailProvider(new EmailClientFactory(connectionString, options))
-        );
+        serviceCollection.AddScopedWithLazy<IEmailProvider>(_ => new AzureEmailProvider(
+            new EmailClientFactory(connectionString, options)
+        ));
 
     public static IServiceCollection AddAzureEmail(
         this IServiceCollection serviceCollection,
@@ -17,9 +17,9 @@ public static class AoxeAzureEmailServiceCollectionExtensions
         AzureKeyCredential credential,
         EmailClientOptions? options = null
     ) =>
-        serviceCollection.AddScoped<IEmailProvider>(
-            _ => new AzureEmailProvider(new EmailClientFactory(endpoint, credential, options))
-        );
+        serviceCollection.AddScopedWithLazy<IEmailProvider>(_ => new AzureEmailProvider(
+            new EmailClientFactory(endpoint, credential, options)
+        ));
 
     public static IServiceCollection AddAzureEmail(
         this IServiceCollection serviceCollection,
@@ -27,7 +27,7 @@ public static class AoxeAzureEmailServiceCollectionExtensions
         TokenCredential credential,
         EmailClientOptions? options = null
     ) =>
-        serviceCollection.AddScoped<IEmailProvider>(
-            _ => new AzureEmailProvider(new EmailClientFactory(endpoint, credential, options))
-        );
+        serviceCollection.AddScopedWithLazy<IEmailProvider>(_ => new AzureEmailProvider(
+            new EmailClientFactory(endpoint, credential, options)
+        ));
 }

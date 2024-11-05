@@ -30,7 +30,7 @@ Use System.Net.Mail.SmtpClient.
 
 ## 2. How to use Aoxe.Email?
 
-Install the package
+### Install the package
 
 ```bash
 PM> Install-Package Aoxe.Aws.SimpleEmail
@@ -39,7 +39,9 @@ PM> Install-Package Aoxe.MailKit
 PM> Install-Package Aoxe.SmtpClient
 ```
 
-Register the email provider. All the implements has the same abstractions so we can easily switch between them.
+### Register the email provider
+
+All the implements has the same abstractions so we can easily switch between them.
 
 ```csharp
 // Please replace the host and port with your own, you can use user name and password for the authentication and so on
@@ -78,6 +80,38 @@ public class EmailService
         await email.SendByAsync(_emailProvider);
         // Or you can send the email with the provider
         await _emailProvider.SendAsync(email);
+    }
+}
+```
+
+### Lazy Registration
+
+All email providers support auto lazy registration, which can be useful for improving performance and reducing resource usage. Here is an example of how to use:
+
+```csharp
+public class EmailService
+{
+    private readonly Lazy<IEmailProvider> _emailProvider;
+
+    public EmailService(Lazy<IEmailProvider> emailProvider)
+    {
+        _emailProvider = emailProvider;
+    }
+
+    public async Task SendEmailAsync(string subject, string text, string fromAddress, string toAddress)
+    {
+        var email = new Abstractions.Models.Email();
+        email
+            .Subject(subject)
+            .TextBody(email)
+            .EmailFrom(fromAddress)
+            .EmailTo(toAddress);
+        // Get the email provider from Lazy<T>
+        var provider = _emailProvider.Value;
+        // You can send the email with extension method
+        await email.SendByAsync(provider);
+        // Or you can send the email with the provider
+        await provider.SendAsync(email);
     }
 }
 ```
