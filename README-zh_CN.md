@@ -30,7 +30,7 @@ MailKit 是一个开源跨平台 .NET 邮件客户端库，它基于 MimeKit 并
 
 ## 2. 如何使用 Aoxe.Email?
 
-### 安装 package
+### 2.1. 安装 package
 
 ```bash
 PM> Install-Package Aoxe.Aws.SimpleEmail
@@ -39,7 +39,7 @@ PM> Install-Package Aoxe.MailKit
 PM> Install-Package Aoxe.SmtpClient
 ```
 
-### 注册 email provider
+### 2.2. 注册 email provider
 
 我们可以很容易地切换不同的实现, 因为所有实现都基于同样的抽象.
 
