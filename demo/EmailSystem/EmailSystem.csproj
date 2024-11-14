@@ -7,9 +7,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
-        <PackageReference Include="Aoxe.Mongo" Version="2024.2.11" />
-        <PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.5" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
+        <PackageReference Include="Aoxe.Mongo" Version="2024.3.0" />
+        <PackageReference Include="Aoxe.RabbitMQ" Version="2024.1.6" />
         <PackageReference Include="Aoxe.ThreeTier" Version="2024.1.0" />
     </ItemGroup>
 

@@ -1,6 +1,6 @@
 namespace Aoxe.Aws.SimpleEmail.Provider;
 
-public class AwsSimpleEmailProvider(ISesClientFactory esClientFactory) : IEmailProvider
+public sealed class AwsSimpleEmailProvider(ISesClientFactory esClientFactory) : IEmailProvider
 {
     private IAmazonSimpleEmailServiceV2? _sesClient;
 

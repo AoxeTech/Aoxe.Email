@@ -1,6 +1,6 @@
 namespace Aoxe.MailKit.Provider;
 
-public class MailKitProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
+public sealed class MailKitProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
 {
     private IMailTransport? _mailTransport;
 

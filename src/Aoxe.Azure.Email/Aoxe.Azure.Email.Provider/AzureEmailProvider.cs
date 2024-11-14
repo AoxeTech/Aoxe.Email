@@ -1,6 +1,6 @@
 namespace Aoxe.Azure.Email.Provider;
 
-public class AzureEmailProvider(IEmailClientFactory emailClientFactory) : IEmailProvider
+public sealed class AzureEmailProvider(IEmailClientFactory emailClientFactory) : IEmailProvider
 {
     private EmailClient? _emailClient;
 

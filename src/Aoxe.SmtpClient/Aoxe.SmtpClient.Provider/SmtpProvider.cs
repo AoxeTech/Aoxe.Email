@@ -1,6 +1,6 @@
 namespace Aoxe.SmtpClient.Provider;
 
-public class SmtpProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
+public sealed class SmtpProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
 {
     private System.Net.Mail.SmtpClient? _smtpClient;
 
@@ -10,7 +10,11 @@ public class SmtpProvider(ISmtpClientFactory smtpClientFactory) : IEmailProvider
     )
     {
         _smtpClient ??= smtpClientFactory.Create();
+#if NETSTANDARD2_0
         await _smtpClient.SendMailAsync(emailCommand.ToMailMessage());
+#else
+        await _smtpClient.SendMailAsync(emailCommand.ToMailMessage(), cancellationToken);
+#endif
     }
 
     public void Dispose() => _smtpClient?.Dispose();
