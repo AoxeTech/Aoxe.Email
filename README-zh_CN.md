@@ -30,7 +30,7 @@ MailKit 是一个开源跨平台 .NET 邮件客户端库，它基于 MimeKit 并
 
 ## 2. 如何使用 Aoxe.Email?
 
-Install the package
+### 2.1. 安装 package
 
 ```bash
 PM> Install-Package Aoxe.Aws.SimpleEmail
@@ -39,7 +39,9 @@ PM> Install-Package Aoxe.MailKit
 PM> Install-Package Aoxe.SmtpClient
 ```
 
-注册 email provider. 我们可以很容易地切换不同的实现, 因为所有实现都基于同样的抽象.
+### 2.2. 注册 email provider
+
+我们可以很容易地切换不同的实现, 因为所有实现都基于同样的抽象.
 
 ```csharp
 // 请使用您自己的 host 和 端口, 当然您还可以使用账号密码等功能
@@ -78,6 +80,38 @@ public class EmailService
         await email.SendByAsync(_emailProvider);
         // 也可以使用 provider 发送邮件
         await _emailProvider.SendAsync(email);
+    }
+}
+```
+
+### 2.3. Lazy 注册
+
+所有的 email providers 都提供了自动的 lazy 注册, 这对提高性能和减少资源使用非常有用。下面是一个例子:
+
+```csharp
+public class EmailService
+{
+    private readonly Lazy<IEmailProvider> _emailProvider;
+
+    public EmailService(Lazy<IEmailProvider> emailProvider)
+    {
+        _emailProvider = emailProvider;
+    }
+
+    public async Task SendEmailAsync(string subject, string text, string fromAddress, string toAddress)
+    {
+        var email = new Abstractions.Models.Email();
+        email
+            .Subject(subject)
+            .TextBody(email)
+            .EmailFrom(fromAddress)
+            .EmailTo(toAddress);
+        // 从 Lazy<T> 获取 IEmailProvider
+        var provider = _emailProvider.Value;
+        // 您可以使用扩展方法来发送邮件
+        await email.SendByAsync(provider);
+        // 也可以使用 provider 发送邮件
+        await provider.SendAsync(email);
     }
 }
 ```
