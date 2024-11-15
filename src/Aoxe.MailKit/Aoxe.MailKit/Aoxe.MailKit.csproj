@@ -2,8 +2,8 @@
 	
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
-		<PackageVersion>2025.1.0</PackageVersion>
-		<Version>2025.1.0</Version>
+		<PackageVersion>2025.1.2</PackageVersion>
+		<Version>2025.1.2</Version>
 		<Description>The aoxe email provider implement by MailKit.</Description>
 		<PackageTags>Aoxe;MailKit;SmtpClient;Email</PackageTags>
 		<PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -24,6 +24,7 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+		<PackageReference Include="Aoxe.DependencyInjection.Extensions" Version="2025.2.2" />
 		<PackageReference Include="Aoxe.MailKit.Provider" Version="2025.1.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
