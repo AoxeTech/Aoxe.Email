@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
-        <PackageVersion>2025.1.1</PackageVersion>
-        <Version>2025.1.1</Version>
+        <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+        <PackageVersion>2025.2.0</PackageVersion>
+        <Version>2025.2.0</Version>
         <Description>The aoxe email provider implement by Amazon.SimpleEmailV2.</Description>
         <PackageTags>Aoxe;Aws;SmtpClient;Email;Amazon.SimpleEmailV2</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -25,12 +25,12 @@
 
     <ItemGroup>
         <PackageReference Include="Aoxe.Email.Abstractions" Version="2025.1.0" />
-        <PackageReference Include="AWSSDK.SimpleEmailV2" Version="3.7.404.7" />
+        <PackageReference Include="AWSSDK.SimpleEmailV2" Version="4.0.1.1" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MimeKit" Version="4.8.0" />
+        <PackageReference Include="MimeKit" Version="4.13.0" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
-        <PackageVersion>2025.1.2</PackageVersion>
-        <Version>2025.1.2</Version>
+        <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+        <PackageVersion>2025.2.0</PackageVersion>
+        <Version>2025.2.0</Version>
         <Description>The aoxe email provider implement by Azure.Communication.Email.</Description>
         <PackageTags>Aoxe;Azure;SmtpClient;Email;Azure.Communication.Email</PackageTags>
         <PackageProjectUrl>https://github.com/AoxeTech</PackageProjectUrl>
@@ -24,9 +24,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aoxe.Azure.Email.Provider" Version="2025.1.0" />
-        <PackageReference Include="Aoxe.DependencyInjection.Extensions" Version="2025.2.2" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+        <PackageReference Include="Aoxe.Azure.Email.Provider" Version="2025.2.0" />
+        <PackageReference Include="Aoxe.DependencyInjection.Extensions" Version="2025.3.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
         <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
